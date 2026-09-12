@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr" data-lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover">
 <title>رُشد · RUSHD</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -964,6 +964,29 @@ html[dir="rtl"] .fcCell .v .tag{margin:0 0 6px 6px}
 
 /* ================= MOBILE / PORTRAIT ================= */
 @media (max-width:820px){
+  /* ---- narration bar: stack instead of one crushed row ---- */
+  #tourBar{
+    padding:16px 15px calc(13px + env(safe-area-inset-bottom))!important;
+    background:linear-gradient(180deg,rgba(5,16,33,0) 0%,rgba(5,16,33,.95) 20%,rgba(5,16,33,.99) 100%)!important;
+    border-top:0!important;
+  }
+  #tourBar .tprog{margin-bottom:10px}
+  #tourBar .trow{flex-wrap:wrap;gap:7px 9px;align-items:center}
+  #tourBar .tnum{order:1;font-size:10px;padding:3px 9px;letter-spacing:1px}
+  #tourBar .ttl{
+    order:2;font-size:15px!important;line-height:1.3;
+    max-width:none!important;flex:1 1 auto;min-width:0;
+  }
+  #tourBar .tctl{order:3;flex:none;margin-inline-start:auto}
+  #tourBar .tctl button{padding:7px 11px;font-size:13px;border-radius:8px}
+  #tourBar .say{
+    order:4;flex:1 0 100%;font-size:13.5px!important;line-height:1.6;opacity:.96;
+  }
+
+  /* the floating callout has no room on a phone; the bar carries the words */
+  .tnote{display:none!important}
+
+  /* ---- chapter cards ---- */
   #actCard{padding:26px 22px}
   #actCard .acn{font-size:10.5px;letter-spacing:2.4px;margin-bottom:10px}
   #actCard .act{font-size:26px;line-height:1.25;margin:0 0 8px}
@@ -980,23 +1003,157 @@ html[dir="rtl"] .fcCell .v .tag{margin:0 0 6px 6px}
   #roleCard .rcf b{font-size:19px;margin-bottom:5px}
   #roleCard .rcf span{font-size:13.5px;line-height:1.45}
 
-  #tourNote{font-size:12.5px;padding:10px 14px;line-height:1.5;
-    max-width:calc(100vw - 24px);inset-inline:12px!important;width:auto!important}
-  #tourBar{padding:10px 14px calc(10px + env(safe-area-inset-bottom))}
-  #tourCur{width:20px;height:20px}
-
-  #featBadge{top:calc(env(safe-area-inset-top) + 12px);inset-inline-start:12px;
-    inset-inline-end:12px;padding:9px 13px;gap:9px;border-radius:11px}
+  #featBadge{top:calc(env(safe-area-inset-top) + 10px);inset-inline-start:10px;
+    inset-inline-end:10px;padding:9px 13px;gap:9px;border-radius:11px}
   #featBadge i{font-size:15px;padding-inline-end:9px}
   #featBadge .fbstage{font-size:9px;letter-spacing:1.6px}
   #featBadge span{font-size:12.5px;line-height:1.35}
 
   #tourEnd h2{font-size:24px!important;line-height:1.3}
   #tourEnd p{font-size:13.5px!important;line-height:1.6;max-width:90vw}
+
+  /* keep the spotlight from hugging the screen edge */
+  #tourSpot{border-radius:12px}
 }
+
+/* the product UI is a desktop layout: shrink it to fit rather than let it clip */
 @media (max-width:820px) and (orientation:portrait){
-  /* the product UI is a desktop layout — scale it to fit rather than reflow mid-tour */
-  body.cinema #app{transform-origin:top left}
+  body.cinema #app,body.stills #app{
+    width:1180px!important;max-width:none!important;
+    transform:scale(calc(100vw / 1180));
+    transform-origin:top left;
+  }
+  body.cinema #tourBar .say{max-height:5.4em;overflow:hidden}
+}
+
+/* ================= ROTATE PROMPT ================= */
+#rotate{display:none}
+@media (max-width:900px) and (orientation:portrait){
+  #rotate.on{
+    display:grid;place-items:center;position:fixed;inset:0;z-index:10050;
+    background:#061020;color:#fff;padding:32px 26px;text-align:center;
+    animation:acfade .4s;
+  }
+}
+#rotate .rotw{max-width:440px}
+#rotate .rotph{
+  width:62px;height:104px;margin:0 auto 26px;border:2.5px solid rgba(138,210,241,.85);
+  border-radius:11px;position:relative;
+  animation:rotSpin 2.6s cubic-bezier(.65,0,.35,1) infinite;
+}
+#rotate .rotscr{
+  position:absolute;inset:7px;border-radius:5px;
+  background:linear-gradient(160deg,rgba(138,210,241,.30),rgba(138,210,241,.07));
+}
+#rotate .rotph:after{
+  content:"";position:absolute;bottom:5px;left:50%;transform:translateX(-50%);
+  width:20px;height:2.5px;border-radius:2px;background:rgba(138,210,241,.65);
+}
+@keyframes rotSpin{
+  0%,22%{transform:rotate(0)}
+  48%,74%{transform:rotate(-90deg)}
+  100%{transform:rotate(-90deg)}
+}
+#rotate h3{margin:0 0 12px;font-size:25px;font-weight:800;letter-spacing:-.2px}
+#rotate p{margin:0 0 26px;font-size:14.5px;line-height:1.75;opacity:.82}
+#rotate button{
+  background:#8AD2F1;color:#052440;border:0;border-radius:11px;
+  padding:12px 24px;font:700 14px/1 inherit;cursor:pointer;
+}
+#rotate button:active{opacity:.75}
+
+/* ============ PHONE LANDSCAPE: keep the bar tiny, the flow visible ============ */
+@media (max-height:560px) and (orientation:landscape){
+  #tourBar{
+    padding:7px 12px calc(6px + env(safe-area-inset-bottom))!important;
+    background:linear-gradient(180deg,rgba(5,16,33,0) 0%,rgba(5,16,33,.88) 40%,rgba(5,16,33,.97) 100%)!important;
+    border-top:0!important;
+  }
+  #tourBar .tprog{height:2px;margin-bottom:6px}
+  #tourBar .trow{flex-wrap:nowrap;gap:9px;align-items:center}
+  #tourBar .tnum{font-size:9px;padding:2px 7px;letter-spacing:.8px;border-radius:14px}
+  #tourBar .ttl{
+    font-size:12px!important;font-weight:700;line-height:1.25;
+    flex:0 1 auto;max-width:34%!important;min-width:0;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  #tourBar .say{
+    font-size:11.5px!important;line-height:1.4;flex:1 1 auto;min-width:0;opacity:.9;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  #tourBar .tctl{gap:5px}
+  #tourBar .tctl button{padding:6px 9px;font-size:12px;border-radius:7px;line-height:1}
+
+  /* tap the bar to read the whole line, tap again to shrink */
+  #tourBar.tb-open .say{-webkit-line-clamp:unset;display:block;max-height:38vh;overflow:auto}
+  #tourBar.tb-open .ttl{white-space:normal;max-width:none!important}
+  #tourBar.tb-open .trow{flex-wrap:wrap}
+
+  /* the callout and badge would cover the UI on a short screen */
+  .tnote{display:none!important}
+  #featBadge{top:calc(env(safe-area-inset-top) + 6px);inset-inline-start:8px;inset-inline-end:auto;
+    padding:6px 10px;gap:7px;border-radius:9px}
+  #featBadge i{font-size:13px;padding-inline-end:7px}
+  #featBadge .fbstage{font-size:8px;letter-spacing:1.2px}
+  #featBadge span{font-size:11px}
+
+  /* chapter cards must not eat the screen either */
+  #actCard{padding:18px}
+  #actCard .acn{font-size:9.5px;margin-bottom:7px}
+  #actCard .act{font-size:21px;margin:0 0 6px}
+  #actCard .acs{font-size:12px;line-height:1.55;max-width:88vw}
+  #roleCard{padding:16px}
+  #roleCard .rcstage{font-size:28px;margin:0 0 7px}
+  #roleCard .rcrule{width:48px;margin-bottom:10px}
+  #roleCard .rct{font-size:14px;margin:0 0 12px}
+  #roleCard .rcg{grid-template-columns:repeat(3,1fr);gap:8px}
+  #roleCard .rcf{padding:9px 11px;border-radius:10px}
+  #roleCard .rcf b{font-size:15px;margin-bottom:3px}
+  #roleCard .rcf span{font-size:11px;line-height:1.35}
+  #tourEnd h2{font-size:19px!important}
+  #tourEnd p{font-size:12px!important;max-width:86vw}
+}
+
+/* ============ CHAPTER PICKER + SAFER STOP ============ */
+#tourBar .tnum.pick{cursor:pointer;position:relative;padding-inline-end:20px}
+#tourBar .tnum.pick:after{
+  content:"";position:absolute;inset-inline-end:8px;top:50%;margin-top:-2px;
+  border:4px solid transparent;border-top-color:currentColor;opacity:.8;
+}
+#tourBar.pick-open .tnum.pick:after{transform:rotate(180deg);margin-top:-6px}
+
+#tourPick{display:none;gap:8px;flex-wrap:wrap;padding:0 0 11px}
+#tourBar.pick-open #tourPick{display:flex}
+#tourPick button{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(138,210,241,.38);
+  color:#fff;border-radius:10px;padding:9px 14px;
+  font:700 12.5px/1 inherit;letter-spacing:.6px;cursor:pointer;
+}
+#tourPick button:hover{background:rgba(138,210,241,.2)}
+#tourPick button i{font-style:normal;font-size:10.5px;opacity:.6;font-variant-numeric:tabular-nums}
+
+/* the end button sits apart from prev / play / next */
+#tourBar .tstop{flex:none;margin-inline-start:14px;padding-inline-start:14px;
+  border-inline-start:1px solid rgba(255,255,255,.16)}
+#tourBar .tstop button{
+  background:transparent;border:1px solid rgba(255,255,255,.16);
+  color:rgba(255,255,255,.5);border-radius:9px;padding:6px 11px;
+  font-size:12px;cursor:pointer;font-family:inherit;transition:.15s;
+}
+#tourBar .tstop button:hover{color:#fff;border-color:rgba(255,255,255,.4)}
+#tourBar .tstop button.armed{
+  background:#C0392B;border-color:#C0392B;color:#fff;font-weight:700;white-space:nowrap;
+}
+@media (max-height:560px) and (orientation:landscape){
+  #tourPick{padding-bottom:7px;gap:6px}
+  #tourPick button{padding:7px 11px;font-size:11.5px;border-radius:8px}
+  #tourBar .tstop{margin-inline-start:9px;padding-inline-start:9px}
+  #tourBar .tstop button{padding:6px 9px;font-size:11px}
+}
+@media (max-width:820px){
+  #tourPick{order:0;flex:1 0 100%;padding-bottom:9px}
+  #tourBar .tstop{order:3}
 }
 </style>
 </head>
@@ -1393,9 +1550,19 @@ html[dir="rtl"] .fcCell .v .tag{margin:0 0 6px 6px}
   <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" stroke="rgba(0,0,0,.5)" stroke-width="1">
     <path d="M5 2l14 8.5-6.2 1.4L9.6 19z"/></svg></div>
 <div id="tourBar"><div class="tprog"><i></i></div>
+  <div id="tourPick"></div>
   <div class="trow"><span class="tnum"></span><span class="ttl"></span><span class="say"></span>
     <span class="tctl"><button data-tc="prev">&#8249;</button><button data-tc="play">&#10074;&#10074;</button>
-      <button data-tc="next">&#8250;</button><button data-tc="stop">&#10005;</button></span></div></div>
+      <button data-tc="next">&#8250;</button></span>
+    <span class="tstop"><button data-tc="stop" aria-label="End">&#10005;</button></span></div></div>
+<div id="rotate" aria-hidden="true">
+  <div class="rotw">
+    <div class="rotph"><span class="rotscr"></span></div>
+    <h3 data-ar="أدر جهازك" data-en="Turn your phone">أدر جهازك</h3>
+    <p data-ar="رُشد واجهة استثمارية كاملة. الوضع الأفقي يعرضها كما يراها المحلل." data-en="Rushd is a full investment workspace. Landscape shows it the way an analyst sees it.">رُشد واجهة استثمارية كاملة. الوضع الأفقي يعرضها كما يراها المحلل.</p>
+    <button id="rotGo" data-ar="تابع رأسياً" data-en="Continue anyway">تابع رأسياً</button>
+  </div>
+</div>
 <div id="tourSpot"></div>
 <div class="tnote" id="tourNote"></div>
 <div id="roleCard"><div class="rcw"><div class="rcn"></div><div class="rcstage"></div><div class="rcrule"></div><h2 class="rct"></h2><div class="rcg"></div></div></div>
@@ -2359,9 +2526,13 @@ function takeFile(k,f){
   setTimeout(()=>{if(!CLF[k])return;CLF[k].up=false;
     if(inSetup){
       rr();
-      if(["thesisdoc","pflist","factsheet","cmalic"].indexOf(k)>=0&&EXS.s==="idle"){runExtract("s");return}
+      if(["thesisdoc","pflist","factsheet","cmalic"].indexOf(k)>=0&&EXS.s==="idle"){
+        if(window.__deferExtract){window.__pendingEx="s";return}
+        runExtract("s");return}
       toast("upOk",t({ar:"استُلم "+CLF[k].n,en:"Received "+CLF[k].n}));return}
-    if(k==="crdoc"&&clStep===0&&(CL.mode||"upload")==="upload"&&EXS.c==="idle"){CL._af=1;runExtract("c");return}
+    if(k==="crdoc"&&clStep===0&&(CL.mode||"upload")==="upload"&&EXS.c==="idle"){CL._af=1;
+      if(window.__deferExtract){window.__pendingEx="c";return}
+      runExtract("c");return}
     rr();toast("upOk",t({ar:"استُلم "+CLF[k].n,en:"Received "+CLF[k].n}))},800);
 }
 document.addEventListener("change",e=>{
@@ -3239,6 +3410,7 @@ function tPoint(sel,click,note,zoom){
 }
 function tTab(p){pane=p;$$(".dtab").forEach(b=>b.classList.toggle("on",b.dataset.pane===p));paint();}
 const TF=(k,n,mb)=>takeFile(k,{name:n,size:mb*1024*1024});
+function releaseExtract(){window.__deferExtract=0;const p=window.__pendingEx;window.__pendingEx=null;if(p)runExtract(p);}
 function tFade(sel){const e=tEl(sel);if(!e)return;e.classList.remove("tfade");void e.offsetWidth;e.classList.add("tfade")}
 const TOUR=[
 /* ============ ACT 1 — Sahm Ventures defines its lens ============ */
@@ -3361,57 +3533,57 @@ const TOUR=[
 /* ============ CINEMA MODE — the full product film (~4:20) ============
    Three pillars: intake manager for the VC · organiser for the founder · assistant for the analyst */
 const CINEMA=[
-/* ---- CH.1 — one inbox, one standard (intake manager for the VC) ---- */
+/* ---- CH.1, one inbox, one standard (intake manager for the VC) ---- */
  {ch:1,t:{ar:"صندوق سهم",en:"Sahm Ventures"},
   s:{ar:"صندوق جريء سعودي بـ٣٠٠ مليون ريال. مشكلته ليست ندرة الفرص — بل أن الفرص تصله في بريد وواتساب وملفات متفرقة، وكل واحدة بصيغة مختلفة.",
-     en:"A SAR 300M Saudi VC. Its problem is not deal scarcity — opportunities arrive by email, WhatsApp and scattered files, each in a different shape."},
+     en:"A SAR 300M Saudi VC. Its problem is not deal scarcity. Opportunities arrive by email, WhatsApp and scattered files, each in a different shape."},
   run:()=>{closeDrawer();S.mode="upload";openSetup();wzStep=0;renderSetup();tFade("#setup")},
   sel:"#setup .wz",hold:11000},
  {ch:1,t:{ar:"يعرّف نفسه مرة واحدة",en:"It defines itself once"},
   s:{ar:"بدل تعبئة عشرات الحقول، يرفع الشريك مذكرة الاستراتيجية وقائمة المحفظة.",
      en:"Instead of filling dozens of fields, the partner uploads the strategy memo and the portfolio list."},
-  run:()=>{setTimeout(()=>TF("thesisdoc","Sahm_Investment_Thesis_2025.pdf",2.4),1200)},
-  sel:'#setup [data-zone="thesisdoc"]',note:{ar:"يُسحب الملف هنا",en:"Drop the file here"},hold:9000},
+  run:()=>{window.__deferExtract=1;setTimeout(()=>TF("thesisdoc","Sahm_Investment_Thesis_2025.pdf",2.4),1200)},
+  sel:'#setup [data-zone="thesisdoc"]',note:{ar:"يُسحب الملف هنا",en:"Drop the file here"},hold:6500},
  {ch:1,t:{ar:"رُشد يقرأ المستند",en:"Rushd reads the document"},
   s:{ar:"يستخرج القطاعات والمرحلة وحجم الشيك والجغرافيا والمحفظة، ويطابق الأرقام بين المستندات.",
-     en:"It extracts sectors, stage, ticket size, geography and portfolio — cross-checking the figures across documents."},
-  run:()=>{},sel:"#setup .exbox",hold:10000},
+     en:"It extracts sectors, stage, ticket size, geography and portfolio, cross-checking the figures across documents."},
+  run:()=>{releaseExtract()},sel:"#setup .exbox",hold:10000},
  {ch:1,t:{ar:"كل حقل ومصدره",en:"Every field with its source"},
   s:{ar:"تحت كل حقل مكتوب من أي مستند جاء. وكل شيء يبقى قابلاً للتعديل — رُشد يقترح، والشريك يقرّر.",
-     en:"Under every field is the document it came from. All of it stays editable — Rushd proposes, the partner decides."},
+     en:"Under every field is the document it came from. All of it stays editable. Rushd proposes, the partner decides."},
   run:()=>{wzStep=2;renderSetup()},sel:"#setup .fld.pv-ok",
   note:{ar:"من: مذكرة الاستراتيجية",en:"From: strategy memo"},hold:10000},
  {ch:1,t:{ar:"وما لم يجده يقوله",en:"And it says what it could not find"},
   s:{ar:"ما لم يجده رُشد يُعلَّم بنجمة. والمطلوب منه يظهر بالبرتقالي ويمنع الحفظ حتى تُكمله بنفسك. لا تخمين، ولا فراغ مسكوت عنه.",
      en:"Whatever Rushd could not find is marked with an asterisk. Anything mandatory turns amber and blocks saving until you complete it. No guessing, and no silent gaps."},
   run:()=>{wzStep=1;renderSetup()},sel:"#setup .fld.pv-req",
-  note:{ar:"مطلوب — أدخله يدوياً",en:"Required — enter manually"},hold:10500},
+  note:{ar:"مطلوب — أدخله يدوياً",en:"Required. Enter manually"},hold:10500},
  {ch:1,t:{ar:"ما يُطبَّق، وما هو سياق",en:"What is applied, and what is context"},
   s:{ar:"ستة معايير تُطبَّق على كل صفقة تلقائياً. والباقي — الأطروحة والملكية المستهدفة والدور — سياق يظهر للمحلل ولا يُسقط صفقة أبداً.",
-     en:"Six criteria are applied to every deal automatically. The rest — thesis, target ownership, role — is context shown to the analyst that never rejects a deal."},
+     en:"Six criteria are applied to every deal automatically. The rest, thesis, target ownership, role, is context shown to the analyst that never rejects a deal."},
   run:()=>{S.fpace=S.fpace||"6";wzStep=WZ.length-1;renderSetup()},sel:"#setup .sum",hold:11000},
  {ch:1,t:{ar:"مدخل واحد بدل فوضى",en:"One intake instead of chaos"},
   s:{ar:"الآن للصندوق رابط تقديم واحد. كل فرصة تدخل من نفس الباب وبنفس الشكل — وهذه أول قيمة يقدّمها رُشد، قبل أي ذكاء اصطناعي.",
-     en:"The fund now has one application link. Every opportunity enters through the same door in the same shape — and that is Rushd's first value, before any AI."},
+     en:"The fund now has one application link. Every opportunity enters through the same door in the same shape, and that is Rushd's first value, before any AI."},
   run:()=>{applySetup();enterFund();go("fund");tFade("#v-fund")},sel:"#v-fund",hold:11000},
-/* ---- CH.2 — the founder's side (organiser for the applicant) ---- */
+/* ---- CH.2, the founder's side (organiser for the applicant) ---- */
  {ch:2,t:{ar:"شركة نُقلة",en:"Nuqla"},
   s:{ar:"منصة تشغيل للأساطيل الصغيرة، تطلب ٥ ملايين ريال. المؤسس عادةً يعيد كتابة نفس المعلومات لكل صندوق. هنا يرفع سجله التجاري فقط.",
      en:"A fleet-operations platform raising SAR 5M. Founders normally retype the same information for every fund. Here, it uploads its commercial registration."},
-  run:()=>{CL.mode="upload";clView="apply";clStep=0;enterClient();tFade("#client");
+  run:()=>{window.__deferExtract=1;CL.mode="upload";clView="apply";clStep=0;enterClient();tFade("#client");
     setTimeout(()=>TF("crdoc","Nuqla_CR_1010447823.pdf",1.1),2400)},
-  sel:'#client [data-zone="crdoc"]',note:{ar:"ملف واحد يكفي",en:"One file is enough"},hold:11000},
+  sel:'#client [data-zone="crdoc"]',note:{ar:"ملف واحد يكفي",en:"One file is enough"},hold:8000},
  {ch:2,t:{ar:"نفس المحرّك، الطرف الآخر",en:"The same engine, the other side"},
   s:{ar:"الطبقة التي قرأت مستندات الصندوق تقرأ الآن مستندات الشركة: الاسم، رقم السجل، المدينة، القطاع، المرحلة، ثم الأرقام من القوائم المالية.",
-     en:"The layer that read the fund's documents now reads the company's: name, registration number, city, sector, stage — then the figures from the financials."},
-  run:()=>{},sel:"#client .exbox",hold:10000},
+     en:"The layer that read the fund's documents now reads the company's: name, registration number, city, sector, stage, then the figures from the financials."},
+  run:()=>{releaseExtract()},sel:"#client .exbox",hold:10000},
  {ch:2,t:{ar:"نموذج معبّأ بدل صفحة فارغة",en:"A filled form, not a blank page"},
   s:{ar:"المؤسس يراجع ويصحّح بدل أن يكتب من الصفر. هذا ليس ترفاً — النماذج الطويلة هي السبب الأول لعدم إكمال الطلبات.",
-     en:"The founder reviews and corrects instead of typing from zero. This is not a nicety — long forms are the top reason applications are never completed."},
+     en:"The founder reviews and corrects instead of typing from zero. This is not a nicety. Long forms are the top reason applications are never completed."},
   run:()=>{clStep=0;renderClient()},sel:"#client .fld.pv-ok",hold:10000},
  {ch:2,t:{ar:"ماذا ينقصك بالضبط",en:"Exactly what is missing"},
   s:{ar:"مدقّق الاكتمال يقول للمؤسس ما ينقص قبل الإرسال — بدل أن يكتشفه بعد أسبوعين برسالة «نحتاج جدول الملكية».",
-     en:"The completeness checker tells the founder what is missing before submitting — instead of finding out two weeks later with a \u201Cwe need the cap table\u201D email."},
+     en:"The completeness checker tells the founder what is missing before submitting, instead of finding out two weeks later with a \u201Cwe need the cap table\u201D email."},
   run:()=>{clStep=3;renderClient()},sel:"#client .chk",hold:10500},
  {ch:2,t:{ar:"يرى ملفه كما سيصل",en:"It sees the file exactly as it will arrive"},
   s:{ar:"قبل الإرسال، تشاهد نُقلة طلبها بالضبط كما سيقرؤه فريق الاستثمار: البيانات، الأرقام، والوثائق المرفقة والناقصة. لا مفاجآت لأي طرف.",
@@ -3421,8 +3593,8 @@ const CINEMA=[
   s:{ar:"يصل الطلب منظّماً إلى مساحة صندوق سهم. لا سلسلة رسائل، ولا ملفات ضائعة في البريد.",
      en:"The application lands structured in Sahm's workspace. No email chain, and no files lost in an inbox."},
   run:()=>{clSent=true;clView="sent";renderClient();tFade("#client")},sel:"#client .thanks",hold:9000},
-/* ---- CH.3 — the analyst (assistant) ---- */
- {ch:3,t:{ar:"عبدالرحمن — محلل الاستثمار",en:"Abdulrahman — investment analyst"},
+/* ---- CH.3, the analyst (assistant) ---- */
+ {ch:3,t:{ar:"عبدالرحمن، محلل الاستثمار",en:"Abdulrahman, investment analyst"},
   s:{ar:"يفتح مساحته صباحاً. كل طلب وصل مفروزاً مسبقاً على معايير سهم الستة، ومعه نتيجة تحقّق: مطابق، تعارض، أو غير مُتحقَّق.",
      en:"He opens his workspace in the morning. Every application is already screened against Sahm's six criteria, each with a verification result: matched, mismatch, or unverified."},
   run:()=>{clView="home";enterFund();go("deals");tFade("#v-deals")},sel:"#tblBody",
@@ -3435,9 +3607,9 @@ const CINEMA=[
   s:{ar:"السجل التجاري يؤكد كياناً سعودياً سارياً بنشاط مطابق. والإيراد ٣.١ مليون مطابق بين العرض والقوائم المالية.",
      en:"The registration confirms an active Saudi entity with matching activity. And SAR 3.1M ARR is consistent between the deck and the financials."},
   run:()=>{tTab("evidence")},sel:"#dBody .evrow.match",hold:9500},
- {ch:3,t:{ar:"الطلب يقول شيئاً، والأدلة تقول ما هو مثبت",en:"The application says one thing, the evidence shows what is supported"},
+ {ch:3,t:{ar:"١٤٠ مُدّعى. ١١٨ مُثبت.",en:"140 claimed. 118 evidenced."},
   s:{ar:"العرض يقول ١٤٠ مشغّلاً نشطاً. جدول العملاء يُثبت ١١٨ خلال ٩٠ يوماً — فارق ١٦٪. لاحظ أن رُشد لا يرفع علماً أحمر: يشرح أن هذا يغيّر تكلفة اكتساب المشغّل، ويحوّله إلى سؤال استثماري.",
-     en:"The deck claims 140 active operators. The customer schedule evidences 118 in 90 days — a 16% gap. Notice Rushd does not raise a red flag: it explains that this changes the cost per operator, and turns it into an investment question."},
+     en:"The deck claims 140 active operators. The customer schedule evidences 118 in 90 days, a 16% gap. Notice Rushd does not raise a red flag: it explains that this changes the cost per operator, and turns it into an investment question."},
   run:()=>{tTab("evidence")},sel:"#dBody .evrow.mismatch",hold:15000},
  {ch:3,t:{ar:"وما لا يمكن تأكيده",en:"And what cannot be confirmed"},
   s:{ar:"جدول الملكية لم يصل، فلا يمكن تأكيد الملكية ولا اختبار نسبة الـ ٨–١٥٪ المستهدفة. رُشد يقولها صراحة بدل أن يخمّن.",
@@ -3450,11 +3622,11 @@ const CINEMA=[
   after:()=>{const b=tEl("#dBody [data-vq]");if(b)b.click()},hold:10000},
  {ch:3,t:{ar:"ملف مراجعة جاهز",en:"A review file, ready"},
   s:{ar:"ملخص، مؤشرات، أطروحة، مخاطر مع مصادرها، نواقص، أثر على المحفظة، وأسئلة للمؤسس. عبدالرحمن يقرأ ويحكم — لا يجمع ويرتّب.",
-     en:"Summary, metrics, thesis, risks with their sources, gaps, portfolio impact, and questions for the founder. Abdulrahman reads and judges — instead of collecting and organising."},
+     en:"Summary, metrics, thesis, risks with their sources, gaps, portfolio impact, and questions for the founder. Abdulrahman reads and judges, instead of collecting and organising."},
   run:()=>{tTab("review")},sel:"#dBody .sec",hold:11000},
  {ch:3,t:{ar:"ثم تُطبَّق عدسة سهم",en:"Then Sahm's lens is applied"},
   s:{ar:"ستة معايير، كل واحد بنتيجة وسبب مكتوب: التفويض، القطاع، المرحلة، الشيك، الجغرافيا، وتعارض المحفظة. هذا ليس تقييماً عاماً للشركة — هذا قياس على هذا الصندوق تحديداً.",
-     en:"Six criteria, each with a result and a written reason: mandate, sector, stage, ticket, geography and portfolio conflict. This is not a generic company score — it is a measurement against this specific fund."},
+     en:"Six criteria, each with a result and a written reason: mandate, sector, stage, ticket, geography and portfolio conflict. This is not a generic company score, it is a measurement against this specific fund."},
   run:()=>{tTab("fit")},sel:"#dBody .checks",hold:12000},
  {ch:3,t:{ar:"رُشد لا يتخذ القرار",en:"Rushd does not make the decision"},
   s:{ar:"عبدالرحمن يقرّر. رُشد جهّز الأدلة والسياق فقط.",
@@ -3464,24 +3636,24 @@ const CINEMA=[
   s:{ar:"القرار وسببه مسجّلان، والصفقة انتقلت للفحص المعمّق مع خطوتها القادمة ومسؤولها.",
      en:"The decision and its reasoning are recorded, and the deal has moved to deeper diligence with its next action and its owner."},
   run:()=>{tTab("track")},sel:"#dBody",hold:9000},
-/* ---- CH.4 — the loop closes ---- */
- {ch:3,t:{ar:"نُقلة تعرف النتيجة",en:"Nuqla learns the outcome"},
+/* ---- CH.3 continued, the loop closes ---- */
+ {ch:3,t:{ar:"وتصل النتيجة إلى نُقلة",en:"And Nuqla hears back"},
   s:{ar:"في الطرف الآخر، لا ينتظر المؤسس في صمت. تصل الموافقة المبدئية بنتيجة الفرز ٦ من ٦، ومن قرّر، والخطوة القادمة.",
-     en:"On the other side, the founder is not left waiting in silence. The preliminary approval arrives with the screening result — six of six — who decided, and what comes next."},
+     en:"On the other side, the founder is not left waiting in silence. The preliminary approval arrives with the screening result, six of six, who decided, and what comes next."},
   run:()=>{closeDrawer();clView="inbox";enterClient();tFade("#client")},sel:"#client .panel",hold:11000},
  {ch:3,t:{ar:"أين وصل ملفي؟",en:"Where does my file stand?"},
   s:{ar:"استلام، فرز آلي، مراجعة المحلل، اعتماد المدير، ثم اللجنة — ومن المسؤول عن كل مرحلة. هذا السؤال الذي لا يجد المؤسس جواباً له عادة.",
-     en:"Received, auto-screened, analyst review, manager approval, then committee — and who owns each stage. This is the question founders normally never get answered."},
+     en:"Received, auto-screened, analyst review, manager approval, then committee, and who owns each stage. This is the question founders normally never get answered."},
   run:()=>{clView="report";renderClient();tFade("#client")},sel:"#client .appr",hold:12000},
  {ch:3,t:{ar:"ويحجز موعده",en:"And books the meeting"},
   s:{ar:"يختار موعد المقابلة مع فريق الاستثمار مباشرة — بلا سلسلة رسائل.",
-     en:"It picks a time with the investment team directly — with no email chain."},
+     en:"It picks a time with the investment team directly, with no email chain."},
   run:()=>{clView="inbox";renderClient()},sel:"#client [data-slot]",click:true,
   after:()=>{const b=tEl('#client [data-slot]');if(b)b.click();
     setTimeout(()=>{const k=tEl("#clBook");if(k)k.click()},900)},hold:10000},
  {ch:3,t:{ar:"والقرارات لا تُنسى",en:"And decisions are not forgotten"},
   s:{ar:"كل قرار يبقى بسببه. وحين يتغيّر وضع الشركة أو تفويض الصندوق، يُعاد الفحص تلقائياً: ٤ من ٦ وقت الرفض، ٦ من ٦ اليوم — مع سبب إعادة الفحص.",
-     en:"Every decision is kept with its reasoning. When the company or the mandate changes, it is re-checked: four of six when passed, six of six today — with the reason for the re-check."},
+     en:"Every decision is kept with its reasoning. When the company or the mandate changes, it is re-checked: four of six when passed, six of six today, with the reason for the re-check."},
   run:()=>{clView="home";enterFund();go("memory");tFade("#v-memory");
     setTimeout(()=>{if(!reEvalDone){reEvalDone=true;renderMemory()}},3000)},
   sel:"#memoryList",hold:12000}
@@ -3557,12 +3729,33 @@ const STILLS=[
   run:()=>{decide("dd");tTab("track");tFade("#dBody")},sel:"#dBody",hold:8000}
 ];
 
+function chapterStarts(){
+  const out=[],seen={};
+  TOUR.forEach((st,i)=>{
+    const k=st.ch||st.act||st.role; if(k==null||seen[k])return; seen[k]=1;
+    const RL={fund:{ar:"الصندوق",en:"FUND"},founder:{ar:"المؤسس",en:"FOUNDER"},analyst:{ar:"المحلل",en:"ANALYST"}};
+    const lb=st.role?t(RL[st.role])
+      :st.ch?t({ar:["","الصندوق","المؤسس","المحلل"][st.ch],en:["","FUND","FOUNDER","ANALYST"][st.ch]})
+      :t({ar:["","الصندوق","المؤسس","المحلل","النتيجة"][st.act],en:["","FUND","FOUNDER","ANALYST","OUTCOME"][st.act]});
+    out.push({i,lb});
+  });
+  return out;
+}
+function buildPicker(){
+  const host=$("#tourPick"); if(!host)return;
+  const items=chapterStarts();
+  host.innerHTML=items.map(x=>
+    `<button data-jump="${x.i}">${x.lb}<i>${x.i+1}</i></button>`).join("");
+}
 function tRender(){
+  const _tb=document.getElementById("tourBar"); if(_tb){_tb.classList.remove("tb-open");_tb.classList.remove("pick-open");}
   const st=TOUR[tIdx];if(!st)return;
   const RL={fund:{ar:"الصندوق",en:"FUND"},founder:{ar:"المؤسس",en:"FOUNDER"},analyst:{ar:"المحلل",en:"ANALYST"}};
-  const lbl=st.role?t(RL[st.role]):st.ch?t({ar:["","مدخل الصندوق","المؤسس","المحلل","الدائرة"][st.ch],en:["","INTAKE","FOUNDER","ANALYST","LOOP"][st.ch]})
+  const lbl=st.role?t(RL[st.role]):st.ch?t({ar:["","الصندوق","المؤسس","المحلل"][st.ch],en:["","FUND","FOUNDER","ANALYST"][st.ch]})
     :st.act?t({ar:["","الصندوق","المؤسس","المحلل","النتيجة"][st.act],en:["","FUND","FOUNDER","ANALYST","OUTCOME"][st.act]}):"";
-  $("#tourBar .tnum").textContent=(lbl?lbl+" · ":"")+(tIdx+1)+"/"+TOUR.length;
+  const _n=$("#tourBar .tnum");
+  _n.textContent=(lbl?lbl+" · ":"")+(tIdx+1)+"/"+TOUR.length;
+  _n.classList.toggle("pick", chapterStarts().length>1);
   $("#tourBar .ttl").textContent=t(st.t);
   $("#tourBar .say").textContent=t(st.s);
   $("#tourBar .tprog i").style.width=((tIdx+1)/TOUR.length*100)+"%";
@@ -3785,9 +3978,24 @@ function tourStart(){
   tIdx=0;tPlay=true;tStep();
 }
 document.addEventListener("click",e=>{
+  const jb=e.target.closest("#tourPick [data-jump]");
+  if(jb){clearTimeout(tTimer);tIdx=+jb.dataset.jump;
+    $("#tourBar").classList.remove("pick-open");tPlay=true;
+    $("#tourBar [data-tc=play]").innerHTML="&#10074;&#10074;";tStep();return}
+  const chip=e.target.closest("#tourBar .tnum.pick");
+  if(chip){buildPicker();$("#tourBar").classList.toggle("pick-open");return}
+  const bar=e.target.closest("#tourBar");
+  if(bar && !e.target.closest("[data-tc]") && !e.target.closest("#tourPick")){
+    bar.classList.toggle("tb-open");return}
   const b=e.target.closest("#tourBar [data-tc]");if(!b)return;
   const k=b.dataset.tc;
-  if(k==="stop"){window.__keepDrawer=0;clearTimeout(tTimer);tRunning=false;tClear();tSpotStop();$("#tourNote").classList.remove("on");
+  if(k==="stop"){
+    if(!b.dataset.armed){b.dataset.armed="1";b.classList.add("armed");
+      b.innerHTML="&#10005; end?";
+      setTimeout(()=>{if(b.dataset.armed){delete b.dataset.armed;b.classList.remove("armed");b.innerHTML="&#10005;"}},2600);
+      return}
+    delete b.dataset.armed;b.classList.remove("armed");b.innerHTML="&#10005;";
+    window.__keepDrawer=0;clearTimeout(tTimer);tRunning=false;tClear();tSpotStop();$("#tourNote").classList.remove("on");
     $("#tourCur").classList.remove("on");$("#tourBar").classList.remove("on");return}
   if(k==="play"){tPlay=!tPlay;b.innerHTML=tPlay?"&#10074;&#10074;":"&#9654;";if(tPlay)tStep();else clearTimeout(tTimer);return}
   if(k==="next"){clearTimeout(tTimer);tIdx=Math.min(TOUR.length-1,tIdx+1);tStep();return}
@@ -3807,11 +4015,35 @@ if(TMQ==="cinema"||TMQ==="film"||TMQ==="4"){document.body.classList.add("cinema"
   ["botFab","tips","toasts"].forEach(id=>{const e=document.getElementById(id);if(e)e.style.display="none"});}
 const LQ=TQ.get("lang");
 if(LQ&&LQ!==L)setLang(LQ);
+function portraitPhone(){
+  try{
+    if(typeof window.matchMedia==="function")
+      return window.matchMedia("(max-width:900px) and (orientation:portrait)").matches;
+  }catch(e){}
+  return (window.innerWidth||999) <= 900 && (window.innerHeight||0) > (window.innerWidth||0);
+}
 if(TQ.has("tour")){
   const lg=TQ.get("lang");
   clearInterval(tick);$("#splash").style.display="none";
-  setTimeout(()=>{ if(lg&&lg!==L)setLang(lg); enterFund();
-    setTimeout(tourStart,700); },150);
+  setTimeout(()=>{
+    if(lg&&lg!==L)setLang(lg);
+    enterFund();
+    const begin=()=>{ if(!tRunning) setTimeout(tourStart,500); };
+    if(portraitPhone()){
+      const r=$("#rotate"); r.classList.add("on"); r.setAttribute("aria-hidden","false");
+      const go=()=>{ r.classList.remove("on"); r.setAttribute("aria-hidden","true"); begin(); };
+      $("#rotGo").addEventListener("click",go,{once:true});
+      try{
+        if(typeof window.matchMedia==="function"){
+          const mq=window.matchMedia("(orientation:landscape)");
+          const onRot=()=>{ if(mq.matches) go(); };
+          mq.addEventListener ? mq.addEventListener("change",onRot) : mq.addListener(onRot);
+        }
+      }catch(e){}
+      window.addEventListener("orientationchange",()=>{ if(!portraitPhone()) go(); });
+      window.addEventListener("resize",()=>{ if(!portraitPhone()) go(); });
+    } else begin();
+  },150);
 }
 
 </script>
