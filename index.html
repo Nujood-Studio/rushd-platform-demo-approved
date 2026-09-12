@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>رُشد · RUSHED</title>
+<title>رُشد · RUSHD</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -105,11 +105,7 @@ button{font-family:inherit;color:inherit}
 #app{opacity:0;display:grid;grid-template-columns:238px 1fr;min-height:100vh}
 #app.on{animation:appIn .65s .1s ease forwards}
 @keyframes appIn{from{opacity:0;transform:scale(1.02)}to{opacity:1;transform:none}}
-#app{height:100vh;overflow:hidden}
-#app>.col,.shell>.col{min-width:0;display:flex;flex-direction:column;height:100vh;overflow-y:auto;overscroll-behavior:contain}
-#app>.col::-webkit-scrollbar,.shell>.col::-webkit-scrollbar{width:9px}
-#app>.col::-webkit-scrollbar-thumb,.shell>.col::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:9px;border:3px solid var(--bg)}
-.shell{height:100vh;overflow:hidden}
+#app>.col{min-width:0;display:flex;flex-direction:column}
 .side{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:3px;padding:18px 13px;
   border-inline-end:1px solid var(--line);background:var(--panel);z-index:29;overflow-y:auto}
 .side .brand{display:flex;align-items:center;gap:8px;padding:2px 4px 14px}
@@ -335,7 +331,7 @@ html[dir=ltr] .tag{margin:0 6px 6px 0}
 .dtabs{display:flex;gap:4px;padding:10px 20px 0;border-bottom:1px solid var(--line);background:var(--panel)}
 .dtab{padding:9px 14px;border:0;background:0;font-size:12.5px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;cursor:pointer}
 .dtab.on{color:var(--accent);border-bottom-color:var(--accent)}
-.dbody{flex:1;overflow-y:auto;padding:18px 20px 24px;overscroll-behavior:contain}
+.dbody{flex:1;overflow-y:auto;padding:18px 20px 24px;scroll-behavior:smooth}
 .dbody::-webkit-scrollbar{width:6px}.dbody::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:6px}
 .dpane{display:none}.dpane.on{display:block;animation:vIn .3s ease}
 
@@ -617,12 +613,6 @@ html[dir=rtl] .bm.ai{align-self:flex-start}
 .fld input:focus,.fld textarea:focus{box-shadow:0 0 0 3px var(--accent-soft)}
 .pill{transition:transform .16s,background .2s,border-color .2s,color .2s}
 .pill:hover{transform:translateY(-1px)}
-.arr{transition:transform .18s}
-html[dir=rtl] .arr{transform:scaleX(-1)}
-.arr.b{transform:scaleX(-1)}
-html[dir=rtl] .arr.b{transform:scaleX(1)}
-.btn:hover .arr:not(.b){transform:translateX(2px)}
-html[dir=rtl] .btn:hover .arr:not(.b){transform:scaleX(-1) translateX(2px)}
 .pill .tick{display:none}
 .pill.on .tick{display:inline-flex}
 
@@ -638,16 +628,7 @@ html[dir=rtl] .btn:hover .arr:not(.b){transform:scaleX(-1) translateX(2px)}
 .drop .dh2{font-size:11.5px;color:var(--faint);margin-top:3px}
 .drop .da{margin-inline-start:auto;display:flex;align-items:center;gap:8px;flex:none}
 .drop input[type=file]{display:none}
-.upbar{position:absolute;bottom:0;inset-inline-start:0;height:3px;background:var(--accent);width:0;border-radius:3px;animation:upFill .62s linear forwards}
-.drop.busy{pointer-events:none}
-.exbar{height:4px;border-radius:4px;background:var(--panel-2);overflow:hidden;margin:4px 0 12px}
-.exbar i{display:block;height:100%;border-radius:4px;background:var(--accent);transition:width .34s ease}
-.exl.on .exdot{animation:pulseDot 1.1s ease-in-out infinite}
-@keyframes pulseDot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.35);opacity:.55}}
-.spin{animation:spin360 .9s linear infinite;transform-origin:50% 50%}
-@keyframes spin360{to{transform:rotate(360deg)}}
-.drop.has .di2{animation:pop .38s cubic-bezier(.2,.9,.3,1.3)}
-@keyframes pop{0%{transform:scale(.7)}60%{transform:scale(1.12)}100%{transform:scale(1)}}
+.upbar{position:absolute;bottom:0;inset-inline-start:0;height:3px;background:var(--accent);width:0;border-radius:3px;animation:upFill .75s ease forwards}
 @keyframes upFill{to{width:100%}}
 .rm{border:0;background:0;color:var(--danger);cursor:pointer;font-size:16px;line-height:1;padding:4px}
 
@@ -712,76 +693,6 @@ html[dir=rtl] .btn:hover .arr:not(.b){transform:scaleX(-1) translateX(2px)}
 .thanks p{font-size:13.5px;color:var(--muted);line-height:2;margin:0 0 10px}
 .thanks .sig{font-size:12.5px;color:var(--accent);font-weight:600;margin-top:18px}
 
-/* ---- profile ---- */
-.pgrid{display:grid;grid-template-columns:320px minmax(0,1fr);gap:18px;align-items:start}
-.idcard{border:1px solid var(--line);border-radius:22px;background:var(--panel);box-shadow:var(--shadow);overflow:hidden;position:relative}
-.idtop{position:relative;height:112px;background:radial-gradient(80% 120% at 30% 10%,#0C4A86,#061C36 75%);overflow:hidden}
-.idtop .g3{position:absolute;inset:0;background-image:linear-gradient(rgba(138,210,241,.13) 1px,transparent 1px),linear-gradient(90deg,rgba(138,210,241,.13) 1px,transparent 1px);
-  background-size:34px 34px;transform:perspective(420px) rotateX(62deg) translateY(30%);transform-origin:50% 100%}
-.idav{width:84px;height:84px;border-radius:26px;background:linear-gradient(140deg,var(--brand),var(--sky));display:grid;place-items:center;
-  color:#fff;font-size:26px;font-weight:600;border:4px solid var(--panel);margin:-46px auto 0;position:relative;box-shadow:var(--shadow)}
-.idbody{padding:12px 20px 20px;text-align:center}
-.idbody h2{margin:12px 0 5px;font-size:20px;font-weight:600;color:var(--head)}
-.idbody .mail{font-size:12px;color:var(--faint)}
-.lvlwrap{margin:18px 0 6px;text-align:start}
-.lvlrow{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin-bottom:7px}
-.lvlrow b{color:var(--head);font-size:13px}
-.lvlbar{height:9px;border-radius:9px;background:var(--panel-2);overflow:hidden;border:1px solid var(--line)}
-.lvlbar i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--sky),var(--accent));width:0;transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
-.idstats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border-radius:14px;overflow:hidden;margin-top:18px}
-.idstats div{background:var(--panel-2);padding:12px 6px}
-.idstats b{display:block;font-size:18px;font-weight:600;color:var(--head)}
-.idstats span{font-size:10.5px;color:var(--faint)}
-.ptabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:16px;overflow-x:auto}
-.ptab{padding:10px 15px;border:0;background:0;font-size:13px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
-.ptab.on{color:var(--accent);border-bottom-color:var(--accent)}
-.rings{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
-.ring{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:16px;text-align:center;transition:transform .18s,border-color .2s}
-.ring:hover{transform:translateY(-2px);border-color:var(--accent)}
-.ring svg{display:block;margin:0 auto 8px}
-.ring .rv{font-size:15px;font-weight:600;color:var(--head)}
-.ring .rl{font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.6}
-.ring .rx{font-size:10.5px;color:var(--faint);margin-top:5px}
-.rc-bg{stroke:var(--panel-2)}
-.rc-fg{stroke-linecap:round;transition:stroke-dashoffset 1.1s cubic-bezier(.2,.8,.2,1)}
-.badges{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px}
-.bdgc{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:16px;padding:14px;background:var(--panel);transition:.2s}
-.bdgc:hover{border-color:var(--accent);transform:translateY(-2px)}
-.bdgc .bi{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;flex:none;background:var(--accent-soft);color:var(--accent)}
-.bdgc.got .bi{background:linear-gradient(140deg,var(--brand),var(--sky));color:#fff}
-.bdgc.lock{opacity:.72;background:var(--panel-2)}
-.bdgc.lock .bi{background:var(--panel-2);color:var(--faint)}
-.bdgc .bt2{font-size:13px;font-weight:600;color:var(--head);display:flex;gap:6px;align-items:center}
-.bdgc .bd2{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.65}
-.bdgc .bp{height:5px;border-radius:5px;background:var(--panel-2);margin-top:9px;overflow:hidden}
-.bdgc .bp i{display:block;height:100%;background:var(--warn);border-radius:5px}
-.tl{position:relative;padding-inline-start:26px}
-.tl::before{content:"";position:absolute;inset-inline-start:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
-.tli{position:relative;padding:0 0 18px}
-.tli::before{content:"";position:absolute;inset-inline-start:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--panel);border:2px solid var(--accent)}
-.tli.ok::before{background:var(--ok);border-color:var(--ok)}
-.tli .tt{font-size:13px;font-weight:600;color:var(--head)}
-.tli .td{font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.7}
-.tli .tm2{font-size:10.5px;color:var(--faint);margin-top:3px}
-@media (max-width:980px){.pgrid{grid-template-columns:1fr}}
-/* ---- modal ---- */
-#mscrim{position:fixed;inset:0;background:rgba(9,32,58,.45);backdrop-filter:blur(3px);z-index:64;display:none}
-#mscrim.on{display:block;animation:vIn .22s ease}
-#modal{position:fixed;z-index:65;top:50%;inset-inline-start:50%;width:min(540px,94vw);max-height:86vh;overflow:auto;
-  background:var(--panel);border:1px solid var(--line-2);border-radius:20px;box-shadow:var(--shadow-lg);
-  opacity:0;pointer-events:none;transform:translate(50%,-50%) scale(.97);transition:opacity .22s,transform .22s}
-html[dir=ltr] #modal{transform:translate(-50%,-50%) scale(.97)}
-#modal.on{opacity:1;pointer-events:auto;transform:translate(50%,-50%) scale(1)}
-html[dir=ltr] #modal.on{transform:translate(-50%,-50%) scale(1)}
-#modal header{display:flex;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid var(--line)}
-#modal header h3{margin:0;font-size:15px;font-weight:600;color:var(--head)}
-#modal header button{margin-inline-start:auto;background:0;border:0;color:var(--faint);font-size:20px;cursor:pointer}
-#modal .mb{padding:18px 20px}
-#modal footer{display:flex;gap:9px;padding:14px 20px;border-top:1px solid var(--line);background:var(--panel-2);flex-wrap:wrap}
-.rule{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
-.rule:last-child{border-bottom:0}
-.rule .rt{font-size:13px;font-weight:600}
-.rule .rd2{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.7}
 /* ---- guided hints ---- */
 .hintme{position:relative;z-index:4}
 .hintme::before{content:"";position:absolute;inset:-5px;border-radius:14px;border:2px solid var(--accent);opacity:0;
@@ -903,6 +814,42 @@ html[dir=ltr] .hintme::after{animation-name:hintUpL}
   padding:0 4px;margin-inline-start:6px;border-radius:9px;font-size:10px;font-weight:800;color:#fff;vertical-align:middle}
 .evdots{display:inline-flex;gap:4px;align-items:center}
 .evdots i{width:7px;height:7px;border-radius:50%;display:inline-block}
+/* role intro card: 3 features */
+#roleCard{position:fixed;inset:0;z-index:9996;display:none;place-items:center;
+  background:rgba(5,16,33,.965);color:#fff;padding:40px}
+#roleCard.on{display:grid;animation:acfade .45s}
+#roleCard .rcw{max-width:1080px;width:100%;text-align:center}
+#roleCard .rcn{font-size:13px;letter-spacing:4px;color:var(--accent);font-weight:800;margin-bottom:16px}
+#roleCard .rcstage{font-size:74px;font-weight:900;line-height:1;margin:0 0 14px;letter-spacing:-1.5px;
+  background:linear-gradient(180deg,#fff 55%,rgba(108,192,224,.85));-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text;
+  opacity:0;transform:translateY(18px) scale(.97);animation:stageIn .6s cubic-bezier(.2,.8,.25,1) .05s forwards}
+@keyframes stageIn{to{opacity:1;transform:translateY(0) scale(1)}}
+#roleCard .rcrule{width:96px;height:3px;background:var(--accent);border-radius:3px;margin:0 auto 20px;
+  opacity:0;animation:rcIn .45s .4s forwards}
+#roleCard .rct{font-size:25px;font-weight:700;margin:0 0 32px;line-height:1.4;opacity:.9;
+  opacity:0;animation:rcIn .45s .5s forwards}
+#roleCard .rcg{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+#roleCard .rcf{background:rgba(255,255,255,.055);border:1px solid rgba(108,192,224,.32);
+  border-radius:16px;padding:22px 20px;text-align:start;opacity:0;transform:translateY(14px);
+  animation:rcIn .5s forwards}
+#roleCard .rcf:nth-child(1){animation-delay:.25s}
+#roleCard .rcf:nth-child(2){animation-delay:.62s}
+#roleCard .rcf:nth-child(3){animation-delay:.99s}
+@keyframes rcIn{to{opacity:1;transform:translateY(0)}}
+#roleCard .rcf b{display:block;font-size:26px;color:var(--accent);font-weight:800;margin-bottom:9px;line-height:1}
+#roleCard .rcf span{display:block;font-size:16.5px;line-height:1.55;font-weight:600}
+/* live feature badge during the walkthrough */
+#featBadge{position:fixed;top:calc(env(safe-area-inset-top) + 76px);inset-inline-start:34px;z-index:9994;
+  display:none;align-items:center;gap:11px;background:rgba(5,16,33,.94);
+  border:1px solid rgba(108,192,224,.4);border-radius:13px;padding:11px 17px;color:#fff;
+  box-shadow:0 12px 34px rgba(0,0,0,.34)}
+#featBadge.on{display:flex;animation:acfade .4s}
+#featBadge i{font-style:normal;font-size:18px;font-weight:800;color:var(--accent);
+  border-inline-end:1px solid rgba(255,255,255,.2);padding-inline-end:11px}
+#featBadge .fbwrap{display:flex;flex-direction:column;gap:2px}
+#featBadge .fbstage{font-size:10px;font-weight:800;letter-spacing:2.2px;color:var(--accent);text-transform:uppercase}
+#featBadge span{font-size:14.5px;font-weight:700;letter-spacing:.2px}
 #actCard{position:fixed;inset:0;z-index:9996;display:none;place-items:center;background:rgba(8,17,32,.93);color:#fff;text-align:center}
 #actCard.on{display:grid;animation:acfade .45s}
 @keyframes acfade{from{opacity:0}to{opacity:1}}
@@ -914,8 +861,8 @@ body.cinema #botFab,body.cinema #tips,body.cinema #toasts{display:none!important
 body.cinema #tourCur{display:none!important}
 #tourSpot{position:fixed;z-index:9990;border-radius:16px;pointer-events:none;opacity:0;
   box-shadow:0 0 0 9999px rgba(5,16,33,.66);
-  transition:opacity .55s ease, top .75s cubic-bezier(.33,.05,.2,1), left .75s cubic-bezier(.33,.05,.2,1),
-             width .75s cubic-bezier(.33,.05,.2,1), height .75s cubic-bezier(.33,.05,.2,1)}
+  transition:opacity .45s ease, top .3s cubic-bezier(.33,.05,.2,1), left .3s cubic-bezier(.33,.05,.2,1),
+             width .3s cubic-bezier(.33,.05,.2,1), height .3s cubic-bezier(.33,.05,.2,1)}
 #tourSpot.on{opacity:1}
 body.cinema .tspot{outline:none!important;animation:none!important;box-shadow:none!important}
 body.cinema .tzoom{transform:none!important}
@@ -939,6 +886,118 @@ body.stills #tourBar .say{font-size:15px}
 .tzoom{transform:scale(1.045);transition:transform .55s cubic-bezier(.4,.1,.2,1);transform-origin:center}
 #tourEnd h2{font-size:30px;margin:0 0 12px}
 #tourEnd p{opacity:.85;font-size:15px;line-height:1.8;max-width:560px;margin:0 auto}
+
+/* ============ FUND CONTEXT ============ */
+.fcWrap{display:grid;grid-template-columns:1.62fr 1fr;gap:18px;align-items:start}
+@media (max-width:1100px){.fcWrap{grid-template-columns:1fr}}
+
+/* hero: the mandate is a thesis, not a field */
+.fcHero{
+  padding:22px 24px 20px;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,var(--accent-soft),transparent);
+  position:relative;
+}
+.fcHero::before{
+  content:"";position:absolute;inset-inline-start:0;top:0;bottom:0;width:3px;background:var(--accent);
+}
+.fcHeroLbl{
+  font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:10px;
+}
+.fcHeroV{
+  font-size:21px!important;font-weight:600;line-height:1.45;color:var(--head);
+  letter-spacing:-.2px;
+}
+.fcHeroNote{
+  margin-top:11px;font-size:12px;color:var(--muted);
+}
+
+/* the five hard filters */
+.fcGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:0}
+.fcCell{
+  padding:17px 24px;border-bottom:1px solid var(--line);
+  border-inline-end:1px solid var(--line);min-width:0;
+}
+.fcCell:nth-child(odd):not(.fcWide){border-inline-end:0}
+.fcCell:nth-last-child(-n+2):not(.fcWide){border-bottom:0}
+.fcWide{grid-column:1 / -1;border-inline-end:0}
+.fcCell .fcIcon{
+  width:30px;height:30px;border-radius:9px;
+  background:var(--accent-soft);color:var(--accent);
+  display:inline-grid;place-items:center;vertical-align:middle;margin-inline-end:9px;
+}
+.fcCell h5{
+  display:inline-block;margin:0;font-size:10.5px;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--faint);vertical-align:middle;
+}
+.fcCell .v{
+  font-size:15.5px;font-weight:600;line-height:1.55;color:var(--head);margin-top:11px;
+}
+.fcCell .v .tag{
+  display:inline-block;font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;
+  background:var(--accent-soft);border:1px solid var(--line-2);color:var(--accent);
+  margin:0 6px 6px 0;
+}
+html[dir="rtl"] .fcCell .v .tag{margin:0 0 6px 6px}
+
+/* funnel */
+.fcSide{display:flex;flex-direction:column;gap:18px}
+.fcFn{padding:14px 20px 15px;border-bottom:1px solid var(--line)}
+.fcFn.last{border-bottom:0}
+.fcFn.total{background:var(--panel-2)}
+.fcFnTop{display:flex;align-items:baseline;gap:11px;margin-bottom:9px}
+.fcFnTop b{
+  font-size:22px;font-weight:700;color:var(--head);
+  min-width:50px;font-variant-numeric:tabular-nums;
+}
+.fcFn.total .fcFnTop b{color:var(--accent)}
+.fcFnTop span{font-size:12.5px;color:var(--muted);line-height:1.45}
+.fcBar{height:5px;border-radius:3px;background:var(--line);overflow:hidden}
+.fcBar i{display:block;height:100%;border-radius:3px;background:var(--accent)}
+.fcBar i.ok{background:var(--ok)}
+.fcBar i.warn{background:var(--warn)}
+.fcBar i.mut{background:var(--faint);opacity:.5}
+
+.fcEdit{padding:16px 20px 18px}
+.fcEdit .d{font-size:12.5px;color:var(--muted);line-height:1.75}
+
+/* ================= MOBILE / PORTRAIT ================= */
+@media (max-width:820px){
+  #actCard{padding:26px 22px}
+  #actCard .acn{font-size:10.5px;letter-spacing:2.4px;margin-bottom:10px}
+  #actCard .act{font-size:26px;line-height:1.25;margin:0 0 8px}
+  #actCard .acs{font-size:13.5px;line-height:1.65;max-width:92vw}
+
+  #roleCard{padding:24px 18px}
+  #roleCard .rcw{max-width:100%}
+  #roleCard .rcn{font-size:10.5px;letter-spacing:2.6px;margin-bottom:9px}
+  #roleCard .rcstage{font-size:40px;letter-spacing:-.6px;margin:0 0 10px}
+  #roleCard .rcrule{width:64px;margin-bottom:14px}
+  #roleCard .rct{font-size:17px;margin:0 0 18px}
+  #roleCard .rcg{grid-template-columns:1fr;gap:10px}
+  #roleCard .rcf{padding:13px 15px;border-radius:13px}
+  #roleCard .rcf b{font-size:19px;margin-bottom:5px}
+  #roleCard .rcf span{font-size:13.5px;line-height:1.45}
+
+  #tourNote{font-size:12.5px;padding:10px 14px;line-height:1.5;
+    max-width:calc(100vw - 24px);inset-inline:12px!important;width:auto!important}
+  #tourBar{padding:10px 14px calc(10px + env(safe-area-inset-bottom))}
+  #tourCur{width:20px;height:20px}
+
+  #featBadge{top:calc(env(safe-area-inset-top) + 12px);inset-inline-start:12px;
+    inset-inline-end:12px;padding:9px 13px;gap:9px;border-radius:11px}
+  #featBadge i{font-size:15px;padding-inline-end:9px}
+  #featBadge .fbstage{font-size:9px;letter-spacing:1.6px}
+  #featBadge span{font-size:12.5px;line-height:1.35}
+
+  #tourEnd h2{font-size:24px!important;line-height:1.3}
+  #tourEnd p{font-size:13.5px!important;line-height:1.6;max-width:90vw}
+}
+@media (max-width:820px) and (orientation:portrait){
+  /* the product UI is a desktop layout — scale it to fit rather than reflow mid-tour */
+  body.cinema #app{transform-origin:top left}
+}
 </style>
 </head>
 <body>
@@ -969,7 +1028,6 @@ body.stills #tourBar .say{font-size:15px}
     <div class="gh2" data-ar="الإدارة" data-en="MANAGEMENT">الإدارة</div>
     <button class="nav press" data-go="reports"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V6M10 20V4M16 20v-7M22 20H2"/></svg><span data-ar="التقارير" data-en="Reports">التقارير</span></button>
     <button class="nav press" data-go="integrations"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v6M15 3v6M5 9h14v5a7 7 0 01-14 0z"/></svg><span data-ar="التكاملات" data-en="Integrations">التكاملات</span></button>
-    <button class="nav press" data-go="privacy"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg><span data-ar="الخصوصية والأمان" data-en="Privacy and security">الخصوصية والأمان</span></button>
     <button class="nav press" data-go="fund"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V9l8-5 8 5v11"/><path d="M9 20v-6h6v6"/></svg><span data-ar="سياق الصندوق" data-en="Fund context">سياق الصندوق</span></button>
     <div class="sp1"></div>
     <div class="sidecard ind"><b data-ar="دورة الفرز" data-en="Screening cycle">دورة الفرز</b>
@@ -1150,7 +1208,7 @@ body.stills #tourBar .say{font-size:15px}
           <div class="item ind"><div class="t" data-ar="ماذا يُحفظ لكل شركة" data-en="What is stored per company">ماذا يُحفظ لكل شركة</div>
             <div class="d" data-ar="من قدّم · ما الذي يبنونه · لماذا رُفضوا · ما كان ناقصاً · في أي مرحلة كانوا · ما الذي احتاج الصندوق رؤيته" data-en="Who applied · what they build · why they were passed · what was missing · what stage · what the fund needed to see">من قدّم · ما الذي يبنونه · لماذا رُفضوا · ما كان ناقصاً · في أي مرحلة كانوا · ما الذي احتاج الصندوق رؤيته</div>
             <span class="chip ok" data-ar="بيانات معزولة لكل صندوق" data-en="Data isolated per fund">بيانات معزولة لكل صندوق</span></div>
-          <div class="item ind"><div class="t" data-ar="متى يعيد رُشد التقييم" data-en="When Rushed re-evaluates">متى يعيد رُشد التقييم</div>
+          <div class="item ind"><div class="t" data-ar="متى يعيد رُشد التقييم" data-en="When Rushd re-evaluates">متى يعيد رُشد التقييم</div>
             <div class="d" data-ar="عند تحديث المؤسس لبياناته · عند تغيّر تفويض الصندوق أو محفظته · تلقائياً كل ربع سنة" data-en="When the founder updates · when the mandate or portfolio changes · automatically each quarter">عند تحديث المؤسس لبياناته · عند تغيّر تفويض الصندوق أو محفظته · تلقائياً كل ربع سنة</div></div>
         </div>
       </div>
@@ -1160,7 +1218,7 @@ body.stills #tourBar .say{font-size:15px}
     <section class="view" id="v-reports">
       <div class="pagehead">
         <div class="ttl"><h1 class="h1" data-ar="التقارير" data-en="Reports">التقارير</h1>
-          <p class="lede" style="margin-bottom:0" data-ar="ما فرزه رُشد، وما وفّره، ونسبة اتفاق المحلل معه." data-en="What Rushed screened, what it saved, and the analyst agreement rate.">ما فرزه رُشد، وما وفّره، ونسبة اتفاق المحلل معه.</p></div>
+          <p class="lede" style="margin-bottom:0" data-ar="ما فرزه رُشد، وما وفّره، ونسبة اتفاق المحلل معه." data-en="What Rushd screened, what it saved, and the analyst agreement rate.">ما فرزه رُشد، وما وفّره، ونسبة اتفاق المحلل معه.</p></div>
         <div class="pacts">
         <button class="btn press" id="expPdf"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12M7 11l5 5 5-5M4 21h16"/></svg><span data-ar="تصدير PDF" data-en="Export PDF">تصدير PDF</span></button>
         <button class="btn key press" id="sendIC"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12l16-8-6 16-2-6z"/></svg><span data-ar="إرسال للجنة" data-en="Send to committee">إرسال للجنة</span></button>
@@ -1183,8 +1241,8 @@ body.stills #tourBar .say{font-size:15px}
         </div>
         <div class="panel">
           <header><h3 data-ar="أين ذهب الوقت" data-en="Where the time went">أين ذهب الوقت</h3></header>
-          <div class="item ind"><div class="t" data-ar="قبل رُشد" data-en="Before Rushed">قبل رُشد</div><div class="d" data-ar="45 دقيقة للفرز الأول الواحد · 375 ساعة سنوياً لكل صندوق" data-en="45 minutes per first pass · 375 hours a year">45 دقيقة للفرز الأول الواحد · 375 ساعة سنوياً لكل صندوق</div></div>
-          <div class="item ind"><div class="t" data-ar="بعد رُشد" data-en="After Rushed">بعد رُشد</div><div class="d" data-ar="4 دقائق لمراجعة القرار · 85 ساعة سنوياً" data-en="4 minutes per decision · 85 hours a year">4 دقائق لمراجعة القرار · 85 ساعة سنوياً</div><span class="chip ok" data-ar="عائد ×2 على الوقت وحده" data-en="2× on time alone">عائد ×2 على الوقت وحده</span></div>
+          <div class="item ind"><div class="t" data-ar="قبل رُشد" data-en="Before Rushd">قبل رُشد</div><div class="d" data-ar="45 دقيقة للفرز الأول الواحد · 375 ساعة سنوياً لكل صندوق" data-en="45 minutes per first pass · 375 hours a year">45 دقيقة للفرز الأول الواحد · 375 ساعة سنوياً لكل صندوق</div></div>
+          <div class="item ind"><div class="t" data-ar="بعد رُشد" data-en="After Rushd">بعد رُشد</div><div class="d" data-ar="4 دقائق لمراجعة القرار · 85 ساعة سنوياً" data-en="4 minutes per decision · 85 hours a year">4 دقائق لمراجعة القرار · 85 ساعة سنوياً</div><span class="chip ok" data-ar="عائد ×2 على الوقت وحده" data-en="2× on time alone">عائد ×2 على الوقت وحده</span></div>
           <div class="item ind"><div class="t" data-ar="اتفاق المحلل" data-en="Analyst agreement">اتفاق المحلل</div><div class="d" data-ar="87% اتفاق على قرارات «غير مناسب» — الهدف 85% فأعلى" data-en="87% agreement on not-fit decisions — target 85%+">87% اتفاق على قرارات «غير مناسب» — الهدف 85% فأعلى</div></div>
         </div>
       </div>
@@ -1194,7 +1252,7 @@ body.stills #tourBar .say{font-size:15px}
     <section class="view" id="v-integrations">
       <div class="pagehead">
         <div class="ttl"><h1 class="h1" data-ar="التكاملات" data-en="Integrations">التكاملات</h1>
-        <p class="lede" style="margin-bottom:0" data-ar="رُشد يعمل فوق أدوات الصندوق القائمة. شغّل أو أوقف كل قناة من هنا." data-en="Rushed runs on top of the fund's existing tools. Switch each channel on or off here.">رُشد يعمل فوق أدوات الصندوق القائمة. شغّل أو أوقف كل قناة من هنا.</p></div>
+        <p class="lede" style="margin-bottom:0" data-ar="رُشد يعمل فوق أدوات الصندوق القائمة. شغّل أو أوقف كل قناة من هنا." data-en="Rushd runs on top of the fund's existing tools. Switch each channel on or off here.">رُشد يعمل فوق أدوات الصندوق القائمة. شغّل أو أوقف كل قناة من هنا.</p></div>
         <div class="pacts"><button class="btn press" id="mngKeys"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v4"/></svg><span data-ar="مفاتيح الوصول" data-en="Access keys">مفاتيح الوصول</span></button><button class="btn key press" id="addIntg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg><span data-ar="إضافة تكامل" data-en="Add integration">إضافة تكامل</span></button></div>
       </div>
 
@@ -1205,27 +1263,107 @@ body.stills #tourBar .say{font-size:15px}
     <section class="view" id="v-fund">
       <div class="pagehead">
         <div class="ttl"><h1 class="h1" data-ar="سياق الصندوق" data-en="Fund context">سياق الصندوق</h1>
-        <p class="lede" style="margin-bottom:0" data-ar="المعايير الستة التي يقيس عليها رُشد كل صفقة. أي تعديل يعيد فرز خط الأنابيب والأرشيف." data-en="The six criteria Rushed measures every deal against. Any edit re-screens the pipeline and archive.">المعايير الستة التي يقيس عليها رُشد كل صفقة. أي تعديل يعيد فرز خط الأنابيب والأرشيف.</p></div>
+        <p class="lede" style="margin-bottom:0" data-ar="المعايير الستة التي يقيس عليها رُشد كل صفقة. أي تعديل يعيد فرز خط الأنابيب والأرشيف." data-en="The six criteria Rushd measures every deal against. Any edit re-screens the pipeline and archive.">المعايير الستة التي يقيس عليها رُشد كل صفقة. أي تعديل يعيد فرز خط الأنابيب والأرشيف.</p></div>
         <div class="pacts"><button class="btn press" id="copyLink"><span data-ar="رابط التقديم" data-en="Application link">رابط التقديم</span></button><button class="btn key press" id="reScreen"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M21 12a9 9 0 11-3-6.7"/><path d="M21 3v5h-5"/></svg><span data-ar="حفظ وإعادة الفرز" data-en="Save and re-screen">حفظ وإعادة الفرز</span></button></div>
       </div>
 
-      <div class="grid3">
-        <div class="card ind"><h5 data-ar="التفويض" data-en="Mandate">التفويض</h5><div class="v" data-ar="تقنية مُمكِّنة للسوق السعودي بنماذج إيراد متكررة" data-en="Enabling technology for the Saudi market with recurring revenue">تقنية مُمكِّنة للسوق السعودي بنماذج إيراد متكررة</div></div>
-        <div class="card ind"><h5 data-ar="القطاعات المستهدفة" data-en="Target sectors">القطاعات المستهدفة</h5><div class="v">
-          <span class="tag" data-ar="فِنتِك" data-en="Fintech">فِنتِك</span><span class="tag" data-ar="لوجستيات" data-en="Logistics">لوجستيات</span>
-          <span class="tag" data-ar="برمجيات كخدمة" data-en="SaaS">برمجيات كخدمة</span><span class="tag" data-ar="تقنية الطاقة" data-en="Energy tech">تقنية الطاقة</span></div></div>
-        <div class="card ind"><h5 data-ar="المرحلة" data-en="Stage">المرحلة</h5><div class="v">Seed — Series A</div></div>
-        <div class="card ind"><h5 data-ar="حجم الشيك" data-en="Ticket size">حجم الشيك</h5><div class="v" data-ar="2 – 8 مليون ريال" data-en="SAR 2 – 8 million">2 – 8 مليون ريال</div></div>
-        <div class="card ind"><h5 data-ar="الجغرافيا" data-en="Geography">الجغرافيا</h5><div class="v" data-ar="السعودية أولاً، ثم الخليج" data-en="Saudi first, then GCC">السعودية أولاً، ثم الخليج</div></div>
-        <div class="card ind"><h5 data-ar="المحفظة الحيّة" data-en="Live portfolio">المحفظة الحيّة</h5><div class="v" data-ar="14 شركة — يُفحص التعارض تلقائياً" data-en="14 companies — conflicts checked automatically">14 شركة — يُفحص التعارض تلقائياً</div></div>
+      <div class="fcWrap">
+
+        <div class="panel fcMain">
+          <header>
+            <h3 data-ar="عدسة الصندوق" data-en="The fund lens">عدسة الصندوق</h3>
+            <span class="cnt" data-ar="تُطبَّق على كل صفقة واردة" data-en="Applied to every inbound deal">تُطبَّق على كل صفقة واردة</span>
+          </header>
+
+          <div class="fcHero">
+            <div class="fcHeroLbl" data-ar="التفويض" data-en="Mandate">التفويض</div>
+            <div class="v fcHeroV" data-ar="تقنية مُمكِّنة للسوق السعودي بنماذج إيراد متكررة" data-en="Enabling technology for the Saudi market with recurring revenue">تقنية مُمكِّنة للسوق السعودي بنماذج إيراد متكررة</div>
+            <div class="fcHeroNote" data-ar="كل معيار أدناه يُقاس على هذا التفويض" data-en="Every filter below is measured against this mandate">كل معيار أدناه يُقاس على هذا التفويض</div>
+          </div>
+
+          <div class="fcGrid">
+            <div class="fcCell fcWide"><span class="fcIcon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><h5 data-ar="القطاعات" data-en="Sectors">القطاعات</h5>
+              <div class="v"><span class="tag" data-ar="فِنتِك" data-en="Fintech">فِنتِك</span><span class="tag" data-ar="لوجستيات" data-en="Logistics">لوجستيات</span><span class="tag" data-ar="برمجيات كخدمة" data-en="SaaS">برمجيات كخدمة</span><span class="tag" data-ar="تقنية الطاقة" data-en="Energy tech">تقنية الطاقة</span></div></div>
+            <div class="fcCell"><span class="fcIcon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 3 8-8"/><path d="M16 7h5v5"/></svg></span><h5 data-ar="المرحلة" data-en="Stage">المرحلة</h5><div class="v">Seed — Series A</div></div>
+            <div class="fcCell"><span class="fcIcon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><circle cx="12" cy="12" r="2.6"/></svg></span><h5 data-ar="حجم الشيك" data-en="Ticket">حجم الشيك</h5>
+              <div class="v" data-ar="2 – 8 مليون ريال" data-en="SAR 2 – 8 million">2 – 8 مليون ريال</div></div>
+            <div class="fcCell"><span class="fcIcon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg></span><h5 data-ar="الجغرافيا" data-en="Geography">الجغرافيا</h5>
+              <div class="v" data-ar="السعودية أولاً، ثم الخليج" data-en="Saudi first, then GCC">السعودية أولاً، ثم الخليج</div></div>
+            <div class="fcCell"><span class="fcIcon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v13H3z"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/><path d="M3 12h18"/></svg></span><h5 data-ar="المحفظة الحيّة" data-en="Live portfolio">المحفظة الحيّة</h5>
+              <div class="v" data-ar="14 شركة — يُفحص التعارض تلقائياً" data-en="14 companies — conflicts auto-checked">14 شركة — يُفحص التعارض تلقائياً</div></div>
+          </div>
+        </div>
+
+        <div class="fcSide">
+          <div class="panel">
+            <header><h3 data-ar="ما فعلته هذه العدسة" data-en="What this lens has done">ما فعلته هذه العدسة</h3>
+              <span class="cnt" data-ar="هذا الربع" data-en="This quarter">هذا الربع</span></header>
+
+            <div class="fcFn total">
+              <div class="fcFnTop"><b>214</b><span data-ar="صفقة فُرزت على هذه المعايير" data-en="deals screened against these criteria">صفقة فُرزت على هذه المعايير</span></div>
+              <div class="fcBar"><i style="width:100%"></i></div>
+            </div>
+
+            <div class="fcFn">
+              <div class="fcFnTop"><b>31</b><span data-ar="طابقت الستة ووصلت للمحلل" data-en="matched all six, reached an analyst">طابقت الستة ووصلت للمحلل</span></div>
+              <div class="fcBar"><i class="ok" style="width:14.5%"></i></div>
+            </div>
+
+            <div class="fcFn">
+              <div class="fcFnTop"><b>9</b><span data-ar="أُوقفت على تعارض مع المحفظة" data-en="stopped on a portfolio conflict">أُوقفت على تعارض مع المحفظة</span></div>
+              <div class="fcBar"><i class="warn" style="width:4.2%"></i></div>
+            </div>
+
+            <div class="fcFn last">
+              <div class="fcFnTop"><b>174</b><span data-ar="لم تطابق، وحُفظت بسبب مكتوب" data-en="did not match, held with a written reason">لم تطابق، وحُفظت بسبب مكتوب</span></div>
+              <div class="fcBar"><i class="mut" style="width:81.3%"></i></div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <header><h3 data-ar="عند أي تعديل" data-en="On any edit">عند أي تعديل</h3></header>
+            <div class="fcEdit">
+              <div class="d" data-ar="يُعاد فرز خط الأنابيب والأرشيف على المعايير الجديدة، ويُسجَّل من غيّر ومتى." data-en="The pipeline and the archive are re-screened against the new criteria, and who changed what is recorded.">يُعاد فرز خط الأنابيب والأرشيف على المعايير الجديدة، ويُسجَّل من غيّر ومتى.</div>
+              <span class="chip ok" data-ar="آخر تعديل: عبدالرحمن · قبل 3 أيام" data-en="Last edited by Abdulrahman · 3 days ago">آخر تعديل: عبدالرحمن · قبل 3 أيام</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <!-- PRIVACY -->
-    <section class="view" id="v-privacy"></section>
-
     <!-- PROFILE -->
-    <section class="view" id="v-profile"></section>
+    <section class="view" id="v-profile">
+      <div class="pagehead">
+        <div class="ttl"><h1 class="h1" data-ar="الملف الشخصي" data-en="Profile">الملف الشخصي</h1>
+        <p class="lede" style="margin-bottom:0" data-ar="دورك وصلاحيتك داخل النظام، وأثرك على تدفق الصندوق." data-en="Your role and authority in the system, and your impact on the fund's flow.">دورك وصلاحيتك داخل النظام، وأثرك على تدفق الصندوق.</p></div>
+        <div class="pacts"><button class="btn press" id="acctSet"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M6 6l1.5 1.5M16.5 16.5L18 18M18 6l-1.5 1.5M7.5 16.5L6 18"/></svg><span data-ar="إعدادات الحساب" data-en="Account settings">إعدادات الحساب</span></button><button class="btn key press" id="expLog"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12M7 11l5 5 5-5M4 21h16"/></svg><span data-ar="تصدير سجل قراراتي" data-en="Export my decision log">تصدير سجل قراراتي</span></button></div>
+      </div>
+
+      <div class="pf">
+        <div class="stage ind"><div class="grid3d"></div><div class="glow"></div>
+          <div class="d3" id="d3">
+            <div class="face f1"><i></i><i class="b"></i></div><div class="face f2"><i></i><i class="b"></i></div>
+            <div class="face f3"><i></i><i class="b"></i></div><div class="face f4"><i></i><i class="b"></i></div>
+          </div>
+          <div style="position:absolute;bottom:18px;inset-inline-start:20px;color:#DDF1FC;font-size:11.5px;letter-spacing:.28em">RUSHD · MEMBER</div>
+        </div>
+        <div class="pfcard" id="tiltCard">
+          <span class="badge3" id="pfBadge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 9-7 9-7-9z"/></svg><span id="pfRole">محلل استثمار</span></span>
+          <div class="big" data-ar="عبدالرحمن" data-en="Abdulrahman">عبدالرحمن</div>
+          <div class="sub2" id="pfBio"></div>
+          <div class="pfstats ind">
+            <div><b>214</b><span data-ar="صفقة فُرزت" data-en="deals screened">صفقة فُرزت</span></div>
+            <div><b>38</b><span data-ar="قراراً سجّله" data-en="decisions logged">قراراً سجّله</span></div>
+            <div><b>87%</b><span data-ar="اتفاق مع رُشد" data-en="agreement with Rushd">اتفاق مع رُشد</span></div>
+          </div>
+          <div class="rolepick">
+            <button class="btn press" data-role="analyst" data-ar="التبديل إلى محلل استثمار" data-en="Switch to analyst">التبديل إلى محلل استثمار</button>
+            <button class="btn press" data-role="manager" data-ar="التبديل إلى مدير الاستثمار" data-en="Switch to manager">التبديل إلى مدير الاستثمار</button>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
   </div>
 </div>
@@ -1251,9 +1389,6 @@ body.stills #tourBar .say{font-size:15px}
 </aside>
 
 <div id="pop" role="dialog"></div>
-<div id="mscrim"></div>
-<aside id="modal" role="dialog" aria-modal="true"><header><h3 id="mTitle"></h3><button id="mX" aria-label="إغلاق">×</button></header>
-  <div class="mb" id="mBody"></div><footer id="mFoot"></footer></aside>
 <div id="tourCur"><span class="rip"></span>
   <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" stroke="rgba(0,0,0,.5)" stroke-width="1">
     <path d="M5 2l14 8.5-6.2 1.4L9.6 19z"/></svg></div>
@@ -1263,6 +1398,8 @@ body.stills #tourBar .say{font-size:15px}
       <button data-tc="next">&#8250;</button><button data-tc="stop">&#10005;</button></span></div></div>
 <div id="tourSpot"></div>
 <div class="tnote" id="tourNote"></div>
+<div id="roleCard"><div class="rcw"><div class="rcn"></div><div class="rcstage"></div><div class="rcrule"></div><h2 class="rct"></h2><div class="rcg"></div></div></div>
+<div id="featBadge"><i></i><div class="fbwrap"><div class="fbstage"></div><span></span></div></div>
 <div id="actCard"><div><div class="acn"></div><h2 class="act"></h2><p class="acs"></p></div></div>
 <div id="tourEnd"><div><h2></h2><p></p></div></div>
 <div id="toasts" aria-live="polite"></div>
@@ -1278,7 +1415,7 @@ body.stills #tourBar .say{font-size:15px}
     <path d="M12 3l6 7.5-6 7.5-6-7.5z"/><path d="M9 21h6"/></svg></button>
 <div id="bot" role="dialog" aria-label="مساعد رُشد">
   <header><div class="bav"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l6 7.5-6 7.5-6-7.5z"/></svg></div>
-    <div><b data-ar="مساعد رُشد" data-en="Rushed assistant">مساعد رُشد</b>
+    <div><b data-ar="مساعد رُشد" data-en="Rushd assistant">مساعد رُشد</b>
       <small data-ar="يقرأ صفقات صندوقك فقط" data-en="Reads your fund's deals only">يقرأ صفقات صندوقك فقط</small></div>
     <button id="botX" aria-label="إغلاق">×</button></header>
   <div id="botMsgs"></div>
@@ -1303,12 +1440,12 @@ const T={
   approve:{ar:"بانتظار اعتماد المدير",en:"Awaiting manager approval"},ic:{ar:"على طاولة اللجنة",en:"With the committee"},
   archive:{ar:"مؤرشفة",en:"Archived"}},
  chain:[{ar:"الفرز الآلي",en:"Auto screening"},{ar:"مراجعة المحلل",en:"Analyst review"},{ar:"اعتماد المدير",en:"Manager approval"},{ar:"لجنة الاستثمار",en:"Committee"}],
- owners:{screen:{ar:"رُشد",en:"Rushed"},review:{ar:"عبدالرحمن — محلل",en:"Abdulrahman — analyst"},
+ owners:{screen:{ar:"رُشد",en:"Rushd"},review:{ar:"عبدالرحمن — محلل",en:"Abdulrahman — analyst"},
   approve:{ar:"مدير الاستثمار",en:"Investment manager"},ic:{ar:"لجنة الاستثمار",en:"Investment committee"},archive:{ar:"الأرشيف",en:"Archive"}},
  toast:{
   ready:{k:"ok",t:{ar:"صباح الخير، عبدالرحمن",en:"Good morning, Abdulrahman"},d:{ar:"6 قرارات تنتظر مراجعتك · 2 منها مناسبة",en:"6 decisions await you · 2 are a fit"}},
   new:{k:"",t:{ar:"صفقة جديدة فُرزت",en:"New deal screened"},d:{ar:"سِراج · تقنية الطاقة · مطابقة 6 من 6",en:"Siraj · Energy tech · 6 of 6 matched"}},
-  saved:{k:"warn",t:{ar:"حُفظت في الذاكرة الاستثمارية",en:"Stored in investment memory"},d:{ar:"يعيد رُشد التقييم عند تحديث المؤسس",en:"Rushed re-evaluates when the founder updates"}},
+  saved:{k:"warn",t:{ar:"حُفظت في الذاكرة الاستثمارية",en:"Stored in investment memory"},d:{ar:"يعيد رُشد التقييم عند تحديث المؤسس",en:"Rushd re-evaluates when the founder updates"}},
   dd:{k:"",t:{ar:"انتقلت إلى الفحص المعمّق",en:"Moved to deeper diligence"},d:{ar:"الخطوة القادمة: اعتماد مدير الاستثمار",en:"Next step: investment manager approval"}},
   pass:{k:"danger",t:{ar:"رُفضت نهائياً",en:"Rejected"},d:{ar:"أُرسل السبب للمؤسس وأُغلق الملف",en:"The reason was sent to the founder and the file closed"}},
   invest:{k:"ok",t:{ar:"رُشّحت للاستثمار",en:"Nominated to invest"},d:{ar:"الخطوة القادمة: اعتماد المدير ثم اللجنة",en:"Next: manager approval, then the committee"}},
@@ -1324,7 +1461,7 @@ const T={
   role:{k:"",t:{ar:"تبدّل الدور",en:"Role switched"},d:{ar:"الصلاحيات والإجراءات تغيّرت",en:"Permissions and actions changed"}},
   docreq:{k:"warn",t:{ar:"طُلبت الوثيقة من المؤسس",en:"Document requested"},d:{ar:"يصل تنبيه عند رفعها",en:"You are notified when it is uploaded"}},
   brief:{k:"",t:{ar:"جُهّز موجز اليوم",en:"Daily brief ready"},d:{ar:"6 قرارات · 3 مهام مفتوحة · وثيقتان ناقصتان",en:"6 decisions · 3 open tasks · 2 missing documents"}},
-  addDeal:{k:"",t:{ar:"إضافة صفقة يدوياً",en:"Add a deal manually"},d:{ar:"ارفع العرض وسيفرزه رُشد خلال دقائق",en:"Upload the deck and Rushed screens it in minutes"}},
+  addDeal:{k:"",t:{ar:"إضافة صفقة يدوياً",en:"Add a deal manually"},d:{ar:"ارفع العرض وسيفرزه رُشد خلال دقائق",en:"Upload the deck and Rushd screens it in minutes"}},
   expTbl:{k:"",t:{ar:"جارٍ تصدير الجدول",en:"Exporting the table"},d:{ar:"CSV بالفلاتر المطبّقة حالياً",en:"CSV with the filters currently applied"}},
   rules:{k:"",t:{ar:"قواعد التذكير",en:"Reminder rules"},d:{ar:"تنبيه عند تحديث المؤسس أو تغيّر التفويض أو كل ربع سنة",en:"Alert on founder update, mandate change, or each quarter"}},
   expArc:{k:"",t:{ar:"جارٍ تصدير الأرشيف",en:"Exporting the archive"},d:{ar:"142 شركة مع سبب كل قرار",en:"142 companies with the reason for each decision"}},
@@ -1332,9 +1469,6 @@ const T={
   addIntg:{k:"",t:{ar:"إضافة تكامل",en:"Add an integration"},d:{ar:"اختر القناة ثم امنح الصلاحية",en:"Pick the channel, then grant access"}},
   acctSet:{k:"",t:{ar:"إعدادات الحساب",en:"Account settings"},d:{ar:"الاسم، الدور، التنبيهات، وصلاحيات الفريق",en:"Name, role, alerts and team permissions"}},
   expLog:{k:"",t:{ar:"جارٍ تصدير سجل قراراتك",en:"Exporting your decision log"},d:{ar:"38 قراراً خلال 6 أشهر",en:"38 decisions over 6 months"}},
-  secDoc:{k:"",t:{ar:"جارٍ تجهيز ملخص الأمان",en:"Preparing the security summary"},d:{ar:"التشفير، العزل، الامتثال، وسجل التدقيق",en:"Encryption, isolation, compliance and audit"}},
-  secNda:{k:"ok",t:{ar:"أُرسل طلب اتفاقية السرية",en:"NDA request sent"},d:{ar:"يصلك النموذج للتوقيع خلال يوم عمل",en:"You receive the document within a business day"}},
-  rulesSaved:{k:"ok",t:{ar:"حُفظت قواعد التذكير",en:"Reminder rules saved"},d:{ar:"تُطبَّق على أرشيف «ليس الآن» فوراً",en:"Applied to the not-now archive immediately"}},
   guide:{k:"",t:{ar:"دليل سريع",en:"Quick guide"},d:{ar:"١ افتح صفقة ← ٢ اقرأ الفرز ← ٣ قرّر ← ٤ تابع المسار والذاكرة",en:"1 open a deal → 2 read the screening → 3 decide → 4 follow the track and memory"}}
  }
 };
@@ -1537,7 +1671,7 @@ const TIPS=[
  {ar:"اكتب <b>/</b> لفتح البحث الذكي، وجرّب «حالة» أو «قطاع» أو «أمر».",en:"Press <b>/</b> for smart search, then try “status”, “sector” or “command”."},
  {ar:"الفلترة المتقدمة تجمع القطاع والمرحلة والحالة وحد المطابقة في نتيجة واحدة.",en:"Advanced filters combine sector, stage, status and match threshold in one result."},
  {ar:"غيّر دورك من الملف الشخصي لترى إجراءات <b>مدير الاستثمار</b>.",en:"Switch your role in the profile to see <b>manager</b> actions."},
- {ar:"اسأل <b>مساعد رُشد</b> أسفل الشاشة: «ماذا أبدأ به اليوم؟»",en:"Ask the <b>Rushed assistant</b> at the corner: “What do I start with today?”"}
+ {ar:"اسأل <b>مساعد رُشد</b> أسفل الشاشة: «ماذا أبدأ به اليوم؟»",en:"Ask the <b>Rushd assistant</b> at the corner: “What do I start with today?”"}
 ];
 
 /* ===================== state ===================== */
@@ -1825,7 +1959,7 @@ function renderDid(d){
     [((d.risks||[]).length+(d.gaps||[]).length),{ar:"مخاطر ونواقص",en:"risks and gaps"}],
     [(d.qs||[]).length,{ar:"أسئلة جاهزة",en:"questions ready"}]
   ];
-  $("#dDid").innerHTML=`<span class="dl">${L==="ar"?"أنجزه رُشد قبل أن تفتح الملف":"Rushed did this before you opened the file"}</span>`
+  $("#dDid").innerHTML=`<span class="dl">${L==="ar"?"أنجزه رُشد قبل أن تفتح الملف":"Rushd did this before you opened the file"}</span>`
     +items.map(([n,l])=>`<span class="dc"><b>${n}</b> ${t(l)}</span>`).join("");
 }
 function locMeta(m){if(!m)return m;
@@ -1933,12 +2067,13 @@ function decide(k){
     if(!MEM.some(m=>m.id===cur.id))MEM.unshift({id:cur.id,n:cur.name,
       was:{ar:`رُفضت اليوم — ${cur.why?cur.why.ar:"مطابقة جزئية"}`,en:`Passed today — ${cur.why?cur.why.en:"partial match"}`},
       now:{ar:"بانتظار تحديث المؤسس",en:"Awaiting a founder update"},back:false});
-    toast("saved",L==="ar"?`حُفظت ${t(cur.name)} — يعيد رُشد تقييمها عند تحديث المؤسس`:`${t(cur.name)} stored — Rushed re-evaluates on update`);
+    toast("saved",L==="ar"?`حُفظت ${t(cur.name)} — يعيد رُشد تقييمها عند تحديث المؤسس`:`${t(cur.name)} stored — Rushd re-evaluates on update`);
   } else if(k==="pass"){ cur.st="archive"; toast("pass",L==="ar"?`أُغلق ملف ${t(cur.name)} وأُرسل السبب للمؤسس`:`${t(cur.name)} closed and the founder was told why`);
   } else if(k==="dd"){ cur.st="approve"; toast("dd");
   } else if(k==="invest"){ cur.st="approve"; toast("invest");
   } else if(k==="ic"){ cur.st="ic"; toast("ic"); }
-  renderQueue();renderTable();renderMemory();renderChainOverview();renderNext();closeDrawer();
+  renderQueue();renderTable();renderMemory();renderChainOverview();renderNext();
+  if(window.__keepDrawer){paint();}else{closeDrawer();}
 }
 
 /* ===================== popover ===================== */
@@ -1997,171 +2132,6 @@ function renderSugg(){
   $("#sugg").classList.add("on");
 }
 
-/* ===================== personal profile ===================== */
-let pfTab="overview";
-const XP={pts:1240,next:1500,level:4};
-const RINGS=()=>{
-  const todoDone=TODO.filter(x=>x.done).length;
-  return [
-   {v:87,c:"var(--accent)",val:"87%",l:{ar:"اتفاق قراراتك مع رُشد",en:"Agreement with Rushed"},x:{ar:"الهدف 85% · على آخر 38 قراراً",en:"Target 85% · last 38 decisions"}},
-   {v:91,c:"var(--ok)",val:L==="ar"?"4 دقائق":"4 min",l:{ar:"متوسط زمن مراجعتك",en:"Your average review time"},x:{ar:"أسرع من هدف الفريق (10 دقائق)",en:"Faster than the 10-minute team target"}},
-   {v:Math.round(todoDone/TODO.length*100),c:"var(--warn)",val:todoDone+"/"+TODO.length,l:{ar:"مهام اليوم المنجزة",en:"Today's tasks done"},x:{ar:"تتحدث مع لوحة العمليات",en:"Live with the operations board"}},
-   {v:76,c:"var(--sky)",val:"29",l:{ar:"صفقة راجعتها هذا الشهر",en:"Deals you reviewed this month"},x:{ar:"من أصل 38 صفقة واردة",en:"of 38 inbound deals"}}
-  ]};
-function ringSVG(v,c){const r=32,C=2*Math.PI*r;
-  return `<svg width="86" height="86" viewBox="0 0 86 86">
-    <circle class="rc-bg" cx="43" cy="43" r="${r}" fill="none" stroke-width="8"/>
-    <circle class="rc-fg" cx="43" cy="43" r="${r}" fill="none" stroke="${c}" stroke-width="8"
-      stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${C.toFixed(1)}" data-off="${(C*(1-v/100)).toFixed(1)}"
-      transform="rotate(-90 43 43)"/>
-    <text x="43" y="48" text-anchor="middle" font-size="15" font-weight="600" fill="var(--head)" font-family="IBM Plex Sans Arabic">${v}%</text></svg>`;
-}
-const BADGES=[
- {got:1,ic:"cap",t:{ar:"أول 100 قرار",en:"First 100 decisions"},d:{ar:"سجّلت 100 قرار مع سببه المكتوب",en:"Logged 100 decisions with written reasoning"}},
- {got:1,ic:"note",t:{ar:"اتفاق فوق الهدف",en:"Above target agreement"},d:{ar:"87% اتفاق مع الفرز الآلي — الهدف 85%",en:"87% agreement with automatic screening"}},
- {got:1,ic:"fin",t:{ar:"مُنقذ الذاكرة",en:"Memory keeper"},d:{ar:"أعدت 3 شركات من أرشيف «ليس الآن» إلى الطاولة",en:"Brought 3 companies back from the not-now archive"}},
- {got:1,ic:"logistics",t:{ar:"أسرع مراجعة",en:"Fastest review"},d:{ar:"4 دقائق لكل ملف — أسرع محلل في الصندوق",en:"4 minutes per file — fastest analyst in the fund"}},
- {got:0,p:64,ic:"legal",t:{ar:"صفر ملفات ناقصة",en:"Zero missing files"},d:{ar:"أغلق كل الوثائق الناقصة في صفقاتك",en:"Close every missing document in your deals"}},
- {got:0,p:40,ic:"energy",t:{ar:"صفقة على الطاولة",en:"Deal at the table"},d:{ar:"أوصل صفقة إلى لجنة الاستثمار",en:"Take a deal all the way to the committee"}}
-];
-const PACT=[
- {ok:1,t:{ar:"اعتمدت متابعة الفحص لـ«نُقلة»",en:"Moved Nuqla to diligence"},d:{ar:"مطابقة 6/6 · أُرسل ملف المراجعة لفريق الاستثمار",en:"6/6 matched · review file sent to the team"},m:{ar:"اليوم · 09:41 ص",en:"Today · 09:41"}},
- {ok:1,t:{ar:"حفظت «رفّ» في الذاكرة الاستثمارية",en:"Stored Raff in investment memory"},d:{ar:"المرحلة والشيك أبكر من نطاق الصندوق",en:"Stage and ticket earlier than the fund's range"},m:{ar:"أمس · 04:12 م",en:"Yesterday · 16:12"}},
- {ok:1,t:{ar:"شغّلت إعادة التقييم على الأرشيف",en:"Ran re-evaluation on the archive"},d:{ar:"3 شركات عادت للمطابقة",en:"3 companies returned to fit"},m:{ar:"أمس · 10:05 ص",en:"Yesterday · 10:05"}},
- {ok:0,t:{ar:"بانتظارك: جدول ملكية «نُقلة»",en:"Waiting on you: Nuqla's cap table"},d:{ar:"لا يمكن رفعها للجنة قبل اكتمال الوثائق",en:"It cannot reach the committee with documents missing"},m:{ar:"منذ يومين",en:"2 days ago"}}
-];
-function renderProfile(){
-  const el=$("#v-profile");if(!el)return;
-  const pct=Math.round(XP.pts/XP.next*100);
-  const roleAr=role==="manager"?"مدير الاستثمار":"محلل استثمار",roleEn=role==="manager"?"Investment manager":"Investment analyst";
-  const tabBtn=(k,ar,en)=>`<button class="ptab ${pfTab===k?"on":""}" data-ptab="${k}">${L==="ar"?ar:en}</button>`;
-  const overview=`<div class="rings">${RINGS().map(r=>`<div class="ring ind" title="${t(r.x)}">${ringSVG(r.v,r.c)}
-      <div class="rv">${r.val}</div><div class="rl">${t(r.l)}</div><div class="rx">${t(r.x)}</div></div>`).join("")}</div>
-    <div class="panel" style="margin-top:16px"><header><h3>${L==="ar"?"أثرك على تدفق الصندوق":"Your impact on the fund's flow"}</h3></header>
-      <div class="pad" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
-        ${[[L==="ar"?"ساعات وفّرتها":"Hours you saved","26",L==="ar"?"≈ 4,300 ريال من وقت الفريق":"≈ SAR 4,300 of team time"],
-           [L==="ar"?"قرارات بسبب مكتوب":"Decisions with reasoning","38 / 38",L==="ar"?"لا قرار بلا تفسير":"No decision without a reason"],
-           [L==="ar"?"صفقات أعدتها للطاولة":"Deals you brought back","3",L==="ar"?"من أرشيف «ليس الآن»":"from the not-now archive"]]
-          .map(x=>`<div class="kpi ind"><span>${x[0]}</span><b>${x[1]}</b><em>${x[2]}</em></div>`).join("")}</div></div>`;
-  const badges=`<div class="badges">${BADGES.map(b=>`<div class="bdgc ${b.got?"got":"lock"}">
-      <span class="bi">${sIcon(b.ic,19)}</span>
-      <div style="flex:1"><div class="bt2">${t(b.t)}${b.got?'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ok)" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg>':""}</div>
-        <div class="bd2">${t(b.d)}</div>
-        ${b.got?"":`<div class="bp"><i style="width:${b.p}%"></i></div><div class="rx" style="margin-top:5px">${b.p}% ${L==="ar"?"مكتمل":"complete"}</div>`}</div></div>`).join("")}</div>`;
-  const activity=`<div class="panel"><header><h3>${L==="ar"?"سجل نشاطك":"Your activity"}</h3>
-      <span class="cnt">${L==="ar"?"آخر 4 أحداث":"last 4 events"}</span></header>
-    <div class="pad"><div class="tl">${PACT.map(a=>`<div class="tli ${a.ok?"ok":""}">
-      <div class="tt">${t(a.t)}</div><div class="td">${t(a.d)}</div><div class="tm2">${t(a.m)}</div></div>`).join("")}</div></div></div>`;
-  el.innerHTML=`<div class="pagehead"><div class="ttl">
-      <h1 class="h1">${L==="ar"?"الملف الشخصي":"Profile"}</h1>
-      <p class="lede" style="margin-bottom:0">${L==="ar"?"مستواك داخل الصندوق، ومؤشرات أدائك، وما أنجزته حتى الآن.":"Your standing in the fund, your performance indicators, and what you have achieved."}</p></div>
-    <div class="pacts">
-      <button class="btn press" id="acctSet">${L==="ar"?"إعدادات الحساب":"Account settings"}</button>
-      <button class="btn key press" id="expLog">${L==="ar"?"تصدير سجل قراراتي":"Export my decision log"}</button></div></div>
-   <div class="pgrid">
-     <div class="idcard" id="tiltCard">
-       <div class="idtop"><div class="g3"></div></div>
-       <div class="idbody">
-         <div class="idav">ع ر</div>
-         <h2>${L==="ar"?"عبدالرحمن":"Abdulrahman"}</h2>
-         <span class="badge3" id="pfBadge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 9-7 9-7-9z"/></svg><span id="pfRole">${L==="ar"?roleAr:roleEn}</span></span>
-         <div class="mail" style="margin-top:9px">abdulrahman@sahm.vc · ${L==="ar"?"صندوق سهم":"Sahm Ventures"}</div>
-         <div class="lvlwrap">
-           <div class="lvlrow"><b>${L==="ar"?`المستوى ${XP.level} · محلل موثوق`:`Level ${XP.level} · Trusted analyst`}</b>
-             <span style="margin-inline-start:auto">${XP.pts} / ${XP.next} ${L==="ar"?"نقطة":"pts"}</span></div>
-           <div class="lvlbar"><i data-lvl="${pct}"></i></div>
-           <div class="rx" style="margin-top:7px">${L==="ar"?`${XP.next-XP.pts} نقطة تفصلك عن المستوى ${XP.level+1} · شريك قرار`:`${XP.next-XP.pts} points to level ${XP.level+1} · Decision partner`}</div>
-         </div>
-         <div class="idstats ind">
-           <div><b>214</b><span>${L==="ar"?"صفقة فُرزت":"screened"}</span></div>
-           <div><b>38</b><span>${L==="ar"?"قراراً":"decisions"}</span></div>
-           <div><b>4</b><span>${L==="ar"?"أوسمة":"badges"}</span></div></div>
-         <div class="sub2" id="pfBio" style="margin-top:16px;font-size:12.5px;color:var(--muted);line-height:1.9;text-align:start"></div>
-         <div class="rolepick" style="display:grid;gap:8px;margin-top:16px">
-           <button class="btn press" data-role="analyst">${L==="ar"?"التبديل إلى محلل استثمار":"Switch to analyst"}</button>
-           <button class="btn press" data-role="manager">${L==="ar"?"التبديل إلى مدير الاستثمار":"Switch to manager"}</button></div>
-       </div></div>
-     <div>
-       <div class="ptabs">${tabBtn("overview","نظرة عامة","Overview")}${tabBtn("badges","الإنجازات","Achievements")}${tabBtn("activity","النشاط","Activity")}</div>
-       ${pfTab==="badges"?badges:pfTab==="activity"?activity:overview}
-     </div></div>`;
-  setRole(role,true);
-  requestAnimationFrame(()=>{
-    const b=el.querySelector("[data-lvl]");if(b)b.style.width=b.dataset.lvl+"%";
-    el.querySelectorAll(".rc-fg").forEach(c=>c.setAttribute("stroke-dashoffset",c.dataset.off));
-  });
-  const c2=el.querySelector("#tiltCard");
-  if(c2){c2.onmousemove=e=>{const r=c2.getBoundingClientRect();
-    c2.style.transform=`perspective(900px) rotateY(${((e.clientX-r.left)/r.width-.5)*5}deg) rotateX(${-((e.clientY-r.top)/r.height-.5)*5}deg)`};
-   c2.onmouseleave=()=>c2.style.transform="";}
-}
-/* ===================== privacy & security ===================== */
-const SEC=[
- {ic:"cyber",t:{ar:"تشفير على مستوى المؤسسات",en:"Enterprise-grade encryption"},
-  d:{ar:"تشفير أثناء النقل عبر TLS 1.3 وأثناء التخزين بـ AES-256، ومفاتيح منفصلة لكل صندوق تُدار عبر خدمة إدارة مفاتيح مستقلة.",
-     en:"TLS 1.3 in transit and AES-256 at rest, with separate keys per fund managed by an independent key service."}},
- {ic:"saas",t:{ar:"عزل تام لبيانات كل صندوق",en:"Isolated data environment per fund"},
-  d:{ar:"لكل صندوق بيئة معالجة وتخزين منفصلة منطقياً. لا تُخلط بيانات صندوق بآخر، ولا يرى صندوق شركةً قدّمت لغيره.",
-     en:"Each fund has a logically separated environment. No fund can see a company that applied elsewhere."}},
- {ic:"note",t:{ar:"لا تدريب لأي نموذج ذكاء اصطناعي عام",en:"No training of general AI models"},
-  d:{ar:"التزام تعاقدي صريح: لا تُستخدم عروض الشركات ولا قوائمها المالية ولا هياكل ملكيتها في تدريب أي نموذج عام، ولا تُشارك خارج نطاق الصندوق الذي حدده العميل.",
-     en:"An explicit contractual commitment: decks, financials and cap tables are never used to train general models, nor shared beyond the client's designated fund."}},
- {ic:"legal",t:{ar:"الامتثال التنظيمي",en:"Regulatory compliance"},
-  d:{ar:"مواءمة مع ضوابط المكتب الوطني لإدارة البيانات NDMO وسياسات حوكمة البيانات الوطنية، والتزام بالضوابط المحلية في السعودية والمنطقة، مع استضافة داخل المملكة.",
-     en:"Aligned with NDMO controls and national data-governance policy, with hosting inside Saudi Arabia."}},
- {ic:"cap",t:{ar:"صلاحيات الوصول وسجل التدقيق",en:"Access control and audit trail"},
-  d:{ar:"صلاحيات مبنية على الدور (محلل / مدير / لجنة)، ومصادقة ثنائية، وسجل تدقيق غير قابل للتعديل يسجّل من فتح أي وثيقة ومتى.",
-     en:"Role-based permissions, two-factor authentication, and an immutable audit log of who opened which document and when."}},
- {ic:"fin",t:{ar:"الاحتفاظ والحذف",en:"Retention and deletion"},
-  d:{ar:"المؤسس يملك بياناته: يطلب الحذف فتُزال خلال 30 يوماً من البيئات الحيّة والنسخ الاحتياطية، مع إشعار موثّق للصندوق.",
-     en:"Founders own their data: on request it is removed within 30 days from live systems and backups."}}
-];
-function privacyBody(){
-  return `<div class="panel" style="margin-bottom:16px;border-color:var(--accent)">
-    <div class="pad" style="display:flex;gap:14px;align-items:flex-start">
-      <span class="sicon" style="width:42px;height:42px;background:var(--accent);color:#fff">${sIcon("cyber",20)}</span>
-      <div><div style="font-size:14.5px;font-weight:600;color:var(--head);margin-bottom:7px">${L==="ar"?"الأمان والسرية هما الحجر الأساس في رُشد":"Security and confidentiality are the foundation of Rushed"}</div>
-      <div style="font-size:13px;color:var(--muted);line-height:2;max-width:80ch">${L==="ar"
-        ?"نتعامل مع بيانات مالية شديدة الحساسية: سجلات تجارية، هياكل ملكية، وقوائم مالية غير معلنة. لذلك بُنيت المنصة على تشفير بمستوى المؤسسات، وعزل تام لبيئة كل صندوق، والتزام تعاقدي بعدم استخدام هذه البيانات في تدريب أي نموذج ذكاء اصطناعي عام أو مشاركتها خارج نطاق الصندوق الذي حدده العميل."
-        :"We handle highly sensitive financial data. The platform is built on enterprise-grade encryption, a fully isolated environment per fund, and a contractual commitment never to use this data to train general AI models or share it beyond the client's designated fund."}</div></div></div></div>
-   <div class="grid3" style="margin-bottom:16px">${SEC.map(x=>`<div class="card ind">
-     <h5 style="display:flex;gap:8px;align-items:center;color:var(--accent)">${sIcon(x.ic,15)}${t(x.t)}</h5>
-     <div style="font-size:12.5px;color:var(--muted);line-height:1.95">${t(x.d)}</div></div>`).join("")}</div>
-   <div class="panel"><header><h3>${L==="ar"?"سؤال يُطرح كثيراً من المستثمرين":"A question investors often raise"}</h3></header>
-     <div class="item ind"><div class="t" style="color:var(--danger)">${L==="ar"?"«ماذا لو تسرّبت بيانات الشركات الناشئة أو استُخدمت في تدريب نموذج عام؟»":"“What if startup data leaks, or is used to train a general model?”"}</div>
-       <div class="d">${L==="ar"?"سؤال مشروع: الشركات ترفع وثائق حرة وسرية، وأي تسريب يُفقد النظام مصداقيته بالكامل.":"A fair question: any leak would destroy the platform's credibility."}</div></div>
-     <div class="item ind"><div class="t" style="color:var(--ok)">${L==="ar"?"ردّنا":"Our answer"}</div>
-       <div class="d">${L==="ar"
-         ?"ثلاث طبقات: تشفير بمستوى المؤسسات، وبيئة معالجة معزولة لكل صندوق، والتزام تعاقدي صريح بعدم استخدام البيانات لتدريب نماذج عامة أو مشاركتها خارج الصندوق — يُضاف إليها الامتثال لضوابط NDMO والاستضافة داخل المملكة، وسجل تدقيق يثبت من اطّلع على كل وثيقة."
-         :"Three layers: enterprise-grade encryption, an isolated environment per fund, and an explicit contractual ban on training general models or sharing outside the fund — plus NDMO compliance, local hosting, and an audit trail."}</div>
-       <span class="chip ok">${L==="ar"?"يُوثَّق في اتفاقية الخدمة وملحق حماية البيانات":"Documented in the service agreement and DPA"}</span></div></div>`;
-}
-function renderPrivacy(){
-  const el=$("#v-privacy");if(!el)return;
-  el.innerHTML=`<div class="pagehead"><div class="ttl">
-      <h1 class="h1">${L==="ar"?"الخصوصية والأمان":"Privacy and security"}</h1>
-      <p class="lede" style="margin-bottom:0">${L==="ar"?"كيف تُحفظ بيانات الشركات المتقدمة، ومن يصل إليها، وما الذي لا نفعله بها أبداً.":"How applicant data is stored, who can reach it, and what we never do with it."}</p></div>
-    <div class="pacts"><button class="btn press" id="secDoc">${L==="ar"?"ملخص الأمان (PDF)":"Security summary (PDF)"}</button>
-      <button class="btn key press" id="secNda">${L==="ar"?"طلب اتفاقية سرية":"Request an NDA"}</button></div></div>`+privacyBody();
-}
-/* ===================== modal ===================== */
-function openModal(title,body,foot){$("#mTitle").textContent=title;$("#mBody").innerHTML=body;$("#mFoot").innerHTML=foot||"";
-  $("#modal").classList.add("on");$("#mscrim").classList.add("on")}
-function closeModal(){$("#modal").classList.remove("on");$("#mscrim").classList.remove("on")}
-const RULES=[{k:"upd",on:true,t:{ar:"عند تحديث المؤسس لبياناته",en:"When a founder updates their data"},d:{ar:"يُعاد التقييم فوراً ويصلك تنبيه إن تغيّرت النتيجة",en:"Re-evaluated immediately; you are alerted if the result changes"}},
- {k:"mandate",on:true,t:{ar:"عند تغيّر تفويض الصندوق أو محفظته",en:"When the mandate or portfolio changes"},d:{ar:"يُعاد فرز الأرشيف كاملاً على السياق الجديد",en:"The whole archive is re-screened against the new context"}},
- {k:"quarter",on:true,t:{ar:"تلقائياً كل ربع سنة",en:"Automatically each quarter"},d:{ar:"مراجعة دورية لكل شركة في أرشيف «ليس الآن»",en:"A periodic sweep of the not-now archive"}},
- {k:"threshold",on:false,t:{ar:"عند تجاوز عتبة إيراد محددة",en:"When a revenue threshold is crossed"},d:{ar:"مثال: بلوغ 200 ألف ريال شهرياً يعيد فتح الملف",en:"e.g. reaching SAR 200K monthly reopens the file"}},
- {k:"round",on:false,t:{ar:"عند إعلان جولة تمويلية جديدة",en:"When a new round is announced"},d:{ar:"من مصادر السوق المتاحة للصندوق",en:"From market sources available to the fund"}},
- {k:"mail",on:true,t:{ar:"إشعار بالبريد وSlack",en:"Email and Slack alerts"},d:{ar:"ملخص أسبوعي بما عاد للمطابقة",en:"A weekly summary of what returned to fit"}}];
-function rulesBody(){return RULES.map(r=>`<div class="rule">
-  <div style="flex:1"><div class="rt">${t(r.t)}</div><div class="rd2">${t(r.d)}</div></div>
-  <button class="sw press ${r.on?"on":""}" data-rule="${r.k}" aria-pressed="${r.on}"><span></span></button></div>`).join("")
-  +`<p style="font-size:11.5px;color:var(--faint);line-height:1.8;margin:14px 0 0">${L==="ar"
-    ?"تُطبَّق هذه القواعد على 142 شركة في أرشيف «ليس الآن». لا يُرسل شيء للمؤسس إلا بعد اعتمادك.":"These rules apply to the 142 archived companies. Nothing is sent to a founder without your approval."}</p>`}
-function openRules(){openModal(L==="ar"?"قواعد التذكير وإعادة التقييم":"Reminder and re-evaluation rules",rulesBody(),
-  `<button class="btn press" id="mCancel">${L==="ar"?"إلغاء":"Cancel"}</button>
-   <button class="btn key press" id="mSave" style="margin-inline-start:auto">${L==="ar"?"حفظ القواعد":"Save rules"}</button>`)}
 /* ===================== toasts / tips ===================== */
 const TGO={
  ready:()=>go("decisions"),new:()=>openDeal("siraj"),saved:()=>go("memory"),reeval:()=>go("memory"),engage:()=>go("memory"),
@@ -2225,8 +2195,8 @@ function setRole(r,silent){
   $("#pfBio").textContent=L==="ar"
     ?(r==="manager"?"يقود قرار الاستثمار داخل صندوق سهم: يعتمد ما يرشّحه المحللون ويرفعه للجنة، ويضبط تفويض الصندوق الذي يقيس عليه رُشد كل صفقة."
       :"يفتح الصفقات الواردة كل صباح، يقرأ فرز رُشد، ويقرّر أيها يستحق وقت الفريق. مطابقته مع رُشد 87% على آخر 38 قراراً.")
-    :(r==="manager"?"Leads the investment decision at Sahm Ventures: approves what analysts nominate, raises it to the committee, and sets the mandate Rushed measures against."
-      :"Opens inbound deals each morning, reads the Rushed screening, and decides what deserves the team's time. 87% agreement across the last 38 decisions.");
+    :(r==="manager"?"Leads the investment decision at Sahm Ventures: approves what analysts nominate, raises it to the committee, and sets the mandate Rushd measures against."
+      :"Opens inbound deals each morning, reads the Rushd screening, and decides what deserves the team's time. 87% agreement across the last 38 decisions.");
   $$("[data-role]").forEach(b=>b.classList.toggle("key",b.dataset.role===r));
   greet();
   if(!silent)toast("role",L==="ar"?(r==="manager"?"عبدالرحمن — مدير الاستثمار: صلاحية الاعتماد والرفع للجنة":"عبدالرحمن — محلل استثمار: صلاحية المراجعة والترشيح")
@@ -2241,20 +2211,16 @@ function setTheme(th){
 
 /* ===================== nav ===================== */
 const NAMES={decisions:{ar:"لوحة العمليات",en:"Operations board"},deals:{ar:"الصفقات الواردة",en:"Deal flow"},memory:{ar:"الذاكرة الاستثمارية",en:"Investment memory"},
- reports:{ar:"التقارير",en:"Reports"},integrations:{ar:"التكاملات",en:"Integrations"},fund:{ar:"سياق الصندوق",en:"Fund context"},privacy:{ar:"الخصوصية والأمان",en:"Privacy and security"},profile:{ar:"الملف الشخصي",en:"Profile"}};
-function toTop(){const c=document.querySelector(MODE==="client"?".shell>.col":"#app>.col");
-  if(c)c.scrollTop=0;else window.scrollTo(0,0)}
+ reports:{ar:"التقارير",en:"Reports"},integrations:{ar:"التكاملات",en:"Integrations"},fund:{ar:"سياق الصندوق",en:"Fund context"},profile:{ar:"الملف الشخصي",en:"Profile"}};
 function go(v){
   $$(".view").forEach(s=>s.classList.toggle("on",s.id==="v-"+v));
   $$(".nav[data-go]").forEach(b=>b.classList.toggle("on",b.dataset.go===v));
   $("#crumbBar").innerHTML=`<span>${L==="ar"?"صندوق سهم":"Sahm Ventures"}</span><span>›</span><b>${t(NAMES[v])}</b>`;
   if(v==="decisions")counters();
   if(v==="reports")renderBars();
-  if(v==="privacy")renderPrivacy();
-  if(v==="profile")renderProfile();
-  closePop();toTop();
+  closePop();window.scrollTo({top:0,behavior:"smooth"});
 }
-function renderAll(){renderPrivacy();renderProfile();$("#crumbBar").innerHTML=`<span>${L==="ar"?"صندوق سهم":"Sahm Ventures"}</span><span>›</span><b>${t(NAMES[$$(".nav.on")[0]?$$(".nav.on")[0].dataset.go:"decisions"])}</b>`;renderTodo();botChips();$("#botQ").placeholder=L==="ar"?"اسأل عن أي صفقة أو قرار…":"Ask about any deal or decision…";renderQueue();renderFilterChips();renderTable();renderMemory();renderIntg();renderBars();renderChainOverview();renderNext();renderCrit();renderSpark();greet();}
+function renderAll(){$("#crumbBar").innerHTML=`<span>${L==="ar"?"صندوق سهم":"Sahm Ventures"}</span><span>›</span><b>${t(NAMES[$$(".nav.on")[0]?$$(".nav.on")[0].dataset.go:"decisions"])}</b>`;renderTodo();botChips();$("#botQ").placeholder=L==="ar"?"اسأل عن أي صفقة أو قرار…":"Ask about any deal or decision…";renderQueue();renderFilterChips();renderTable();renderMemory();renderIntg();renderBars();renderChainOverview();renderNext();renderCrit();renderSpark();greet();}
 
 /* ===================== events ===================== */
 document.addEventListener("click",e=>{
@@ -2281,8 +2247,7 @@ document.addEventListener("click",e=>{
   if(e.target.closest("#themeBtn"))return setTheme(document.documentElement.dataset.theme==="dark"?"light":"dark");
   if(e.target.closest("#helpBtn"))return toast("guide");
   if(e.target.closest("#profileBtn"))return go("profile");
-  const pt=e.target.closest("[data-ptab]");if(pt){pfTab=pt.dataset.ptab;renderProfile();return}
-  const rl=e.target.closest("[data-role]");if(rl){setRole(rl.dataset.role);renderProfile();return}
+  const rl=e.target.closest("[data-role]");if(rl)return setRole(rl.dataset.role);
   const sg=e.target.closest("[data-sg]");if(sg){$("#sugg").classList.remove("on");$("#q").blur();return sugActs[+sg.dataset.sg]()}
   const stb=e.target.closest("[data-status]");
   if(stb){const d=D.find(x=>x.id===stb.dataset.status);closePop();return openPop(stb,d)}
@@ -2312,13 +2277,7 @@ document.addEventListener("click",e=>{
   if(e.target.closest("#actStart")){const d=D.find(x=>x.st==="review")||D.find(x=>x.st==="approve")||D[0];return openDeal(d.id)}
   if(e.target.closest("#expTbl"))return toast("expTbl");
   if(e.target.closest("#addDeal"))return toast("addDeal");
-  if(e.target.closest("#secDoc")){toast("secDoc");return}
-  if(e.target.closest("#secNda")){toast("secNda");return}
-  if(e.target.closest("#memRules")){openRules();return}
-  const rl2=e.target.closest("[data-rule]");
-  if(rl2){const r=RULES.find(x=>x.k===rl2.dataset.rule);r.on=!r.on;$("#mBody").innerHTML=rulesBody();return}
-  if(e.target.closest("#mSave")){closeModal();toast("rulesSaved",L==="ar"?`${RULES.filter(r=>r.on).length} قواعد مفعّلة`:`${RULES.filter(r=>r.on).length} rules active`);return}
-  if(e.target.closest("#mCancel")||e.target.closest("#mX")||e.target.closest("#mscrim")){closeModal();return}
+  if(e.target.closest("#memRules"))return toast("rules");
   if(e.target.closest("#expArc"))return toast("expArc");
   if(e.target.closest("#mngKeys"))return toast("keys");
   if(e.target.closest("#addIntg"))return toast("addIntg");
@@ -2335,7 +2294,7 @@ document.addEventListener("click",e=>{
 });
 document.addEventListener("keydown",e=>{
   if((e.key==="Enter"||e.key===" ")&&e.target.classList&&e.target.classList.contains("deal")){e.preventDefault();openDeal(e.target.dataset.id);return}
-  if(e.key==="Escape"){closeModal();closeDrawer();closePop();$("#sugg").classList.remove("on")}
+  if(e.key==="Escape"){closeDrawer();closePop();$("#sugg").classList.remove("on")}
   if(e.key==="/"&&document.activeElement!==$("#q")){e.preventDefault();$("#q").focus()}
 });
 $("#dClose").addEventListener("click",closeDrawer);
@@ -2350,10 +2309,10 @@ $("#fMatch").addEventListener("input",e=>{F.match=+e.target.value;$("#mMin").tex
 const gl=$("#glow");let cx=0,cy=0,tx=0,ty=0;
 addEventListener("mousemove",e=>{tx=e.clientX;ty=e.clientY});
 (function loop(){cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;gl.style.transform=`translate(${cx.toFixed(1)}px,${cy.toFixed(1)}px)`;requestAnimationFrame(loop)})();
-const card=$("#tiltCard");if(card){
+const card=$("#tiltCard");
 card.addEventListener("mousemove",e=>{const r=card.getBoundingClientRect();
   card.style.transform=`perspective(900px) rotateY(${((e.clientX-r.left)/r.width-.5)*7}deg) rotateX(${-((e.clientY-r.top)/r.height-.5)*7}deg)`});
-card.addEventListener("mouseleave",()=>card.style.transform="");}
+card.addEventListener("mouseleave",()=>card.style.transform="");
 
 
 /* ==================================================================
@@ -2378,12 +2337,11 @@ function fChips(scope,k,lab,opts,single){const cur=(scope==="s"?S:CL)[k]||[];
     data-chip="${scope}" data-k="${k}" data-v="${o.v}" data-single="${single?1:0}"><span class="tick"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4"><path d="M5 12l5 5L20 6"/></svg></span>${t(o)}</button>`).join("")}</div></div>`}
 function fUp(k,lab,hint,req){const f=CLF[k];
   const ic=f?(/\.(xlsx|xls|csv)$/i.test(f.n)?"fin":/\.(pdf)$/i.test(f.n)?"legal":"deck"):"deck";
-  return `<label class="drop ${f&&!f.up?"has":""} ${f&&f.up?"busy":""}" data-zone="${k}">
-    <span class="di2">${f&&f.up?'<svg class="spin" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3a9 9 0 109 9" stroke-linecap="round"/></svg>':sIcon(ic,19)}</span>
+  return `<label class="drop ${f?"has":""} ${f&&f.up?"":""}" data-zone="${k}">
+    <span class="di2">${f&&f.up?'<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M6 11l6-6 6 6"/></svg>':sIcon(ic,19)}</span>
     <span><span class="dn2">${t(lab)}${req&&!f?'<span class="req">*</span>':""}${f&&!f.up?'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ok)" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg>':""}</span>
-    <span class="dh2">${f?(f.up?(L==="ar"?`جارٍ رفع ${f.n}…`:`Uploading ${f.n}…`):f.n+" · "+f.s):t(hint)+" · "+(L==="ar"?"اسحب الملف هنا أو اختر":"drag a file here or choose")}</span></span>
-    <span class="da">${f&&f.up?`<span class="chip wait" style="margin:0">${L==="ar"?"جارٍ الرفع":"Uploading"}</span>`
-      :f?`<span class="chip ok" style="margin:0">${L==="ar"?"مرفوع":"Uploaded"}</span><button class="rm" data-rm="${k}" title="${L==="ar"?"حذف":"Remove"}">×</button>`
+    <span class="dh2">${f?(f.up?(L==="ar"?"جارٍ الرفع…":"Uploading…"):f.n+" · "+f.s):t(hint)+" · "+(L==="ar"?"اسحب الملف هنا أو اختر":"drag a file here or choose")}</span></span>
+    <span class="da">${f&&!f.up?`<span class="chip ok" style="margin:0">${L==="ar"?"مرفوع":"Uploaded"}</span><button class="rm" data-rm="${k}" title="${L==="ar"?"حذف":"Remove"}">×</button>`
       :`<span class="btn sm">${L==="ar"?"اختر ملف":"Choose file"}</span>`}</span>
     ${f&&f.up?'<span class="upbar"></span>':""}
     <input type="file" data-up="${k}"></label>`}
@@ -2404,7 +2362,7 @@ function takeFile(k,f){
       if(["thesisdoc","pflist","factsheet","cmalic"].indexOf(k)>=0&&EXS.s==="idle"){runExtract("s");return}
       toast("upOk",t({ar:"استُلم "+CLF[k].n,en:"Received "+CLF[k].n}));return}
     if(k==="crdoc"&&clStep===0&&(CL.mode||"upload")==="upload"&&EXS.c==="idle"){CL._af=1;runExtract("c");return}
-    rr();toast("upOk",t({ar:"استُلم "+CLF[k].n,en:"Received "+CLF[k].n}))},620);
+    rr();toast("upOk",t({ar:"استُلم "+CLF[k].n,en:"Received "+CLF[k].n}))},800);
 }
 document.addEventListener("change",e=>{
   const up=e.target.dataset&&e.target.dataset.up;
@@ -2436,7 +2394,7 @@ const AU={
  go:{ar:"دخول",en:"Sign in"},demo:{ar:"عرض تجريبي — أي بيانات تعمل.",en:"Demo — any credentials work."},
  h:{ar:"الفرز الأول، قبل حكم المحلل",en:"The first pass, before the analyst"},
  p:{ar:"رُشد يقيس كل صفقة واردة على تفويض صندوقك واستراتيجيته وحجم شيكه ومحفظته الحيّة — فيتحوّل الفرز الأول من ساعات إلى دقائق.",
-    en:"Rushed measures every inbound deal against your fund's mandate, strategy, ticket size and live portfolio — turning the first pass from hours into minutes."},
+    en:"Rushd measures every inbound deal against your fund's mandate, strategy, ticket size and live portfolio — turning the first pass from hours into minutes."},
  b:[{ar:"<b>لفريق الصندوق:</b> قرارات مفروزة على ستة معايير، مع سبب مكتوب خلف كل نتيجة.",en:"<b>Fund teams:</b> decisions screened on six criteria, each with written reasoning."},
     {ar:"<b>للمؤسسين:</b> رابط تقديم واحد بدل سلسلة بريد، ورد واضح مع السبب.",en:"<b>Founders:</b> one application link instead of an email chain, and a clear answer."},
     {ar:"<b>ذاكرة استثمارية:</b> «ليس الآن» تبقى محفوظة، ويعاد تقييمها حين تتغيّر.",en:"<b>Investment memory:</b> a not-now stays on file and is re-evaluated when things change."}]
@@ -2478,13 +2436,13 @@ function wzCard(kick,st,tip,body,nav,extra){
       <div><aside class="wztip"><b><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 00-3 11v2h6v-2a6 6 0 00-3-11z"/></svg>${L==="ar"?"لماذا نسأل هذا؟":"Why we ask"}</b>${t(tip)}</aside>${extra||""}</div></div>
     <div class="wznav">${nav}</div></div>`;
 }
-const TIPW=[{ar:"ارفع ما لديك بدل تعبئة عشرات الحقول. يقرأ رُشد الأطروحة وقائمة المحفظة ويعبّئ الخطوات التالية، وما لا يجده يُعلَّم بـ * لتكمله بنفسك.",en:"Upload what you have instead of typing dozens of fields. Rushed reads the thesis and portfolio list and fills the next steps; anything it cannot find is marked with * for you to complete."},
+const TIPW=[{ar:"ارفع ما لديك بدل تعبئة عشرات الحقول. يقرأ رُشد الأطروحة وقائمة المحفظة ويعبّئ الخطوات التالية، وما لا يجده يُعلَّم بـ * لتكمله بنفسك.",en:"Upload what you have instead of typing dozens of fields. Rushd reads the thesis and portfolio list and fills the next steps; anything it cannot find is marked with * for you to complete."},
  {ar:"هذه البيانات تظهر للمؤسسين على رابط التقديم، وتُستخدم في تقارير الفرز التي ترفعها لشركائك.",en:"Founders see this on your application link, and it appears in the screening reports you share with partners."},
- {ar:"الأطروحة هي ما يقرأ به رُشد كل عرض. كلما كانت أدق، قلّت الصفقات التي تصل إليك بلا داعٍ.",en:"The thesis is how Rushed reads every deck. The sharper it is, the fewer irrelevant deals reach you."},
+ {ar:"الأطروحة هي ما يقرأ به رُشد كل عرض. كلما كانت أدق، قلّت الصفقات التي تصل إليك بلا داعٍ.",en:"The thesis is how Rushd reads every deck. The sharper it is, the fewer irrelevant deals reach you."},
  {ar:"القطاع أول معيار يُسقط الصفقات. الاستثناءات داخل القطاع تمنع رفض شركة جيدة لسبب شكلي.",en:"Sector is the first criterion to reject. Within-sector exceptions stop you losing a good company on a technicality."},
  {ar:"المرحلة وحجم الشيك معاً يفسّران أغلب قرارات «ليس الآن» — وهي القرارات التي تعود إليك لاحقاً عبر الذاكرة.",en:"Stage and ticket together explain most not-now decisions — the ones memory brings back later."},
  {ar:"الجغرافيا معيار مستقل، واشتراط الكيان السعودي يوفّر على المؤسس وعليك وقت مراسلات لا تنتهي بشيء.",en:"Geography is its own criterion, and the entity requirement saves both sides a pointless email thread."},
- {ar:"بمعرفة محفظتك يكشف رُشد التعارض قبل أن تفتح العرض، ويحمي شركاتك الحالية من منافس ممول منك.",en:"Knowing your portfolio lets Rushed catch conflicts before you open the deck."},
+ {ar:"بمعرفة محفظتك يكشف رُشد التعارض قبل أن تفتح العرض، ويحمي شركاتك الحالية من منافس ممول منك.",en:"Knowing your portfolio lets Rushd catch conflicts before you open the deck."},
  {ar:"هذه الشروط تُطبَّق قبل أي تقييم آخر، وتُذكر للمؤسس كسبب واضح بدل رفض بلا تفسير.",en:"These apply before any other assessment, and are given to the founder as a clear reason instead of silence."},
  {ar:"كل ما ضبطته يصبح المرجع الذي يُقاس عليه تدفقك. أي تعديل لاحق يعيد فرز خط الأنابيب والأرشيف معاً.",en:"Everything here becomes the benchmark for your flow. Any later edit re-screens the pipeline and the archive."}];
 const TIPC=[{ar:"ابدأ بالسجل التجاري: نقرأه ونعبّئ بياناتك، ثم أرفق بقية وثائق الكيان في المكان نفسه. يمكنك إضافة حقول لوثائق أخرى.",en:"Start with the commercial registration: we read it and fill your data, then attach the rest of the entity documents here. You can add fields for other documents."},
@@ -2511,12 +2469,12 @@ const OPT={
   {v:"data",ar:"استضافة البيانات داخل السعودية",en:"Data hosted inside Saudi Arabia"},{v:"entity",ar:"اشتراط كيان سعودي مسجّل",en:"Registered Saudi entity required"}]
 };
 const WZ=[
- {k:"docs",t:{ar:"ابدأ بمستندات الصندوق",en:"Start with your fund documents"},d:{ar:"ارفع ما لديك، ويستخرج رُشد سياق الصندوق. كل حقل يبقى قابلاً للتعديل.",en:"Upload what you have and Rushed extracts your fund context. Every field stays editable."},
+ {k:"docs",t:{ar:"ابدأ بمستندات الصندوق",en:"Start with your fund documents"},d:{ar:"ارفع ما لديك، ويستخرج رُشد سياق الصندوق. كل حقل يبقى قابلاً للتعديل.",en:"Upload what you have and Rushd extracts your fund context. Every field stays editable."},
   body:()=>`<div class="grp" style="margin-top:0"><h5>${L==="ar"?"كيف تريد تجهيز سياق الصندوق؟":"How do you want to set up your fund context?"}</h5>
     <div class="pick">
       <button class="pk ${(S.mode||"upload")==="upload"?"on":""}" data-smode="upload"><span class="rd"></span>
         <span><b>${L==="ar"?"ارفع مستندات الصندوق":"Upload your fund documents"}<span class="rec">${L==="ar"?"الأسرع":"Fastest"}</span></b>
-        <span class="sub3">${L==="ar"?"يقرأ رُشد الأطروحة وقائمة المحفظة ويعبّئ الخطوات التالية عنك.":"Rushed reads the thesis and portfolio list and fills the next steps for you."}</span></span></button>
+        <span class="sub3">${L==="ar"?"يقرأ رُشد الأطروحة وقائمة المحفظة ويعبّئ الخطوات التالية عنك.":"Rushd reads the thesis and portfolio list and fills the next steps for you."}</span></span></button>
       <button class="pk ${S.mode==="manual"?"on":""}" data-smode="manual"><span class="rd"></span>
         <span><b>${L==="ar"?"أدخل يدوياً بدل الرفع":"Enter manually instead"}</b>
         <span class="sub3">${L==="ar"?"تخطَّ الاستخراج واملأ الخطوات بنفسك.":"Skip extraction and fill the steps yourself."}</span></span></button>
@@ -2532,7 +2490,7 @@ const WZ=[
     +`<div class="two">${fTxt("s","fyear",{ar:"سنة التأسيس",en:"Founded"},{ar:"2022",en:"2022"})}${fTxt("s","fsize",{ar:"حجم الصندوق (مليون ريال)",en:"Fund size (SAR millions)"},{ar:"300",en:"300"})}</div>`
     +`<div class="two">${fTxt("s","fvintage",{ar:"سنة بدء الصندوق (Vintage)",en:"Fund vintage"},{ar:"2023",en:"2023"})}${fTxt("s","fdeploy",{ar:"سنوات الضخ المتبقية",en:"Deployment years left"},{ar:"3",en:"3"})}</div>`
     +`<div class="two">${fTxt("s","fpace",{ar:"عدد الاستثمارات الجديدة سنوياً",en:"New investments per year"},{ar:"6",en:"6"})}${fTxt("s","flic",{ar:"رقم ترخيص هيئة السوق المالية",en:"CMA licence number"},{ar:"اختياري",en:"Optional"})}</div>`},
- {k:"strategy",t:{ar:"استراتيجية الاستثمار",en:"Investment strategy"},d:{ar:"ما الذي تبحث عنه فعلاً؟ رُشد يقرأ كل عرض على ضوء هذه الأطروحة.",en:"What are you actually looking for? Rushed reads every deck against this thesis."},
+ {k:"strategy",t:{ar:"استراتيجية الاستثمار",en:"Investment strategy"},d:{ar:"ما الذي تبحث عنه فعلاً؟ رُشد يقرأ كل عرض على ضوء هذه الأطروحة.",en:"What are you actually looking for? Rushd reads every deck against this thesis."},
   body:()=>fArea("s","thesis",{ar:"أطروحة الاستثمار",en:"Investment thesis"},{ar:"مثال: تقنية مُمكِّنة للسوق السعودي بنماذج إيراد متكررة وتكلفة تحوّل مرتفعة.",en:"e.g. enabling technology for the Saudi market with recurring revenue and high switching cost."})
 },
  {k:"sectors",t:{ar:"القطاعات المستهدفة",en:"Target sectors"},d:{ar:"اختر ما تركّز عليه. أي صفقة خارج هذه القطاعات تُفرز «غير مناسب» مع ذكر السبب للمؤسس.",en:"Pick your focus. Anything outside is screened as not fit, with the reason sent to the founder."},
@@ -2549,7 +2507,7 @@ const WZ=[
  {k:"geo",t:{ar:"النطاق الجغرافي",en:"Geography"},d:{ar:"أين تستثمر فعلاً؟ الجغرافيا معيار مستقل في الفرز.",en:"Where do you actually invest? Geography is its own screening criterion."},
   body:()=>fChips("s","geo",{ar:"المناطق",en:"Regions"},OPT.geo)
     +fChips("s","entity",{ar:"اشتراط الكيان",en:"Entity requirement"},[{v:"ksa",ar:"كيان سعودي مسجّل",en:"Registered Saudi entity"},{v:"any",ar:"أي كيان مع خطة توطين",en:"Any entity with a localisation plan"}],true)},
- {k:"portfolio",t:{ar:"المحفظة الحالية",en:"Current portfolio"},d:{ar:"أضف شركات محفظتك ليتمكّن رُشد من كشف التعارض قبل أن يصل إليك.",en:"Add your holdings so Rushed can catch conflicts before they reach you."},
+ {k:"portfolio",t:{ar:"المحفظة الحالية",en:"Current portfolio"},d:{ar:"أضف شركات محفظتك ليتمكّن رُشد من كشف التعارض قبل أن يصل إليك.",en:"Add your holdings so Rushd can catch conflicts before they reach you."},
   body:()=>`<div class="grp"><h5>${L==="ar"?"إضافة شركة":"Add a company"}</h5>
     <div class="rowadd"><input id="pfN" placeholder="${L==="ar"?"اسم الشركة":"Company name"}"><input id="pfS" placeholder="${L==="ar"?"القطاع":"Sector"}">
       <button class="btn press" id="pfAdd">${L==="ar"?"إضافة":"Add"}</button></div>
@@ -2587,7 +2545,7 @@ const SRCL={thesisdoc:{ar:"مذكرة الاستراتيجية",en:"Strategy mem
  crdoc:{ar:"السجل التجاري",en:"Commercial registration"},fin:{ar:"القوائم المالية",en:"Financial statements"},
  deck:{ar:"العرض التقديمي",en:"Pitch deck"},metrics:{ar:"لوحة المؤشرات",en:"Metrics dashboard"},
  cap:{ar:"جدول الملكية",en:"Cap table"},teamdoc:{ar:"ملف الفريق والمؤشرات",en:"Team and metrics file"}};
-let PROV={},EXS={s:"idle",c:"idle"},EXN={s:0,c:0},EXDELAY=380;
+let PROV={},EXS={s:"idle",c:"idle"},EXN={s:0,c:0},EXDELAY=450;
 const EXSTEPS=[{ar:"استخراج بيانات الكيان",en:"Extracting entity details"},
  {ar:"قراءة القوائم المالية",en:"Reading the financial statements"},
  {ar:"مطابقة الأرقام بين المستندات",en:"Cross-checking figures across documents"},
@@ -2637,12 +2595,20 @@ function exCounts(scope){
 function runExtract(scope){
   if(EXS[scope]==="run")return;
   EXS[scope]="run";EXN[scope]=0;
-  const rr=()=>{scope==="s"?renderSetup():renderClient()};
-  rr();
+  const full=()=>{scope==="s"?renderSetup():renderClient()};
+  const patch=()=>{                       /* swap just the panel, no full re-render */
+    const host=document.querySelector(`[data-ex="${scope}"]`);
+    if(!host){full();return}
+    const tmp=document.createElement("div");
+    tmp.innerHTML=exPanel(scope);
+    const fresh=tmp.firstElementChild;
+    if(fresh)host.replaceWith(fresh); else full();
+  };
+  full();
   const tick=()=>{
     EXN[scope]++;
-    if(EXN[scope]<EXSTEPS.length){rr();setTimeout(tick,EXDELAY)}
-    else{applyExtract(scope);EXS[scope]="done";rr();
+    if(EXN[scope]<EXSTEPS.length){patch();setTimeout(tick,EXDELAY)}
+    else{applyExtract(scope);EXS[scope]="done";full();
       const c=exCounts(scope);
       toast("afOk",t({ar:`عُبّئ ${c.filled} حقلاً من ${c.docs} مستندات · ${c.need} حقول تحتاجك`,
                       en:`${c.filled} fields filled from ${c.docs} documents · ${c.need} need you`}));}
@@ -2653,14 +2619,12 @@ function exPanel(scope){
   const st=EXS[scope];
   if(st==="idle")return "";
   if(st==="run"){
-    const pcx=Math.round((EXN[scope]/EXSTEPS.length)*100);
-    return `<div class="exbox"><h6><svg class="spin" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3a9 9 0 109 9" stroke-linecap="round"/></svg>${L==="ar"?`يقرأ رُشد المستند… ${pcx}%`:`Rushed is reading the document… ${pcx}%`}</h6>
-      <div class="exbar"><i style="width:${Math.max(8,pcx)}%"></i></div>
+    return `<div class="exbox" data-ex="${scope}"><h6>${sIcon("note",15)}${L==="ar"?"يقرأ رُشد المستند…":"Rushd is reading the document…"}</h6>
       ${EXSTEPS.map((x,i)=>{const cl=i<EXN[scope]?"done":i===EXN[scope]?"on":"";
         return `<div class="exl ${cl}"><span class="exdot">${i<EXN[scope]?'<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4"><path d="M5 12l5 5L20 6"/></svg>':""}</span>${t(x)}</div>`}).join("")}</div>`;
   }
   const c=exCounts(scope);
-  return `<div class="exbox"><h6 style="color:var(--ok)">${sIcon("note",15)}${L==="ar"?"اكتمل الاستخراج":"Extraction complete"}</h6>
+  return `<div class="exbox" data-ex="${scope}"><h6 style="color:var(--ok)">${sIcon("note",15)}${L==="ar"?"اكتمل الاستخراج":"Extraction complete"}</h6>
     <div class="exsum"><span class="chip ok" style="margin:0"><b>${c.filled}</b>&nbsp;${L==="ar"?"حقلاً عُبّئ":"fields filled"}</span>
     <span class="chip" style="margin:0">${L==="ar"?`من ${c.docs} مستندات`:`from ${c.docs} documents`}</span>
     ${c.need?`<span class="chip warn" style="margin:0"><b>${c.need}</b>&nbsp;${L==="ar"?"حقول تحتاجك":"need you"}</span>`:""}</div>
@@ -2692,15 +2656,15 @@ function renderSetup(){
     ${wzCard(L==="ar"?"إعداد سياق الصندوق":"Fund context setup",st,TIPW[wzStep],st.body(),
       `<div id="wzErr" style="display:none;width:100%;font-size:12.5px;color:var(--warn);border:1px solid var(--warn);border-radius:10px;padding:9px 12px;margin-bottom:10px"></div>
        <div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap">
-        <button class="btn press" id="wzBack" ${wzStep===0?"disabled style=opacity:.45":""}><svg class="arr b" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>${L==="ar"?"السابق":"Back"}</button><span class="sp" style="flex:1"></span>
+        <button class="btn press" id="wzBack" ${wzStep===0?"disabled style=opacity:.45":""}>${L==="ar"?"› السابق":"‹ Back"}</button><span class="sp" style="flex:1"></span>
         <span style="font-size:12px;color:var(--faint)">${L==="ar"?`${wzStep+1} / ${WZ.length}`:`${wzStep+1} / ${WZ.length}`}</span>
-        <button class="btn key press" id="wzNext">${wzStep===WZ.length-1?(L==="ar"?"حفظ وبدء الفرز":"Save and start screening"):(L==="ar"?"التالي":"Next")+`<svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>`}</button></div>`)}
+        <button class="btn key press" id="wzNext">${wzStep===WZ.length-1?(L==="ar"?"حفظ وبدء الفرز":"Save and start screening"):(L==="ar"?"التالي ‹":"Next ›")}</button></div>`)}
   </div>`;
 }
 function openSetup(){MODE="setup";wzStep=0;$("#setup").classList.add("on");$("#auth").classList.remove("on");$("#client").classList.remove("on");$("#app").style.display="none";renderSetup()}
 function applySetup(){
   const nm=(o,v)=>t(o.find(x=>x.v===v)||{ar:v,en:v});
-  const cards=$$("#v-fund .card .v");
+  const cards=$$("#v-fund .v");
   if(S.thesis)cards[0].textContent=S.thesis;
   if((S.sectors||[]).length)cards[1].innerHTML=S.sectors.map(v=>`<span class="tag">${nm(OPT.sectors,v)}</span>`).join("");
   if((S.stages||[]).length)cards[2].textContent=S.stages.map(v=>nm(OPT.stages,v)).join(" — ");
@@ -2733,8 +2697,7 @@ const CS=[
         <span class="sub3">${L==="ar"?"اكتب البيانات بنفسك، وارفع السجل لاحقاً في خطوة الوثائق.":"Type it yourself and upload the registration later in the documents step."}</span></span></button>
     </div></div>`
    +(mode==="upload"?fUp("crdoc",{ar:"السجل التجاري",en:"Commercial registration"},{ar:"PDF أو صورة · نسخة سارية",en:"PDF or image · valid copy"},true):"")
-   +(mode==="upload"?exPanel("c"):"")
-   +(mode==="upload"&&CL._af&&EXS.c!=="run"?`<div class="afnote"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 6"/></svg>
+   +(mode==="upload"&&CL._af?`<div class="afnote"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 6"/></svg>
       <span>${L==="ar"?"عُبّئت البيانات من السجل التجاري. راجعها وعدّل أي حقل.":"Fields were filled from your registration. Review and edit anything."}</span>
       <button class="btn sm press" id="clClear">${L==="ar"?"تفريغ الحقول":"Clear fields"}</button></div>`:"")
    +fTxt("c","name",{ar:"اسم الشركة",en:"Company name"},{ar:"الاسم التجاري كما في السجل",en:"Legal name as registered"})
@@ -2762,7 +2725,7 @@ const CS=[
    +fChips("c","instrument",{ar:"أداة الجولة",en:"Round instrument"},OPT.instr,true)
    +`<div class="two">${fTxt("c","prevraised",{ar:"إجمالي ما جُمع سابقاً (ريال)",en:"Previously raised (SAR)"},{ar:"1,200,000",en:"1,200,000"})}${fTxt("c","investors",{ar:"المستثمرون الحاليون",en:"Existing investors"},{ar:"أسماء أبرز المستثمرين",en:"Names of key investors"})}</div>`
    +fArea("c","use",{ar:"أوجه استخدام التمويل",en:"Use of funds"},{ar:"مثال: 60% فريق هندسي، 25% توسّع في الشرقية، 15% تشغيل.",en:"e.g. 60% engineering, 25% expansion, 15% operations."})},
- {t:{ar:"العرض التقديمي",en:"Pitch deck"},d:{ar:"ارفع عرضك الحالي. لا حاجة لتنسيق خاص — رُشد يقرأه كما هو.",en:"Upload your current deck. No special format needed — Rushed reads it as is."},
+ {t:{ar:"العرض التقديمي",en:"Pitch deck"},d:{ar:"ارفع عرضك الحالي. لا حاجة لتنسيق خاص — رُشد يقرأه كما هو.",en:"Upload your current deck. No special format needed — Rushd reads it as is."},
   body:()=>fUp("deck",{ar:"العرض التقديمي",en:"Pitch deck"},{ar:"PDF أو PPTX · حتى 25 ميجابايت",en:"PDF or PPTX · up to 25 MB"},true)
    +fUp("video",{ar:"فيديو تعريفي (اختياري)",en:"Intro video (optional)"},{ar:"رابط أو ملف قصير",en:"A link or a short file"})},
  {t:{ar:"القوائم المالية والملفات الداعمة",en:"Financials and supporting files"},d:{ar:"ما يثبت الأرقام التي ذكرتها. النقص هنا هو أكثر سبب لتأخّر القرار.",en:"What backs the numbers you gave. Gaps here are the top reason decisions stall."},
@@ -2783,7 +2746,7 @@ const CS=[
    return `<div class="rdoc">
      <div class="rh"><img src="${LOGO_DK}" alt="رُشد">
        <div><div style="font-size:15px;font-weight:600">${L==="ar"?"طلب تقديم إلى صندوق سهم":"Application to Sahm Ventures"}</div>
-         <div style="font-size:11.5px;opacity:.8;margin-top:3px">${L==="ar"?"عبر منصة رُشد · طبقة الفرز الأولى":"Via Rushed · first screening layer"}</div></div>
+         <div style="font-size:11.5px;opacity:.8;margin-top:3px">${L==="ar"?"عبر منصة رُشد · طبقة الفرز الأولى":"Via Rushd · first screening layer"}</div></div>
        <div style="margin-inline-start:auto;text-align:end;font-size:11.5px;opacity:.9">
          <div>${L==="ar"?"مرجع":"Ref"} RS-2026-0418</div><div>${new Date().toLocaleDateString(L==="ar"?"ar-SA":"en-GB")}</div></div></div>
      <div class="rmeta">
@@ -2823,7 +2786,6 @@ function clFill(){
 const CLNAV=[["home",{ar:"لوحة التحكم",en:"Dashboard"},'<path d="M12 3l7 9-7 9-7-9z"/><path d="M8 12h8"/>'],
  ["portfolio",{ar:"بورتفوليو الشركة",en:"Company portfolio"},'<path d="M4 20V9l8-5 8 5v11"/><path d="M9 20v-6h6v6"/>'],
  ["report",{ar:"تقرير الموافقات",en:"Approvals report"},'<path d="M6 3h12v18H6z"/><path d="M9 8h6M9 12h6M9 16h4"/>'],
- ["privacy",{ar:"الخصوصية والأمان",en:"Privacy and security"},'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>'],
  ["inbox",{ar:"الصندوق الوارد",en:"Inbox"},'<path d="M3 12h5l2 3h4l2-3h5"/><path d="M5 5h14l2 7v7H3v-7z"/>']];
 function clShell(inner){
  const pct=clFill();
@@ -2939,7 +2901,7 @@ function clMsgs(){
     <div class="d">${L==="ar"?"وصلت جميع الملفات وبدأ الفرز الآلي على معايير الصندوق الستة.":"All files arrived and automatic screening has started."}</div><span class="chip ok">${L==="ar"?"مكتمل":"Done"}</span></div>
    <div class="item"><div class="t">${L==="ar"?"قيد الفرز":"Screening"}</div>
     <div class="d">${L==="ar"?"النتيجة الأولية خلال يوم عمل واحد، ومعها سبب واضح لكل معيار.":"Initial result within one business day, with reasoning per criterion."}</div><span class="chip wait">${L==="ar"?"جارٍ الآن":"In progress"}</span></div>
-   <div class="item ind"><div class="t">${L==="ar"?"ملاحظة من فريق رُشد":"A note from the Rushed team"}</div>
+   <div class="item ind"><div class="t">${L==="ar"?"ملاحظة من فريق رُشد":"A note from the Rushd team"}</div>
     <div class="d">${L==="ar"?"إن كان القرار «ليس الآن» تبقى شركتك محفوظة، ويعاد تقييمها تلقائياً عند تحديث بياناتك.":"If the answer is not now, your company stays on file and is re-evaluated when you update it."}</div></div>`;
 }
 /* ---------- company portfolio ---------- */
@@ -2992,9 +2954,9 @@ function clApply(){
      ${stepper(CS,clStep,"cs")}
      ${wzCard(L==="ar"?"طلب التقديم لصندوق سهم":"Application to Sahm Ventures",st,TIPC[clStep],st.body(),
        `<div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap">
-         <button class="btn press" id="clBack" ${clStep===0?"disabled style=opacity:.45":""}><svg class="arr b" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>${L==="ar"?"السابق":"Back"}</button><span class="sp" style="flex:1"></span>
+         <button class="btn press" id="clBack" ${clStep===0?"disabled style=opacity:.45":""}>${L==="ar"?"› السابق":"‹ Back"}</button><span class="sp" style="flex:1"></span>
          <span style="font-size:12px;color:var(--faint)">${clStep+1} / ${CS.length}</span>
-         <button class="btn key press" id="clNext">${clStep===CS.length-1?(L==="ar"?"إرسال الطلب":"Submit application"):(L==="ar"?"التالي":"Next")+`<svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>`}</button></div>`,clChecker(clStep))}`;
+         <button class="btn key press" id="clNext">${clStep===CS.length-1?(L==="ar"?"إرسال الطلب":"Submit application"):(L==="ar"?"التالي ‹":"Next ›")}</button></div>`,clChecker(clStep))}`;
 }
 /* ---------- thank you ---------- */
 function clSentView(){
@@ -3004,7 +2966,7 @@ function clSentView(){
     <p>${L==="ar"?"سيتم مراجعة طلبك وموافاتك بالتفاصيل.":"Your application will be reviewed and we will come back to you with the details."}</p>
     <p>${L==="ar"?"يمكنك الاطلاع على الصندوق الوارد بعد ذلك لأي مستجدات.":"You can check your inbox for any updates."}</p>
     <p>${L==="ar"?"نحرص دائماً على تقديم أفضل الخدمات من أجلك.":"We are always working to serve you better."}</p>
-    <div class="sig">${L==="ar"?"فريق رُشد":"The Rushed team"}</div>
+    <div class="sig">${L==="ar"?"فريق رُشد":"The Rushd team"}</div>
     <div style="display:flex;gap:9px;justify-content:center;margin-top:24px;flex-wrap:wrap">
       <button class="btn key press" data-cv="home">${L==="ar"?"الذهاب إلى لوحة التحكم":"Go to the dashboard"}</button>
       <button class="btn press" data-cv="inbox">${L==="ar"?"فتح الصندوق الوارد":"Open the inbox"}</button></div></div>`;
@@ -3066,8 +3028,8 @@ function clInbox(){
 /* ---------- approvals & endorsement report ---------- */
 function clReport(){
   const rows=[
-   [{ar:"استلام الطلب",en:"Application received"},{ar:"نظام رُشد",en:"Rushed system"},"2026-09-08",1,{ar:"وصلت الملفات وسُجّل الطلب RS-2026-0418",en:"Files received, logged as RS-2026-0418"}],
-   [{ar:"الفرز الآلي",en:"Automatic screening"},{ar:"رُشد · طبقة الفرز الأولى",en:"Rushed · first screening layer"},"2026-09-08",clSent?1:0,{ar:"قياس على المعايير الستة لصندوق سهم",en:"Measured against Sahm Ventures' six criteria"}],
+   [{ar:"استلام الطلب",en:"Application received"},{ar:"نظام رُشد",en:"Rushd system"},"2026-09-08",1,{ar:"وصلت الملفات وسُجّل الطلب RS-2026-0418",en:"Files received, logged as RS-2026-0418"}],
+   [{ar:"الفرز الآلي",en:"Automatic screening"},{ar:"رُشد · طبقة الفرز الأولى",en:"Rushd · first screening layer"},"2026-09-08",clSent?1:0,{ar:"قياس على المعايير الستة لصندوق سهم",en:"Measured against Sahm Ventures' six criteria"}],
    [{ar:"مراجعة المحلل",en:"Analyst review"},{ar:"عبدالرحمن — محلل استثمار",en:"Abdulrahman — analyst"},"—",clSent?2:0,{ar:"قراءة ملف المراجعة واتخاذ التوصية",en:"Reads the review file and forms a recommendation"}],
    [{ar:"اعتماد مدير الاستثمار",en:"Manager approval"},{ar:"مدير الاستثمار",en:"Investment manager"},"—",0,{ar:"اعتماد التوصية ورفعها للجنة",en:"Approves the recommendation and raises it"}],
    [{ar:"لجنة الاستثمار",en:"Investment committee"},{ar:"اللجنة",en:"The committee"},"—",0,{ar:"القرار النهائي في الاجتماع القادم",en:"Final decision at the next meeting"}]];
@@ -3118,11 +3080,7 @@ function hintNow(){
   if(el){el.classList.add("hintme");if(sel==="#clNext")el.classList.add("up");el.dataset.hint=msg}
 }
 function renderClient(){
-  const body=clView==="privacy"?(clCrumb(L==="ar"?"الخصوصية والأمان":"Privacy and security")
-     +clHead("",L==="ar"?"الخصوصية والأمان":"Privacy and security",
-       L==="ar"?"بياناتك ووثائقك: أين تُحفظ، من يراها، وما الذي لا يحدث لها أبداً.":"Your data and documents: where they live, who sees them, and what never happens to them.",
-       `<button class="btn press" id="secDoc">${L==="ar"?"ملخص الأمان (PDF)":"Security summary (PDF)"}</button>`)+privacyBody())
-   :clView==="sent"?clSentView():clView==="portfolio"?clPortfolio():clView==="inbox"?clInbox():
+  const body=clView==="sent"?clSentView():clView==="portfolio"?clPortfolio():clView==="inbox"?clInbox():
     clView==="report"?clReport():clView==="apply"?clApply():clHome();
   $("#client").innerHTML=clShell(body);hintNow();
 }
@@ -3140,7 +3098,7 @@ document.addEventListener("click",e=>{
   if(e.target.closest("#clOut")){clView="home";showAuth();return}
   const md=e.target.closest("[data-mode]");if(md){md.dataset.mode==="fund"?(setupDone?enterFund():openSetup()):enterClient();return}
   const wz=e.target.closest("[data-wz]");if(wz){wzStep=+wz.dataset.wz;renderSetup();return}
-  if(e.target.closest("#wzBack")){wzStep=Math.max(0,wzStep-1);renderSetup();toTop();return}
+  if(e.target.closest("#wzBack")){wzStep=Math.max(0,wzStep-1);renderSetup();window.scrollTo({top:0});return}
   const sm=e.target.closest("[data-smode]");
   if(sm){S.mode=sm.dataset.smode;renderSetup();return}
   if(e.target.closest("#wzNext")){
@@ -3153,19 +3111,19 @@ document.addEventListener("click",e=>{
                              en:`Complete ${miss.length} required field(s) before saving — the amber ones.`})}
         return}
       applySetup();enterFund();toast("setupOk")}
-    else{wzStep++;renderSetup();toTop()}return}
+    else{wzStep++;renderSetup();window.scrollTo({top:0})}return}
   if(e.target.closest("#wzSkip")){enterFund();return}
   if(e.target.closest("#pfAdd")){const n=$("#pfN").value.trim(),sc=$("#pfS").value.trim();
     if(n){S.pf=(S.pf||[]).concat({n:n,s:sc||"—"});renderSetup()}return}
   const pd=e.target.closest("[data-pfdel]");if(pd){S.pf.splice(+pd.dataset.pfdel,1);renderSetup();return}
-  const cv=e.target.closest("[data-cv]");if(cv&&MODE==="client"){clView=cv.dataset.cv;toTop();renderClient();return}
-  const cs=e.target.closest("[data-cs]");if(cs){clStep=+cs.dataset.cs;clView="apply";renderClient();toTop();return}
-  if(e.target.closest("#clBack")){clStep=Math.max(0,clStep-1);renderClient();toTop();return}
+  const cv=e.target.closest("[data-cv]");if(cv&&MODE==="client"){clView=cv.dataset.cv;window.scrollTo({top:0});renderClient();return}
+  const cs=e.target.closest("[data-cs]");if(cs){clStep=+cs.dataset.cs;clView="apply";renderClient();window.scrollTo({top:0});return}
+  if(e.target.closest("#clBack")){clStep=Math.max(0,clStep-1);renderClient();window.scrollTo({top:0});return}
   if(e.target.closest("#clNext")){
     if(clStep===CS.length-1){
       if(!CL.name){toast("needName");return}
-      clSent=true;clView="sent";renderClient();toTop();return}
-    clStep++;renderClient();toTop();return}
+      clSent=true;clView="sent";renderClient();window.scrollTo({top:0});return}
+    clStep++;renderClient();window.scrollTo({top:0});return}
   if(e.target.closest("#clRepPdf")){toast("repPdf");return}
   const pm=e.target.closest("[data-clmode]");
   if(pm){CL.mode=pm.dataset.clmode;renderClient();return}
@@ -3184,7 +3142,7 @@ document.addEventListener("click",e=>{
   if(e.target.closest("#clNew")){clSent=false;clStep=0;clView="apply";renderClient();return}
   if(e.target.closest("#clUpd")){toast("clUpd");return}
 });
-T.toast.setupOk={k:"ok",t:{ar:"ضُبط سياق الصندوق",en:"Fund context saved"},d:{ar:"سيقيس رُشد كل صفقة واردة على هذه المعايير",en:"Rushed will measure every inbound deal against it"}};
+T.toast.setupOk={k:"ok",t:{ar:"ضُبط سياق الصندوق",en:"Fund context saved"},d:{ar:"سيقيس رُشد كل صفقة واردة على هذه المعايير",en:"Rushd will measure every inbound deal against it"}};
 T.toast.upOk={k:"ok",t:{ar:"استُلم الملف",en:"File received"},d:{ar:"",en:""}};
 T.toast.booked={k:"ok",t:{ar:"تم حجز موعد المناقشة",en:"Discussion booked"},d:{ar:"",en:""}};
 T.toast.needSlot={k:"warn",t:{ar:"اختر موعداً أولاً",en:"Pick a slot first"},d:{ar:"ثلاثة مواعيد متاحة هذا الأسبوع",en:"Three slots are open this week"}};
@@ -3197,7 +3155,7 @@ T.toast.clRead={k:"ok",t:{ar:"عُلّمت الرسائل كمقروءة",en:"Me
 T.toast.repPdf={k:"",t:{ar:"جارٍ تجهيز تقرير الموافقات",en:"Preparing the approvals report"},d:{ar:"PDF يشمل السلسلة ونتيجة الفرز",en:"A PDF with the chain and the screening result"}};
 T.toast.upDel={k:"warn",t:{ar:"حُذف الملف",en:"File removed"},d:{ar:"",en:""}};
 T.toast.needName={k:"warn",t:{ar:"اسم الشركة مطلوب",en:"Company name is required"},d:{ar:"ارجع للخطوة الأولى وأكمل البيانات الأساسية",en:"Go back to step one and complete the basics"}};
-T.toast.clUpd={k:"ok",t:{ar:"يمكنك التحديث في أي وقت",en:"You can update any time"},d:{ar:"سيعيد رُشد تقييم شركتك تلقائياً بعد كل تحديث",en:"Rushed re-evaluates your company automatically after each update"}};
+T.toast.clUpd={k:"ok",t:{ar:"يمكنك التحديث في أي وقت",en:"You can update any time"},d:{ar:"سيعيد رُشد تقييم شركتك تلقائياً بعد كل تحديث",en:"Rushd re-evaluates your company automatically after each update"}};
 
 /* ===================== boot ===================== */
 closeDrawer();renderAll();setRole("analyst",true);typer();
@@ -3221,26 +3179,50 @@ setTimeout(()=>{$("#splash").style.display="none";showAuth()},3350);
 
 /* ===================== AUTO TOUR (recording walkthrough) ===================== */
 const TQ=new URLSearchParams(location.search);
+if(!TQ.has("tour")) TQ.set("tour","cinema");   /* autostart cinema on a bare URL */
+if((TQ.get("tour")||"").toLowerCase()==="off") TQ.delete("tour");  /* ?tour=off = browse manually */
 let tIdx=0,tPlay=true,tTimer=null,tRunning=false,TMODE="full";
 const TVER="v12";
 const TSPEED=parseFloat(TQ.get("speed")||"1");
 const TCAP=TQ.get("cap")!=="0";
 function tEl(sel){try{return document.querySelector(sel)}catch(e){return null}}
 function tClear(){$$(".tspot").forEach(x=>x.classList.remove("tspot"));$$(".tzoom").forEach(x=>x.classList.remove("tzoom"))}
+function tSpotStop(){if(spotRAF){cancelAnimationFrame(spotRAF);spotRAF=null}spotEl=null;const sp=$("#tourSpot");if(sp)sp.classList.remove("on")}
+let spotEl=null,spotRAF=null,spotLast="";
+function tSpotSync(){
+  const sp=$("#tourSpot");
+  if(!sp||!spotEl||!document.body.contains(spotEl)){if(sp)sp.classList.remove("on");spotRAF=null;return}
+  let target=spotEl, r=target.getBoundingClientRect();
+  if(r.width<1&&r.height<1){
+    let a=spotEl.parentElement,guard=0;
+    while(a&&guard++<4){const ar=a.getBoundingClientRect();
+      if(ar.width>1||ar.height>1){target=a;r=ar;break}a=a.parentElement}
+  }
+  const pad=12;
+  if(r.width<1&&r.height<1){sp.classList.remove("on");spotRAF=requestAnimationFrame(tSpotSync);return}
+  const top=Math.max(0,r.top-pad), left=Math.max(0,r.left-pad);
+  const wI=Math.min(innerWidth-left,r.width+pad*2), hI=Math.min(innerHeight-top,r.height+pad*2);
+  const key=[top,left,wI,hI].map(Math.round).join(",");
+  if(key!==spotLast){
+    spotLast=key;
+    sp.style.top=top+"px"; sp.style.left=left+"px";
+    sp.style.width=Math.max(0,wI)+"px"; sp.style.height=Math.max(0,hI)+"px";
+  }
+  sp.classList.add("on");
+  spotRAF=requestAnimationFrame(tSpotSync);
+}
 function tSpot(el){
   const sp=$("#tourSpot");if(!sp)return;
-  if(!el||!document.body.classList.contains("cinema")){sp.classList.remove("on");return}
-  const r=el.getBoundingClientRect(),pad=12;
-  sp.style.top=Math.max(0,r.top-pad)+"px";
-  sp.style.left=Math.max(0,r.left-pad)+"px";
-  sp.style.width=Math.min(innerWidth,r.width+pad*2)+"px";
-  sp.style.height=Math.min(innerHeight,r.height+pad*2)+"px";
-  sp.classList.add("on");
+  if(spotRAF){cancelAnimationFrame(spotRAF);spotRAF=null}
+  if(!el||!document.body.classList.contains("cinema")){spotEl=null;sp.classList.remove("on");return}
+  spotEl=el; spotLast="";
+  tSpotSync();
 }
 function tPoint(sel,click,note,zoom){
   const c=$("#tourCur"),nt=$("#tourNote"),el=sel?tEl(sel):null;
   nt.classList.remove("on");
-  if(!el){c.classList.remove("on");$("#tourSpot").classList.remove("on");return}
+  if(!el){c.classList.remove("on");tSpotStop();return}
+  tSpotStop();
   try{el.scrollIntoView({block:"center",behavior:"smooth"})}catch(e){}
   setTimeout(()=>{
     const r=el.getBoundingClientRect();
@@ -3262,7 +3244,7 @@ const TOUR=[
 /* ============ ACT 1 — Sahm Ventures defines its lens ============ */
  {act:1,t:{ar:"صندوق سهم",en:"Sahm Ventures"},
   s:{ar:"صندوق سهم: صندوق جريء سعودي، ٣٠٠ مليون ريال، يستثمر في الفِنتِك واللوجستيات والبرمجيات. قبل أن يرى صفقة واحدة، يعرّف نفسه لرُشد.",
-     en:"Sahm Ventures: a SAR 300M Saudi VC investing in fintech, logistics and SaaS. Before it sees a single deal, it defines itself to Rushed."},
+     en:"Sahm Ventures: a SAR 300M Saudi VC investing in fintech, logistics and SaaS. Before it sees a single deal, it defines itself to Rushd."},
   run:()=>{closeDrawer();S.mode="upload";openSetup();wzStep=0;renderSetup();tFade("#setup")},
   sel:"#setup .pick",note:{ar:"ارفع مستنداتك، أو أدخل يدوياً",en:"Upload your documents, or enter manually"},hold:7000},
  {act:1,t:{ar:"يرفع مستنداته",en:"It uploads its documents"},
@@ -3270,13 +3252,13 @@ const TOUR=[
      en:"The partner uploads the strategy memo and the portfolio list — instead of filling dozens of fields."},
   run:()=>{wzStep=0;renderSetup();setTimeout(()=>TF("thesisdoc","Sahm_Investment_Thesis_2025.pdf",2.4),900)},
   sel:'#setup [data-zone="thesisdoc"]',zoom:true,note:{ar:"يُسحب الملف هنا",en:"Drop the file here"},hold:5600},
- {act:1,t:{ar:"رُشد يقرأ ويستخرج",en:"Rushed reads and extracts"},
+ {act:1,t:{ar:"رُشد يقرأ ويستخرج",en:"Rushd reads and extracts"},
   s:{ar:"يقرأ رُشد المستندات ويستخرج عدسة الصندوق: القطاعات، المرحلة، حجم الشيك، الجغرافيا، والمحفظة — ويطابق الأرقام بينها.",
-     en:"Rushed reads the documents and extracts the fund's lens: sectors, stage, ticket, geography and portfolio — cross-checking the figures."},
+     en:"Rushd reads the documents and extracts the fund's lens: sectors, stage, ticket, geography and portfolio — cross-checking the figures."},
   run:()=>{},sel:"#setup .exbox",zoom:true,hold:7200},
  {act:1,t:{ar:"عُبّئ ما وُجد، وعُلّم ما لم يوجد",en:"Filled what was found, flagged what was not"},
   s:{ar:"كل حقل مكتوب تحته مصدره. وما لم يجده رُشد يُعلَّم بنجمة، والمطلوب منه يظهر بالبرتقالي ويمنع الحفظ. لا تخمين.",
-     en:"Every field shows its source. Whatever Rushed could not find is marked with an asterisk, and anything mandatory turns amber and blocks saving. No guessing."},
+     en:"Every field shows its source. Whatever Rushd could not find is marked with an asterisk, and anything mandatory turns amber and blocks saving. No guessing."},
   run:()=>{wzStep=1;renderSetup()},sel:"#setup .fld.pv-req",zoom:true,
   note:{ar:"مطلوب — أدخله يدوياً",en:"Required — enter manually"},hold:7200},
  {act:1,t:{ar:"عدسة سهم جاهزة",en:"Sahm's lens is ready"},
@@ -3321,7 +3303,7 @@ const TOUR=[
   run:()=>{openDeal("nuqla")},sel:"#dDid",zoom:true,hold:7800},
  {act:3,t:{ar:"الأدلة — ما تم التحقق منه",en:"Evidence — what was verified"},
   s:{ar:"قبل أي حكم، يتحقق رُشد مما قيل. السجل التجاري يؤكد كياناً سعودياً سارياً، والإيراد ٣.١ مليون مطابق بين العرض والقوائم.",
-     en:"Before any judgement, Rushed verifies what was claimed. The registration confirms an active Saudi entity, and SAR 3.1M ARR is consistent between deck and financials."},
+     en:"Before any judgement, Rushd verifies what was claimed. The registration confirms an active Saudi entity, and SAR 3.1M ARR is consistent between deck and financials."},
   run:()=>{tTab("evidence")},sel:"#dBody .evrow.match",hold:7200},
  {act:3,t:{ar:"وما لم يتطابق",en:"And what did not match"},
   s:{ar:"العرض يقول ١٤٠ مشغّلاً. جدول العملاء يُظهر ١١٨ خلال ٩٠ يوماً — فارق ١٦٪. لا يُسقط الصفقة، لكنه يغيّر تكلفة اكتساب المشغّل.",
@@ -3329,7 +3311,7 @@ const TOUR=[
   run:()=>{tTab("evidence")},sel:"#dBody .evrow.mismatch",zoom:true,hold:9000},
  {act:3,t:{ar:"وما لا يمكن تأكيده",en:"And what cannot be confirmed"},
   s:{ar:"جدول الملكية لم يصل، فلا يمكن تأكيد الملكية ولا اختبار نسبة الـ ٨–١٥٪ المستهدفة. رُشد يقولها صراحة بدل أن يخمّن.",
-     en:"The cap table has not arrived, so ownership cannot be confirmed and the 8–15% target cannot be tested. Rushed says so plainly instead of guessing."},
+     en:"The cap table has not arrived, so ownership cannot be confirmed and the 8–15% target cannot be tested. Rushd says so plainly instead of guessing."},
   run:()=>{tTab("evidence")},sel:"#dBody .evrow.unverified",hold:7200},
  {act:3,t:{ar:"يتحوّل إلى سؤال للمؤسس",en:"It becomes a question to the founder"},
   s:{ar:"بضغطة واحدة يصير التعارض سؤالاً محدّداً يُرسل لنُقلة ويُحفظ في ملف المراجعة.",
@@ -3342,7 +3324,7 @@ const TOUR=[
   run:()=>{tTab("fit")},sel:"#dBody .checks",zoom:true,hold:7800},
  {act:3,t:{ar:"عبدالرحمن يقرّر",en:"Abdulrahman decides"},
   s:{ar:"رُشد لا يقرّر. عبدالرحمن يقرّر الانتقال للفحص المعمّق، ويُسجَّل القرار وسببه.",
-     en:"Rushed does not decide. Abdulrahman moves it to deeper diligence, and the decision and its reasoning are recorded."},
+     en:"Rushd does not decide. Abdulrahman moves it to deeper diligence, and the decision and its reasoning are recorded."},
   run:()=>{tTab("review")},sel:"#dFoot",hold:5600,after:()=>{decide("dd")}},
  {act:3,t:{ar:"نفس الشركة، صندوق مختلف",en:"Same company, a different fund"},
   s:{ar:"«حزام» شركة جيدة: القطاع والمرحلة والشيك مطابقة. لكنها في القاهرة وتنافس «سداد» في محفظة سهم — فتسقط على الجغرافيا والتعارض، بأدلة موثّقة. الشركة لم تتغير، العدسة هي التي تغيّرت.",
@@ -3355,7 +3337,7 @@ const TOUR=[
     setTimeout(()=>{if(!reEvalDone){reEvalDone=true;renderMemory()}},2400)},
   sel:"#memoryList",zoom:true,hold:9000},
 /* ============ ACT 4 — Nuqla gets the answer ============ */
- {act:4,t:{ar:"نُقلة تعرف النتيجة",en:"Nuqla learns the outcome"},
+ {act:4,t:{ar:"ونُقلة تصلها النتيجة",en:"And Nuqla hears back"},
   s:{ar:"في الطرف الآخر، لا ينتظر المؤسس رسالة. تصل الموافقة المبدئية بنتيجة الفرز ٦ من ٦، ومن قرّر، والخطوة القادمة.",
      en:"On the other side, the founder is not left waiting. The preliminary approval arrives with the screening result — six of six — who decided, and what comes next."},
   run:()=>{clView="inbox";enterClient();tFade("#client")},sel:"#client .panel",zoom:true,hold:8000},
@@ -3390,18 +3372,18 @@ const CINEMA=[
      en:"Instead of filling dozens of fields, the partner uploads the strategy memo and the portfolio list."},
   run:()=>{setTimeout(()=>TF("thesisdoc","Sahm_Investment_Thesis_2025.pdf",2.4),1200)},
   sel:'#setup [data-zone="thesisdoc"]',note:{ar:"يُسحب الملف هنا",en:"Drop the file here"},hold:9000},
- {ch:1,t:{ar:"رُشد يقرأ المستند",en:"Rushed reads the document"},
+ {ch:1,t:{ar:"رُشد يقرأ المستند",en:"Rushd reads the document"},
   s:{ar:"يستخرج القطاعات والمرحلة وحجم الشيك والجغرافيا والمحفظة، ويطابق الأرقام بين المستندات.",
      en:"It extracts sectors, stage, ticket size, geography and portfolio — cross-checking the figures across documents."},
   run:()=>{},sel:"#setup .exbox",hold:10000},
  {ch:1,t:{ar:"كل حقل ومصدره",en:"Every field with its source"},
   s:{ar:"تحت كل حقل مكتوب من أي مستند جاء. وكل شيء يبقى قابلاً للتعديل — رُشد يقترح، والشريك يقرّر.",
-     en:"Under every field is the document it came from. All of it stays editable — Rushed proposes, the partner decides."},
+     en:"Under every field is the document it came from. All of it stays editable — Rushd proposes, the partner decides."},
   run:()=>{wzStep=2;renderSetup()},sel:"#setup .fld.pv-ok",
   note:{ar:"من: مذكرة الاستراتيجية",en:"From: strategy memo"},hold:10000},
  {ch:1,t:{ar:"وما لم يجده يقوله",en:"And it says what it could not find"},
   s:{ar:"ما لم يجده رُشد يُعلَّم بنجمة. والمطلوب منه يظهر بالبرتقالي ويمنع الحفظ حتى تُكمله بنفسك. لا تخمين، ولا فراغ مسكوت عنه.",
-     en:"Whatever Rushed could not find is marked with an asterisk. Anything mandatory turns amber and blocks saving until you complete it. No guessing, and no silent gaps."},
+     en:"Whatever Rushd could not find is marked with an asterisk. Anything mandatory turns amber and blocks saving until you complete it. No guessing, and no silent gaps."},
   run:()=>{wzStep=1;renderSetup()},sel:"#setup .fld.pv-req",
   note:{ar:"مطلوب — أدخله يدوياً",en:"Required — enter manually"},hold:10500},
  {ch:1,t:{ar:"ما يُطبَّق، وما هو سياق",en:"What is applied, and what is context"},
@@ -3410,7 +3392,7 @@ const CINEMA=[
   run:()=>{S.fpace=S.fpace||"6";wzStep=WZ.length-1;renderSetup()},sel:"#setup .sum",hold:11000},
  {ch:1,t:{ar:"مدخل واحد بدل فوضى",en:"One intake instead of chaos"},
   s:{ar:"الآن للصندوق رابط تقديم واحد. كل فرصة تدخل من نفس الباب وبنفس الشكل — وهذه أول قيمة يقدّمها رُشد، قبل أي ذكاء اصطناعي.",
-     en:"The fund now has one application link. Every opportunity enters through the same door in the same shape — and that is Rushed's first value, before any AI."},
+     en:"The fund now has one application link. Every opportunity enters through the same door in the same shape — and that is Rushd's first value, before any AI."},
   run:()=>{applySetup();enterFund();go("fund");tFade("#v-fund")},sel:"#v-fund",hold:11000},
 /* ---- CH.2 — the founder's side (organiser for the applicant) ---- */
  {ch:2,t:{ar:"شركة نُقلة",en:"Nuqla"},
@@ -3455,11 +3437,11 @@ const CINEMA=[
   run:()=>{tTab("evidence")},sel:"#dBody .evrow.match",hold:9500},
  {ch:3,t:{ar:"الطلب يقول شيئاً، والأدلة تقول ما هو مثبت",en:"The application says one thing, the evidence shows what is supported"},
   s:{ar:"العرض يقول ١٤٠ مشغّلاً نشطاً. جدول العملاء يُثبت ١١٨ خلال ٩٠ يوماً — فارق ١٦٪. لاحظ أن رُشد لا يرفع علماً أحمر: يشرح أن هذا يغيّر تكلفة اكتساب المشغّل، ويحوّله إلى سؤال استثماري.",
-     en:"The deck claims 140 active operators. The customer schedule evidences 118 in 90 days — a 16% gap. Notice Rushed does not raise a red flag: it explains that this changes the cost per operator, and turns it into an investment question."},
+     en:"The deck claims 140 active operators. The customer schedule evidences 118 in 90 days — a 16% gap. Notice Rushd does not raise a red flag: it explains that this changes the cost per operator, and turns it into an investment question."},
   run:()=>{tTab("evidence")},sel:"#dBody .evrow.mismatch",hold:15000},
  {ch:3,t:{ar:"وما لا يمكن تأكيده",en:"And what cannot be confirmed"},
   s:{ar:"جدول الملكية لم يصل، فلا يمكن تأكيد الملكية ولا اختبار نسبة الـ ٨–١٥٪ المستهدفة. رُشد يقولها صراحة بدل أن يخمّن.",
-     en:"The cap table has not arrived, so ownership cannot be confirmed and the 8–15% target cannot be tested. Rushed says so plainly instead of guessing."},
+     en:"The cap table has not arrived, so ownership cannot be confirmed and the 8–15% target cannot be tested. Rushd says so plainly instead of guessing."},
   run:()=>{tTab("evidence")},sel:"#dBody .evrow.unverified",hold:9500},
  {ch:3,t:{ar:"من تعارض إلى سؤال",en:"From a mismatch to a question"},
   s:{ar:"بضغطة واحدة يصير التعارض سؤالاً محدّداً يُرسل لنُقلة ويُحفظ في ملف المراجعة. هكذا تُغلق الفجوة بدل أن تبقى ملاحظة معلّقة.",
@@ -3467,37 +3449,37 @@ const CINEMA=[
   run:()=>{tTab("evidence")},sel:"#dBody [data-vq]",click:true,
   after:()=>{const b=tEl("#dBody [data-vq]");if(b)b.click()},hold:10000},
  {ch:3,t:{ar:"ملف مراجعة جاهز",en:"A review file, ready"},
-  s:{ar:"ملخص، مؤشرات، أطروحة، مخاطر مع مصادرها، نواقص، أثر على المحفظة، وأسئلة للمؤسس. المحلل يقرأ ويحكم — لا يجمع ويرتّب.",
-     en:"Summary, metrics, thesis, risks with their sources, gaps, portfolio impact, and questions for the founder. The analyst reads and judges — instead of collecting and organising."},
+  s:{ar:"ملخص، مؤشرات، أطروحة، مخاطر مع مصادرها، نواقص، أثر على المحفظة، وأسئلة للمؤسس. عبدالرحمن يقرأ ويحكم — لا يجمع ويرتّب.",
+     en:"Summary, metrics, thesis, risks with their sources, gaps, portfolio impact, and questions for the founder. Abdulrahman reads and judges — instead of collecting and organising."},
   run:()=>{tTab("review")},sel:"#dBody .sec",hold:11000},
  {ch:3,t:{ar:"ثم تُطبَّق عدسة سهم",en:"Then Sahm's lens is applied"},
   s:{ar:"ستة معايير، كل واحد بنتيجة وسبب مكتوب: التفويض، القطاع، المرحلة، الشيك، الجغرافيا، وتعارض المحفظة. هذا ليس تقييماً عاماً للشركة — هذا قياس على هذا الصندوق تحديداً.",
      en:"Six criteria, each with a result and a written reason: mandate, sector, stage, ticket, geography and portfolio conflict. This is not a generic company score — it is a measurement against this specific fund."},
   run:()=>{tTab("fit")},sel:"#dBody .checks",hold:12000},
- {ch:3,t:{ar:"رُشد لا يتخذ القرار",en:"Rushed does not make the decision"},
-  s:{ar:"المحلل يقرّر. رُشد جهّز الأدلة والسياق فقط.",
-     en:"The analyst decides. Rushed only prepared the evidence and the context."},
+ {ch:3,t:{ar:"رُشد لا يتخذ القرار",en:"Rushd does not make the decision"},
+  s:{ar:"عبدالرحمن يقرّر. رُشد جهّز الأدلة والسياق فقط.",
+     en:"Abdulrahman decides. Rushd only prepared the evidence and the context."},
   run:()=>{},sel:"#dFoot",click:true,hold:9000,after:()=>{decide("dd")}},
  {ch:3,t:{ar:"القرار وسياقه يبقيان",en:"The decision and its context stay"},
   s:{ar:"القرار وسببه مسجّلان، والصفقة انتقلت للفحص المعمّق مع خطوتها القادمة ومسؤولها.",
      en:"The decision and its reasoning are recorded, and the deal has moved to deeper diligence with its next action and its owner."},
   run:()=>{tTab("track")},sel:"#dBody",hold:9000},
 /* ---- CH.4 — the loop closes ---- */
- {ch:4,t:{ar:"نُقلة تعرف النتيجة",en:"Nuqla learns the outcome"},
+ {ch:3,t:{ar:"نُقلة تعرف النتيجة",en:"Nuqla learns the outcome"},
   s:{ar:"في الطرف الآخر، لا ينتظر المؤسس في صمت. تصل الموافقة المبدئية بنتيجة الفرز ٦ من ٦، ومن قرّر، والخطوة القادمة.",
      en:"On the other side, the founder is not left waiting in silence. The preliminary approval arrives with the screening result — six of six — who decided, and what comes next."},
   run:()=>{closeDrawer();clView="inbox";enterClient();tFade("#client")},sel:"#client .panel",hold:11000},
- {ch:4,t:{ar:"أين وصل ملفي؟",en:"Where does my file stand?"},
+ {ch:3,t:{ar:"أين وصل ملفي؟",en:"Where does my file stand?"},
   s:{ar:"استلام، فرز آلي، مراجعة المحلل، اعتماد المدير، ثم اللجنة — ومن المسؤول عن كل مرحلة. هذا السؤال الذي لا يجد المؤسس جواباً له عادة.",
      en:"Received, auto-screened, analyst review, manager approval, then committee — and who owns each stage. This is the question founders normally never get answered."},
   run:()=>{clView="report";renderClient();tFade("#client")},sel:"#client .appr",hold:12000},
- {ch:4,t:{ar:"ويحجز موعده",en:"And books the meeting"},
+ {ch:3,t:{ar:"ويحجز موعده",en:"And books the meeting"},
   s:{ar:"يختار موعد المقابلة مع فريق الاستثمار مباشرة — بلا سلسلة رسائل.",
      en:"It picks a time with the investment team directly — with no email chain."},
   run:()=>{clView="inbox";renderClient()},sel:"#client [data-slot]",click:true,
   after:()=>{const b=tEl('#client [data-slot]');if(b)b.click();
     setTimeout(()=>{const k=tEl("#clBook");if(k)k.click()},900)},hold:10000},
- {ch:4,t:{ar:"والقرارات لا تُنسى",en:"And decisions are not forgotten"},
+ {ch:3,t:{ar:"والقرارات لا تُنسى",en:"And decisions are not forgotten"},
   s:{ar:"كل قرار يبقى بسببه. وحين يتغيّر وضع الشركة أو تفويض الصندوق، يُعاد الفحص تلقائياً: ٤ من ٦ وقت الرفض، ٦ من ٦ اليوم — مع سبب إعادة الفحص.",
      en:"Every decision is kept with its reasoning. When the company or the mandate changes, it is re-checked: four of six when passed, six of six today — with the reason for the re-check."},
   run:()=>{clView="home";enterFund();go("memory");tFade("#v-memory");
@@ -3514,7 +3496,7 @@ const PITCH=[
   sel:"#v-fund",hold:9000},
  {t:{ar:"صفقة واردة",en:"An incoming deal"},
   s:{ar:"يفحص رُشد الفرصة قبل أن يصرف المحلل وقتاً أعمق: ٣ مستندات قُرئت، ٦ معايير فُحصت، مخاطر ونواقص وأسئلة جاهزة.",
-     en:"Rushed investigates the opportunity before the analyst spends deeper time: three documents read, six criteria checked, risks, gaps and questions ready."},
+     en:"Rushd investigates the opportunity before the analyst spends deeper time: three documents read, six criteria checked, risks, gaps and questions ready."},
   run:()=>{go("deals");openDeal("nuqla")},sel:"#dDid",zoom:true,hold:9000},
  {t:{ar:"دليل مطابق",en:"A matched fact"},
   s:{ar:"السجل التجاري يؤكد كياناً سعودياً سارياً، والإيراد ٣.١ مليون مطابق بين العرض والقوائم المالية.",
@@ -3526,7 +3508,7 @@ const PITCH=[
   run:()=>{tTab("evidence")},sel:"#dBody .evrow.mismatch",zoom:true,hold:14000},
  {t:{ar:"وما لا يمكن تأكيده",en:"And what cannot be confirmed"},
   s:{ar:"جدول الملكية لم يصل، فلا يمكن تأكيد الملكية. رُشد يقولها صراحة بدل أن يخمّن.",
-     en:"The cap table has not arrived, so ownership cannot be confirmed. Rushed says so plainly instead of guessing."},
+     en:"The cap table has not arrived, so ownership cannot be confirmed. Rushd says so plainly instead of guessing."},
   run:()=>{tTab("evidence")},sel:"#dBody .evrow.unverified",hold:8000},
  {t:{ar:"المحلل لا يبدأ من صفحة بيضاء",en:"The analyst does not start from a blank page"},
   s:{ar:"ملخص، مؤشرات، أطروحة، مخاطر بمصادرها، نواقص، أثر على المحفظة، وأسئلة جاهزة للمؤسس.",
@@ -3536,9 +3518,9 @@ const PITCH=[
   s:{ar:"ستة معايير، كل واحد بنتيجة وسبب مكتوب: التفويض، القطاع، المرحلة، الشيك، الجغرافيا، وتعارض المحفظة.",
      en:"Six criteria, each with a result and a written reason: mandate, sector, stage, ticket, geography and portfolio conflict."},
   run:()=>{tTab("fit")},sel:"#dBody .checks",zoom:true,hold:10000},
- {t:{ar:"رُشد لا يتخذ القرار",en:"Rushed does not make the decision"},
+ {t:{ar:"رُشد لا يتخذ القرار",en:"Rushd does not make the decision"},
   s:{ar:"المحلل يقرّر. رُشد جهّز الأدلة والسياق فقط.",
-     en:"The analyst decides. Rushed only prepared the evidence and the context."},
+     en:"The analyst decides. Rushd only prepared the evidence and the context."},
   run:()=>{},sel:"#dFoot",click:true,hold:8000,after:()=>{decide("dd")}},
  {t:{ar:"القرار وسياقه يبقيان في المسار",en:"The decision and its context stay in the workflow"},
   s:{ar:"القرار وسببه مسجّلان، والصفقة انتقلت للفحص المعمّق مع الخطوة القادمة ومسؤولها.",
@@ -3553,7 +3535,7 @@ const STILLS=[
   s:{ar:"كل شيء يبدأ من سياق الصندوق: التفويض، القطاعات، المرحلة، حجم الشيك، والمحفظة.",
      en:"Everything starts with the fund's context: mandate, sectors, stage, ticket and portfolio."},
   run:()=>{closeDrawer();clView="home";enterFund();go("fund");tFade("#v-fund")},sel:"#v-fund",hold:8000},
- {t:{ar:"ما أنجزه رُشد قبل المحلل",en:"What Rushed did before the analyst"},
+ {t:{ar:"ما أنجزه رُشد قبل المحلل",en:"What Rushd did before the analyst"},
   s:{ar:"٣ مستندات قُرئت · ٦ معايير فُحصت · ٦ بنود تحقّق · مخاطر ونواقص · أسئلة جاهزة.",
      en:"3 documents read · 6 criteria checked · 6 verification items · risks and gaps · questions ready."},
   run:()=>{go("deals");openDeal("nuqla");tFade("#drawer")},sel:"#dDid",hold:8000},
@@ -3571,19 +3553,131 @@ const STILLS=[
   run:()=>{tTab("fit");tFade("#dBody")},sel:"#dBody .checks",hold:9000},
  {t:{ar:"القرار للمحلل، والسياق يبقى",en:"The analyst decides, the context stays"},
   s:{ar:"رُشد لا يتخذ القرار. القرار وسببه مسجّلان، والصفقة انتقلت مع خطوتها القادمة ومسؤولها.",
-     en:"Rushed does not decide. The decision and its reasoning are recorded, and the deal moves on with its next action and owner."},
+     en:"Rushd does not decide. The decision and its reasoning are recorded, and the deal moves on with its next action and owner."},
   run:()=>{decide("dd");tTab("track");tFade("#dBody")},sel:"#dBody",hold:8000}
 ];
 
 function tRender(){
   const st=TOUR[tIdx];if(!st)return;
-  const lbl=st.ch?t({ar:["","مدخل الصندوق","المؤسس","المحلل","الدائرة"][st.ch],en:["","INTAKE","FOUNDER","ANALYST","LOOP"][st.ch]})
+  const RL={fund:{ar:"الصندوق",en:"FUND"},founder:{ar:"المؤسس",en:"FOUNDER"},analyst:{ar:"المحلل",en:"ANALYST"}};
+  const lbl=st.role?t(RL[st.role]):st.ch?t({ar:["","مدخل الصندوق","المؤسس","المحلل","الدائرة"][st.ch],en:["","INTAKE","FOUNDER","ANALYST","LOOP"][st.ch]})
     :st.act?t({ar:["","الصندوق","المؤسس","المحلل","النتيجة"][st.act],en:["","FUND","FOUNDER","ANALYST","OUTCOME"][st.act]}):"";
   $("#tourBar .tnum").textContent=(lbl?lbl+" · ":"")+(tIdx+1)+"/"+TOUR.length;
   $("#tourBar .ttl").textContent=t(st.t);
   $("#tourBar .say").textContent=t(st.s);
   $("#tourBar .tprog i").style.width=((tIdx+1)/TOUR.length*100)+"%";
 }
+const ROLES={
+ fund:{n:{ar:"المرحلة الأولى",en:"STAGE ONE"},stage:{ar:"تأسيس الصندوق",en:"Fund Setup"},
+  t:{ar:"عرّف صندوقك مرة واحدة",en:"Define your fund once"},
+  f:[{ar:"ارفع مستنداتك — رُشد يستخرج عدستك",en:"Upload your documents \u2014 Rushd extracts your lens"},
+     {ar:"كل حقل بمصدره، وما لم يوجد يُعلَّم",en:"Every field with its source; gaps are flagged"},
+     {ar:"رابط تقديم واحد بدل الفوضى",en:"One application link instead of chaos"}]},
+ founder:{n:{ar:"المرحلة الثانية",en:"STAGE TWO"},stage:{ar:"تقديم المؤسس",en:"The Founder"},
+  t:{ar:"قدّم مرة واحدة، واعرف أين تقف",en:"Apply once \u2014 and know where you stand"},
+  f:[{ar:"ارفع سجلك التجاري — يتعبأ الطلب",en:"Upload your registration \u2014 the form fills itself"},
+     {ar:"اعرف ما ينقصك قبل الإرسال",en:"See what\u2019s missing before you submit"},
+     {ar:"تابع حالة طلبك ومن يراجعه",en:"Track your status and who is reviewing"}]},
+ analyst:{n:{ar:"المرحلة الثالثة",en:"STAGE THREE"},stage:{ar:"مراجعة المحلل",en:"The Analyst"},
+  t:{ar:"احكم، لا تجمع",en:"Judge \u2014 don\u2019t collect"},
+  f:[{ar:"أدلة: ادعاء ← مصدر ← نتيجة",en:"Evidence: claim \u2192 source \u2192 result"},
+     {ar:"فرز بمعايير صندوقك، بسبب مكتوب",en:"Screened on your criteria, with written reasons"},
+     {ar:"قرارك يُسجَّل بسببه وينتقل للتتبع",en:"Your decision is recorded and moves to tracking"}]}};
+function tRoleCard(k,cb){
+  const c=$("#roleCard"),o=ROLES[k];if(!o){cb();return}
+  $("#featBadge").classList.remove("on");tSpotStop();tClear();
+  c.querySelector(".rcn").textContent=t(o.n);
+  c.querySelector(".rcstage").textContent=t(o.stage);
+  c.querySelector(".rct").textContent=t(o.t);
+  c.querySelector(".rcg").innerHTML=o.f.map((x,i)=>
+    '<div class="rcf"><b>'+(i+1)+'</b><span>'+t(x)+'</span></div>').join("");
+  c.classList.add("on");
+  setTimeout(()=>{c.classList.remove("on");cb()},4800/TSPEED);
+}
+function tFeatBadge(k,i){
+  const b=$("#featBadge"),o=ROLES[k];
+  if(!o||!i){b.classList.remove("on");return}
+  b.querySelector("i").textContent=i;
+  b.querySelector(".fbstage").textContent=t(o.stage);
+  b.querySelector("span").textContent=t(o.f[i-1]);
+  b.classList.add("on");
+}
+/* ============ PROOF MODE — 3 screens, ~23s (for the 5-min pitch) ============ */
+const PROOF=[
+ {t:{ar:"يتعلّم الصندوق",en:"Rushd learns the fund"},
+  s:{ar:"التفويض، القطاعات، المرحلة، حجم الشيك، المحفظة \u2014 عدسة هذا الصندوق.",
+     en:"Mandate, sectors, stage, ticket, portfolio \u2014 this fund\u2019s lens."},
+  run:()=>{window.__keepDrawer=1;closeDrawer();clView="home";enterFund();go("fund");tFade("#v-fund")},
+  sel:"#v-fund",hold:7500},
+ {t:{ar:"يقيس الفرصة بعدسة الصندوق",en:"It evaluates the deal through that lens"},
+  s:{ar:"ستة معايير، كل واحد بنتيجة وسبب مكتوب \u2014 لا تقييم عام.",
+     en:"Six criteria, each with a result and a written reason \u2014 not a generic score."},
+  run:()=>{go("deals");openDeal("nuqla");tTab("fit");tFade("#drawer")},
+  sel:"#dBody .checks",zoom:true,hold:8000},
+ {t:{ar:"والمحلل يستلم ملفاً جاهزاً للقرار",en:"And the analyst gets a decision-ready view"},
+  s:{ar:"أدلة، مخاطر، أسئلة \u2014 والقرار يبقى للمحلل.",
+     en:"Evidence, risks, questions \u2014 and the decision stays with the analyst."},
+  run:()=>{tTab("evidence")},sel:"#dBody .evrow.mismatch",zoom:true,hold:8000}
+];
+/* ============ FEATURES MODE — 3 roles x 3 features (~110s) ============ */
+const FEATURES=[
+/* ---- FUND ---- */
+ {role:"fund",fi:1,t:{ar:"مستندات الصندوق",en:"The fund\u2019s documents"},
+  s:{ar:"يرفع الشريك مذكرة الاستراتيجية وقائمة المحفظة \u2014 ورُشد يقرأها ويستخرج عدسة الصندوق.",
+     en:"The partner uploads the strategy memo and portfolio list \u2014 Rushd reads them and extracts the fund\u2019s lens."},
+  run:()=>{closeDrawer();S.mode="upload";openSetup();wzStep=0;renderSetup();tFade("#setup");
+    setTimeout(()=>TF("thesisdoc","Sahm_Investment_Thesis_2025.pdf",2.4),900)},
+  sel:'#setup [data-zone="thesisdoc"]',hold:11000},
+ {role:"fund",fi:2,t:{ar:"كل حقل بمصدره",en:"Every field with its source"},
+  s:{ar:"تحت كل حقل مصدره. وما لم يجده رُشد يُعلَّم بنجمة، والمطلوب يظهر بالبرتقالي. لا تخمين.",
+     en:"Under every field is its source. What Rushd cannot find is marked with an asterisk, and anything mandatory turns amber. No guessing."},
+  run:()=>{wzStep=2;renderSetup()},sel:"#setup .fld.pv-ok",hold:10000},
+ {role:"fund",fi:3,t:{ar:"رابط تقديم واحد",en:"One application link"},
+  s:{ar:"ستة معايير تُطبَّق على كل صفقة تلقائياً \u2014 والآن للصندوق مدخل واحد بدل بريد ونماذج متفرقة.",
+     en:"Six criteria applied to every deal automatically \u2014 and now the fund has one front door instead of scattered forms."},
+  run:()=>{S.fpace=S.fpace||"6";wzStep=WZ.length-1;renderSetup();
+    setTimeout(()=>{applySetup();enterFund();go("fund");tFade("#v-fund")},3400)},
+  sel:"#setup .sum",hold:10000},
+/* ---- FOUNDER ---- */
+ {role:"founder",fi:1,t:{ar:"سجل تجاري واحد",en:"One registration document"},
+  s:{ar:"ترفع نُقلة سجلها التجاري \u2014 فيقرأه رُشد ويعبّئ الطلب: الاسم، الرقم، المدينة، القطاع، المرحلة.",
+     en:"Nuqla uploads its commercial registration \u2014 Rushd reads it and fills the form: name, number, city, sector, stage."},
+  run:()=>{CL.mode="upload";clView="apply";clStep=0;enterClient();tFade("#client");
+    setTimeout(()=>TF("crdoc","Nuqla_CR_1010447823.pdf",1.1),1600)},
+  sel:'#client [data-zone="crdoc"]',hold:11000},
+ {role:"founder",fi:2,t:{ar:"ما ينقصك قبل الإرسال",en:"What\u2019s missing, before you submit"},
+  s:{ar:"مدقّق الاكتمال يقول للمؤسس ما ينقصه الآن \u2014 بدل أن يكتشفه بعد أسبوعين برسالة.",
+     en:"The completeness checker tells the founder what is missing now \u2014 instead of an email two weeks later."},
+  run:()=>{clStep=3;renderClient()},sel:"#client .chk",hold:10000},
+ {role:"founder",fi:3,t:{ar:"أين وصل طلبي؟",en:"Where does my file stand?"},
+  s:{ar:"وحين يصدر القرار، يرى المؤسس النتيجة وسببها، وأين وصل ملفه، ومن يراجعه في كل مرحلة.",
+     en:"And when the decision comes, the founder sees the outcome and its reason, where the file stands, and who owns each stage."},
+  run:()=>{clSent=true;clView="report";renderClient();tFade("#client")},
+  sel:"#client .appr",hold:12000},
+/* ---- ANALYST ---- */
+ {role:"analyst",fi:1,t:{ar:"الأدلة",en:"The evidence"},
+  s:{ar:"العرض يقول ١٤٠ مشغّلاً. القوائم المالية تُثبت ١١٨. رُشد لا يرفع علماً أحمر \u2014 بل يشرح الأثر ويحوّله لسؤال.",
+     en:"The deck claims 140 operators. The financials evidence 118. Rushd doesn\u2019t raise a red flag \u2014 it explains the impact and turns it into a question."},
+  run:()=>{clView="home";enterFund();go("deals");openDeal("nuqla");tTab("evidence");tFade("#drawer")},
+  sel:"#dBody .evrow.mismatch",hold:15000},
+ {role:"analyst",fi:2,t:{ar:"عدسة صندوقك",en:"Your fund\u2019s lens"},
+  s:{ar:"ستة معايير، كل واحد بنتيجة وسبب مكتوب. هذا ليس تقييماً عاماً للشركة \u2014 بل قياس على هذا الصندوق.",
+     en:"Six criteria, each with a result and a written reason. Not a generic company score \u2014 a measurement against this fund."},
+  run:()=>{tTab("fit")},sel:"#dBody .checks",hold:12000},
+ {role:"analyst",fi:3,t:{ar:"القرار للمحلل",en:"The analyst decides"},
+  s:{ar:"رُشد لا يقرّر. عبدالرحمن يضغط \u201Cالفحص المعمّق\u201D \u2014 فتتحرّك الصفقة في المسار أمامك.",
+     en:"Rushd does not decide. Abdulrahman moves it to deeper diligence \u2014 and the deal advances along the pipeline in front of you."},
+  run:()=>{window.__keepDrawer=1;tTab("track")},sel:"#dBody .sec:first-child",zoom:true,hold:11000,
+  after:()=>{decide("dd");tTab("track");
+    setTimeout(()=>{const e=tEl("#dBody .sec:first-child");if(e){tClear();e.classList.add("tspot");tSpot(e)}},500)}},
+ {role:"analyst",fi:3,t:{ar:"ولا يضيع بعدها",en:"And nothing is lost after it"},
+  s:{ar:"القرار وسببه مسجّلان، والخطوة القادمة محدّدة ومسؤولها معروف \u2014 لا يضيع السياق بين المراحل.",
+     en:"The decision and its reasoning are recorded, the next step is defined and its owner named \u2014 no context is lost between stages."},
+  run:()=>{window.__keepDrawer=1;
+    if(!$("#drawer").classList.contains("on"))openDeal("nuqla");
+    tTab("track")},
+  sel:"#dBody .sec:nth-child(2)",zoom:true,hold:9000}
+];
 const ACTS={
  1:{n:{ar:"الفصل الأول",en:"ACT ONE"},t:{ar:"صندوق سهم يعرّف عدسته",en:"Sahm Ventures defines its lens"},
    s:{ar:"صندوق جريء سعودي، ٣٠٠ مليون ريال — يرفع مستنداته مرة واحدة.",en:"A SAR 300M Saudi VC — it uploads its documents once."}},
@@ -3594,18 +3688,18 @@ const ACTS={
  4:{n:{ar:"الفصل الرابع",en:"ACT FOUR"},t:{ar:"نُقلة تعرف النتيجة",en:"Nuqla learns the outcome"},
    s:{ar:"القرار وسببه، وأين وصل الملف، وموعد المقابلة.",en:"The decision and its reason, where the file stands, and the meeting booked."}}};
 const CHAPS={
- 1:{n:{ar:"الفصل الأول",en:"CHAPTER ONE"},t:{ar:"مدخل واحد بدل الفوضى",en:"One intake instead of chaos"},
-   s:{ar:"كيف يعرّف الصندوق نفسه مرة واحدة — ويصبح لكل فرصة نفس الباب ونفس الشكل.",
-      en:"How the fund defines itself once — so every opportunity arrives through the same door in the same shape."}},
- 2:{n:{ar:"الفصل الثاني",en:"CHAPTER TWO"},t:{ar:"الطرف الذي ينساه الجميع",en:"The side everyone forgets"},
-   s:{ar:"المؤسس: يرفع مرة واحدة، يرى ما ينقصه، ويعاين ملفه قبل أن يسلّمه.",
-      en:"The founder: uploads once, sees what is missing, and previews the file before handing it over."}},
- 3:{n:{ar:"الفصل الثالث",en:"CHAPTER THREE"},t:{ar:"المحلل يحكم، لا يجمع",en:"The analyst judges, not collects"},
-   s:{ar:"تحقّق بالأدلة، عدسة الصندوق، وقرار مسجّل بسببه.",
-      en:"Verification by evidence, the fund's lens, and a decision recorded with its reasoning."}},
- 4:{n:{ar:"الفصل الرابع",en:"CHAPTER FOUR"},t:{ar:"الدائرة تُغلق",en:"The loop closes"},
-   s:{ar:"المؤسس يعرف أين يقف ولماذا — والقرار يبقى محفوظاً لما بعد.",
-      en:"The founder knows where they stand and why — and the decision is kept for what comes next."}}};
+ 1:{n:{ar:"الجزء الأول",en:"PART ONE"},
+    t:{ar:"الصندوق يضبط عدسته",en:"The fund sets its lens"},
+    s:{ar:"مرة واحدة. بعدها تصل كل فرصة من الباب نفسه، وبالشكل نفسه.",
+       en:"Once. After that every opportunity arrives through the same door, in the same shape."}},
+ 2:{n:{ar:"الجزء الثاني",en:"PART TWO"},
+    t:{ar:"المؤسس يقدّم",en:"The founder applies"},
+    s:{ar:"رفع واحد. لا حقل ناقص. ولا صفحة فارغة.",
+       en:"One upload. Nothing missing. No blank page."}},
+ 3:{n:{ar:"الجزء الثالث",en:"PART THREE"},
+    t:{ar:"عبدالرحمن يقرّر",en:"Abdulrahman decides"},
+    s:{ar:"الملف مُتحقَّق منه ومفروز على معايير سهم قبل أن يفتحه. القرار يبقى له.",
+       en:"The file is verified and screened on Sahm\u2019s own criteria before he opens it. The decision stays his."}}};
 let tLastAct=0,tLastCh=0;
 function tChapCard(a,cb){
   const c=$("#actCard"),o=CHAPS[a];if(!o){cb();return}
@@ -3623,10 +3717,13 @@ function tActCard(a,cb){
   c.classList.add("on");
   setTimeout(()=>{c.classList.remove("on");cb()},2200/TSPEED);
 }
+let tLastRole="";
 function tStep(){
   clearTimeout(tTimer);
   const st=TOUR[tIdx];
   if(!st){tFinish();return}
+  if(st.role&&st.role!==tLastRole){
+    tLastRole=st.role;return tRoleCard(st.role,()=>tStep2(st));}
   if(st.ch&&st.ch!==tLastCh){
     tLastCh=st.ch;return tChapCard(st.ch,()=>tStep2(st));}
   if(st.act&&st.act!==tLastAct){
@@ -3636,6 +3733,7 @@ function tStep(){
 }
 function tStep2(st){
   try{if(st.run)st.run()}catch(e){}
+  try{tFeatBadge(st.role,st.fi)}catch(e){}
   tRender();
   const H=(st.hold||6000)/TSPEED;
   setTimeout(()=>{try{tPoint(st.sel,st.click,st.note,st.zoom)}catch(e){}},Math.min(260/TSPEED,H*.15));
@@ -3644,10 +3742,11 @@ function tStep2(st){
   tTimer=setTimeout(()=>{tIdx++;tStep()},(st.hold||6000)/TSPEED);
 }
 function tFinish(){
-  tClear();$("#tourNote").classList.remove("on");
+  window.__keepDrawer=0;
+  tClear();tSpotStop();$("#tourNote").classList.remove("on");$("#featBadge").classList.remove("on");
   $("#tourCur").classList.remove("on");$("#tourBar").classList.remove("on");
   const e=$("#tourEnd");
-  e.querySelector("h2").textContent=L==="ar"?"رُشد يفهم صندوقك.":"Rushed understands your fund.";
+  e.querySelector("h2").textContent=L==="ar"?"رُشد يفهم صندوقك.":"Rushd understands your fund.";
   e.querySelector("p").textContent=L==="ar"
     ?"من معلومات خام إلى ذكاء استثماري مُتحقَّق — والمحلل يبقى صاحب القرار."
     :"From raw information to verified investment intelligence — and the analyst remains the decision-maker.";
@@ -3656,7 +3755,17 @@ function tFinish(){
 function tourStart(){
   if(tRunning)return;tRunning=true;
   const mode=(TQ.get("tour")||"full").toLowerCase();
-  if(mode==="cinema"||mode==="film"||mode==="4"){
+  if(mode==="proof"){
+    document.body.classList.add("cinema");
+    ["botFab","tips","toasts"].forEach(id=>{const e=$("#"+id);if(e){e.style.display="none";e.style.visibility="hidden"}});
+    const tzp=$("#toasts");if(tzp)tzp.innerHTML="";
+    TOUR.length=0;PROOF.forEach(x=>TOUR.push(x));}
+  else if(mode==="features"||mode==="3x3"){
+    document.body.classList.add("cinema");
+    ["botFab","tips","toasts"].forEach(id=>{const e=$("#"+id);if(e){e.style.display="none";e.style.visibility="hidden"}});
+    const tz0=$("#toasts");if(tz0)tz0.innerHTML="";
+    TOUR.length=0;FEATURES.forEach(x=>TOUR.push(x));EXDELAY=800;}
+  else if(mode==="cinema"||mode==="film"||mode==="4"){
     document.body.classList.add("cinema");
     ["botFab","tips","toasts"].forEach(id=>{const e=$("#"+id);if(e){e.style.display="none";e.style.visibility="hidden"}});
     const tz=$("#toasts");if(tz)tz.innerHTML="";
@@ -3678,7 +3787,7 @@ function tourStart(){
 document.addEventListener("click",e=>{
   const b=e.target.closest("#tourBar [data-tc]");if(!b)return;
   const k=b.dataset.tc;
-  if(k==="stop"){clearTimeout(tTimer);tRunning=false;tClear();$("#tourNote").classList.remove("on");
+  if(k==="stop"){window.__keepDrawer=0;clearTimeout(tTimer);tRunning=false;tClear();tSpotStop();$("#tourNote").classList.remove("on");
     $("#tourCur").classList.remove("on");$("#tourBar").classList.remove("on");return}
   if(k==="play"){tPlay=!tPlay;b.innerHTML=tPlay?"&#10074;&#10074;":"&#9654;";if(tPlay)tStep();else clearTimeout(tTimer);return}
   if(k==="next"){clearTimeout(tTimer);tIdx=Math.min(TOUR.length-1,tIdx+1);tStep();return}
